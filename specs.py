@@ -1,5 +1,6 @@
 # TODO: improve naming conventions
 # Ik ben er ook!
+# Verandering2
 
 from cmath import pi, sqrt
 
