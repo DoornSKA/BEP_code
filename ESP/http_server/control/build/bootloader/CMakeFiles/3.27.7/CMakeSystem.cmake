@@ -1,6 +1,6 @@
-set(CMAKE_HOST_SYSTEM "Linux-6.5.6-300.fc39.x86_64")
+set(CMAKE_HOST_SYSTEM "Linux-6.8.7-200.fc39.x86_64")
 set(CMAKE_HOST_SYSTEM_NAME "Linux")
-set(CMAKE_HOST_SYSTEM_VERSION "6.5.6-300.fc39.x86_64")
+set(CMAKE_HOST_SYSTEM_VERSION "6.8.7-200.fc39.x86_64")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
 include("/home/skado/programming/esp/esp-idf/tools/cmake/toolchain-esp32.cmake")

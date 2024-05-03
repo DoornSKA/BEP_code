@@ -14,4 +14,4 @@ Merged 2 ELF sections
 Successfully created esp32 image.
 Generated /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
 [9/9] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/skado/bep/BEP_code/ESP/http_server/control/build/partition_table/partition-table.bin /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
-simple.bin binary size 0xc8f70 bytes. Smallest app partition is 0x100000 bytes. 0x37090 bytes (21%) free.
+simple.bin binary size 0xca4d0 bytes. Smallest app partition is 0x100000 bytes. 0x35b30 bytes (21%) free.
