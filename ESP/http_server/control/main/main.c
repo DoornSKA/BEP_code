@@ -45,7 +45,12 @@
 #define EXAMPLE_ESP_WIFI_CHANNEL   CONFIG_ESP_WIFI_CHANNEL
 #define EXAMPLE_MAX_STA_CONN       CONFIG_ESP_MAX_STA_CONN
 
+#define OUT_PULSE_1 GPIO_NUM_1
+#define OUT_PULSE_2 GPIO_NUM_2
+
 #define LED_BUILTIN GPIO_NUM_2
+
+#define MAX_VOLTAGE (250)
 
 char WEB_on_resp[] = R"rawliteral(
 <!DOCTYPE html>
@@ -98,35 +103,105 @@ char WEB_off_resp[] = R"rawliteral(
 </html>)rawliteral";
 
 char WEB_test[] = R"rawliteral(
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style type=\"text/css\">html {  body {    font-family: Arial, sans-serif;    margin: 0;    padding: 0;}header {    background-color: #333;    color: #fff;    text-align: center;    padding: 20px 0;}.container {    display: flex;    justify-content: space-between;    padding: 20px;}.buttons {    display: flex;    flex-direction: column;}.buttons button {    margin-bottom: 20px; /* Increased space */    padding: 10px 20px;    background-color: #007bff;    color: #fff;    border: none;    border-radius: 5px;    cursor: pointer;}.buttons button:hover {    background-color: #0056b3;}.form {    flex: 1;    margin-left: 40px; /* Increased space */}.form input {    width: 100%;    padding: 10px;    margin-bottom: 10px;    border: 1px solid #ccc;    border-radius: 5px;    box-sizing: border-box;}.form input:focus {    outline: none;    border-color: #007bff;}.form button {    padding: 10px 20px;    background-color: #007bff;    color: #fff;    border: none;    border-radius: 5px;    cursor: pointer;}.form button:hover {    background-color: #0056b3}</style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage Title</title>
-    <link rel=\"stylesheet\" type=\"text/css\" >
-</head>
-<body>
-    <header>
-        <h1>Webpage Title</h1>
-    </header>
-    <div class="container">
-        <div class="buttons">
-            <button>Button 1</button>
-            <button>Button 2</button>
-            <button>Button 3</button>
-        </div>
-        <div class="form">
-            <form>
-                <input type="text" placeholder="Input 1">
-                <input type="text" placeholder="Input 2">
-                <input type="text" placeholder="Input 3">
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
-</body></html>)rawliteral";
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header and form</title>
+  <style>
+  /* CSS styles */
+  body {
+      font-family: OCR A Std, monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #94ddc9
+  }
+
+  header {
+      background-color: #998adb;
+      color: #fff;
+      padding: 10px 20px;
+      text-align: center;
+  }
+
+  form {
+      margin: 20px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  label {
+      margin-bottom: 5px;
+  }
+
+  input[type="Voltage1"], input[type="Voltage2"], input[type="Interpulse"] {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+  }
+
+  input[type="submit"], .button {
+      padding: 10px 20px;
+      background-color: #998adb;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+
+  .input-container {
+      margin: auto;
+      margin-right: ;
+      margin-bottom: 10px;
+  }
+
+  .button-container {
+      margin: auto;
+      margin-bottom: 40px;
+      text-align: center;
+  }
+
+  .button-cont {
+      margin: auto;
+      text-align: center;
+  }
+
+
+  </style>
+  </head>
+  <body>
+  <header>
+      <h1>WORMINATOR</h1>
+  </header>
+
+  <form action="/values">
+      <div class="input-container">
+          <label for="Voltage1">[V]</label>
+          Voltage1: <input type="Voltage1" id="Voltage1" name="Voltage1" required>
+      </div>
+      <div class="input-container">
+          <label for="Voltage2">[V]</label>
+          Voltage2: <input type="Voltage2" id="Voltage2" name="Voltage2" required>
+      </div>
+      <div class="input-container">
+          <label for="Interpulse">[us]</label>
+          Interpulse: <input type="Interpulse" id="Interpulse" name="Interpulse" required>
+      </div>
+      <div class="button-container">
+          <input type="submit" value="Submit">
+      </div>
+  </form>
+
+  <div class="button-cont">
+
+    <a href="/stimulate" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
+  </div>
+
+
+  </body>
+  </html>)rawliteral";
 
 char WEB_input_test[] = R"rawliteral(
 <!DOCTYPE HTML><html><head>
@@ -198,156 +273,61 @@ void wifi_init_softap(void)
              EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS, EXAMPLE_ESP_WIFI_CHANNEL);
 }
 
-// ----------------------------------------------------------------------
-
-
-/* Only if we need to do authorization but i don't think that we do
- *
- */
-#if CONFIG_EXAMPLE_BASIC_AUTH
-
-typedef struct {
-    char    *username;
-    char    *password;
-} basic_auth_info_t;
-
-#define HTTPD_401      "401 UNAUTHORIZED"           /*!< HTTP Response 401 */
-
-static char *http_auth_basic(const char *username, const char *password)
-{
-    size_t out;
-    char *user_info = NULL;
-    char *digest = NULL;
-    size_t n = 0;
-    int rc = asprintf(&user_info, "%s:%s", username, password);
-    if (rc < 0) {
-        ESP_LOGE(TAG, "asprintf() returned: %d", rc);
-        return NULL;
-    }
-
-    if (!user_info) {
-        ESP_LOGE(TAG, "No enough memory for user information");
-        return NULL;
-    }
-    esp_crypto_base64_encode(NULL, 0, &n, (const unsigned char *)user_info, strlen(user_info));
-
-    /* 6: The length of the "Basic " string
-     * n: Number of bytes for a base64 encode format
-     * 1: Number of bytes for a reserved which be used to fill zero
-    */
-    digest = calloc(1, 6 + n + 1);
-    if (digest) {
-        strcpy(digest, "Basic ");
-        esp_crypto_base64_encode((unsigned char *)digest + 6, n, &out, (const unsigned char *)user_info, strlen(user_info));
-    }
-    free(user_info);
-    return digest;
-}
-
-/* An HTTP GET handler */
-static esp_err_t basic_auth_get_handler(httpd_req_t *req)
-{
-    char *buf = NULL;
-    size_t buf_len = 0;
-    basic_auth_info_t *basic_auth_info = req->user_ctx;
-
-    buf_len = httpd_req_get_hdr_value_len(req, "Authorization") + 1;
-    if (buf_len > 1) {
-        buf = calloc(1, buf_len);
-        if (!buf) {
-            ESP_LOGE(TAG, "No enough memory for basic authorization");
-            return ESP_ERR_NO_MEM;
-        }
-
-        if (httpd_req_get_hdr_value_str(req, "Authorization", buf, buf_len) == ESP_OK) {
-            ESP_LOGI(TAG, "Found header => Authorization: %s", buf);
-        } else {
-            ESP_LOGE(TAG, "No auth value received");
-        }
-
-        char *auth_credentials = http_auth_basic(basic_auth_info->username, basic_auth_info->password);
-        if (!auth_credentials) {
-            ESP_LOGE(TAG, "No enough memory for basic authorization credentials");
-            free(buf);
-            return ESP_ERR_NO_MEM;
-        }
-
-        if (strncmp(auth_credentials, buf, buf_len)) {
-            ESP_LOGE(TAG, "Not authenticated");
-            httpd_resp_set_status(req, HTTPD_401);
-            httpd_resp_set_type(req, "application/json");
-            httpd_resp_set_hdr(req, "Connection", "keep-alive");
-            httpd_resp_set_hdr(req, "WWW-Authenticate", "Basic realm=\"Hello\"");
-            httpd_resp_send(req, NULL, 0);
-        } else {
-            ESP_LOGI(TAG, "Authenticated!");
-            char *basic_auth_resp = NULL;
-            httpd_resp_set_status(req, HTTPD_200);
-            httpd_resp_set_type(req, "application/json");
-            httpd_resp_set_hdr(req, "Connection", "keep-alive");
-            int rc = asprintf(&basic_auth_resp, "{\"authenticated\": true,\"user\": \"%s\"}", basic_auth_info->username);
-            if (rc < 0) {
-                ESP_LOGE(TAG, "asprintf() returned: %d", rc);
-                free(auth_credentials);
-                return ESP_FAIL;
-            }
-            if (!basic_auth_resp) {
-                ESP_LOGE(TAG, "No enough memory for basic authorization response");
-                free(auth_credentials);
-                free(buf);
-                return ESP_ERR_NO_MEM;
-            }
-            httpd_resp_send(req, basic_auth_resp, strlen(basic_auth_resp));
-            free(basic_auth_resp);
-        }
-        free(auth_credentials);
-        free(buf);
-    } else {
-        ESP_LOGE(TAG, "No auth header received");
-        httpd_resp_set_status(req, HTTPD_401);
-        httpd_resp_set_type(req, "application/json");
-        httpd_resp_set_hdr(req, "Connection", "keep-alive");
-        httpd_resp_set_hdr(req, "WWW-Authenticate", "Basic realm=\"Hello\"");
-        httpd_resp_send(req, NULL, 0);
-    }
-
-    return ESP_OK;
-}
-
-static httpd_uri_t basic_auth = {
-    .uri       = "/basic_auth",
-    .method    = HTTP_GET,
-    .handler   = basic_auth_get_handler,
-};
-
-static void httpd_register_basic_auth(httpd_handle_t server)
-{
-    basic_auth_info_t *basic_auth_info = calloc(1, sizeof(basic_auth_info_t));
-    if (basic_auth_info) {
-        basic_auth_info->username = CONFIG_EXAMPLE_BASIC_AUTH_USERNAME;
-        basic_auth_info->password = CONFIG_EXAMPLE_BASIC_AUTH_PASSWORD;
-
-        basic_auth.user_ctx = basic_auth_info;
-        httpd_register_uri_handler(server, &basic_auth);
-    }
-}
-#endif
-
 // ---------------------------------------------------------------
 /*
  * Web page
  */
 
+struct userData{
+    int Voltage1;
+    int Voltage2;
+    int MuS;
+};
+
+static void format_inputs(int* input_values, char* input_string){
+    // Make sure input_values has 3 items
+
+    int fm_count = 0; // Counter for the array
+
+    // Tokenize the input string
+    char *fm_token = strtok(input_string, "&");
+
+    while(fm_token != NULL && fm_count < 3) {
+        // Find the position of '='
+        char *pos = strchr(fm_token, '=');
+
+        if (pos != NULL) {
+            // Extract the value
+            char *value = pos + 1;
+
+            // Convert the value to an integer and store it in the array
+            input_values[fm_count] = atoi(value);
+            fm_count++;
+        }
+
+        // Move to the next token
+        fm_token = strtok(NULL, "&");
+    }
+
+    // Output the values stored in the array
+    ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
+}
+
 static esp_err_t input_handler(httpd_req_t *req)
 {
     const char* target = "cap_value";
     const char* uri = "testInput";
+    int input_values[3];
 
     const char* uri2 = req->uri;
 
     ESP_LOGI(TAG, "buffer: %s", uri2);
-    char* box_input = &uri2[strlen(target) + strlen(uri) + 2];
+    char* box_input = &uri2[strlen(target)+1];
     ESP_LOGI(TAG, "print value: %s", box_input);
+
+    // format the http request and put the form inputs into input_values
+    format_inputs(input_values, box_input);
+
     return httpd_resp_send(req, WEB_input_test, HTTPD_RESP_USE_STRLEN);
 }
 
@@ -364,6 +344,7 @@ esp_err_t led_on_handler(httpd_req_t *req)
     gpio_set_level(LED_BUILTIN, 1);
     ESP_LOGI(TAG, "GPIO%i set to on", LED_BUILTIN);
     return response;
+
 }
 esp_err_t led_off_handler(httpd_req_t *req)
 {
@@ -375,6 +356,8 @@ esp_err_t led_off_handler(httpd_req_t *req)
 
 esp_err_t test_handler(httpd_req_t *req)
 {
+    const char* uri_test = req->uri;
+    ESP_LOGI(TAG, "buffer: %s", uri_test);
     esp_err_t response = httpd_resp_send(req, WEB_test, HTTPD_RESP_USE_STRLEN);
     ESP_LOGI(TAG, "testing");
     return response;
@@ -457,9 +440,6 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &ht_led_on);
         httpd_register_uri_handler(server, &uri_get);
         httpd_register_uri_handler(server, &input);
-        #if CONFIG_EXAMPLE_BASIC_AUTH
-        httpd_register_basic_auth(server);
-        #endif
         return server;
     }
 
