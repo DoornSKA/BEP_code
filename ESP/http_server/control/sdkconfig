@@ -374,8 +374,8 @@ CONFIG_PARTITION_TABLE_MD5=y
 # Example Configuration
 #
 # CONFIG_EXAMPLE_BASIC_AUTH is not set
-CONFIG_ESP_WIFI_SSID="AverageWormEnjoyers"
-CONFIG_ESP_WIFI_PASSWORD="johandidit"
+CONFIG_ESP_WIFI_SSID="WhereDidTheWormsGo?"
+CONFIG_ESP_WIFI_PASSWORD="JohanWasHere"
 CONFIG_ESP_WIFI_CHANNEL=1
 CONFIG_ESP_MAX_STA_CONN=4
 # end of Example Configuration

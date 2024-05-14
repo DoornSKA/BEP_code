@@ -17,6 +17,7 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <esp_log.h>
 #include <nvs_flash.h>
@@ -49,6 +50,9 @@
 #define OUT_PULSE_2 GPIO_NUM_2
 
 #define LED_BUILTIN GPIO_NUM_2
+
+#define SAMPLES 80
+static char recording_data_array[SAMPLES*5];
 
 char WORMINATOR[] = R"rawliteral(
 <head>
@@ -268,6 +272,30 @@ static void format_inputs(int* input_values, char* input_string){
     ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
 }
 
+static void format_measurements(void){
+    int i, j = 0;
+    for (i = 0; i < SAMPLES; i++) {
+        // Convert the integer to characters
+        int len = snprintf(NULL, 0, "%d", i*5); // Determine the length of the integer string
+        char temp[len + 1]; // Create a temporary buffer to store the integer string
+        snprintf(temp, len + 1, "%d", i*5); // Convert the integer to a string
+
+        // Append the characters of the integer to the character array
+        int k;
+        for (k = 0; temp[k] != '\0'; k++) {
+            recording_data_array[j++] = temp[k];
+        }
+
+        // Append a comma if it's not the last integer
+        if (i != SAMPLES - 1) {
+            recording_data_array[j++] = ',';
+        }
+    }
+
+    // Null-terminate the character array
+    recording_data_array[j] = '\0';
+}
+
 esp_err_t handler_main(httpd_req_t *req){
     esp_err_t response = httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
     ESP_LOGI(TAG, "New user signed on");
@@ -298,6 +326,11 @@ esp_err_t handler_submit(httpd_req_t *req){
 
     ESP_LOGI(TAG, "Voltage 1: %d, Voltage 2: %d, Interpulse: %d", userData.Voltage1 ,userData.Voltage2 , userData.Interpulse);
     return httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
+}
+
+esp_err_t handler_get_data(httpd_req_t *req){
+    format_measurements();
+    return httpd_resp_send(req, recording_data_array, HTTPD_RESP_USE_STRLEN);
 }
 
 /* This handler allows the custom error handling functionality to be
@@ -348,6 +381,13 @@ static const httpd_uri_t handler_submit_t = {
   .user_ctx  = NULL
 };
 
+static const httpd_uri_t handler_get_data_t = {
+  .uri       = "/get_data" ,
+  .method    = HTTP_GET,
+  .handler   = handler_get_data,
+  .user_ctx  = NULL
+};
+
 static httpd_handle_t start_webserver(void)
 {
     httpd_handle_t server = NULL;
@@ -369,6 +409,7 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &handler_stimulate_t);
         httpd_register_uri_handler(server, &handler_submit_t);
         httpd_register_uri_handler(server, &handler_main_t);
+        httpd_register_uri_handler(server, &handler_get_data_t);
         return server;
     }
 
