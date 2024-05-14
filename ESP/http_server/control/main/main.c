@@ -50,169 +50,122 @@
 
 #define LED_BUILTIN GPIO_NUM_2
 
-#define MAX_VOLTAGE (250)
+char WORMINATOR[] = R"rawliteral(
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Header and form</title>
+<style>
+/* CSS styles */
+body {
+    font-family: OCR A Std, monospace;
+    margin: 0;
+    padding: 0;
+    background-color: #94ddc9
+}
 
-char WEB_on_resp[] = R"rawliteral(
-<!DOCTYPE html>
-<html>
-   <head>
-      <style type=\"text/css\">html {  font-family: Arial;  display: inline-block;  margin: 0px auto;  text-align: center;}h1{  color: #070812;  padding: 2vh;}.button {  display: inline-block;  background-color: #b30000; //red color  border: none;  border-radius: 4px;  color: white;  padding: 16px 40px;  text-decoration: none;  font-size: 30px;  margin: 2px;  cursor: pointer;}.button2 {  background-color: #364cf4; //blue color}.content {   padding: 50px;}.card-grid {  max-width: 800px;  margin: 0 auto;  display: grid;  grid-gap: 2rem;  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));}.card {  background-color: white;  box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);}.card-title {  font-size: 1.2rem;  font-weight: bold;  color: #034078}</style>
-      <title>ESP32 WEB SERVER</title>
-      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-      <link rel=\"icon\" href=\"data:,\">
-      <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.7.2/css/all.css\"    integrity=\"sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr\" crossorigin=\"anonymous\">
-      <link rel=\"stylesheet\" type=\"text/css\" >
-   </head>
-   <body>
-      <h2>ESP32 WEB SERVER</h2>
-      <div class=\"content\">
-      <div class=\"card-grid\">
-         <div class=\"card\">
-            <p><i class=\"fas fa-lightbulb fa-2x\" style=\"color:#c81919;\"></i>     <strong>GPIO2</strong></p>
-            <p>GPIO state: <strong> ON</strong></p>
-            <p>          <a href=\"/led2on\"><button class=\"button\">ON</button></a>          <a href=\"/led2off\"><button class=\"button button2\">OFF</button></a>        </p>
-         </div>
-         </  div>
-      </div>
-   </body>
-</html>)rawliteral";
+header {
+    background-color: #998adb;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+}
 
-char WEB_off_resp[] = R"rawliteral(
-<!DOCTYPE html>
-<html>
-   <head>
-      <style type=\"text/css\">html {  font-family: Arial;  display: inline-block;  margin: 0px auto;  text-align: center;}h1{  color: #070812;  padding: 2vh;}.button {  display: inline-block;  background-color: #b30000; //red color  border: none;  border-radius: 4px;  color: white;  padding: 16px 40px;  text-decoration: none;  font-size: 30px;  margin: 2px;  cursor: pointer;}.button2 {  background-color: #364cf4; //blue color}.content {   padding: 50px;}.card-grid {  max-width: 800px;  margin: 0 auto;  display: grid;  grid-gap: 2rem;  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));}.card {  background-color: white;  box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);}.card-title {  font-size: 1.2rem;  font-weight: bold;  color: #034078}</style>
-      <title>ESP32 WEB SERVER</title>
-      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
-      <link rel=\"icon\" href=\"data:,\">
-      <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.7.2/css/all.css\"    integrity=\"sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr\" crossorigin=\"anonymous\">
-      <link rel=\"stylesheet\" type=\"text/css\">
-   </head>
-   <body>
-      <h2>ESP32 WEB SERVER</h2>
-      <div class=\"content\">
-         <div class=\"card-grid\">
-            <div class=\"card\">
-               <p><i class=\"fas fa-lightbulb fa-2x\" style=\"color:#c81919;\"></i>     <strong>GPIO2</strong></p>
-               <p>GPIO state: <strong> OFF</strong></p>
-               <p>          <a href=\"/led2on\"><button class=\"button\">ON</button></a>          <a href=\"/led2off\"><button class=\"button button2\">OFF</button></a>        </p>
-            </div>
-         </div>
-      </div>
-   </body>
-</html>)rawliteral";
+form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
-char WEB_test[] = R"rawliteral(
-  <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Header and form</title>
-  <style>
-  /* CSS styles */
-  body {
-      font-family: OCR A Std, monospace;
-      margin: 0;
-      padding: 0;
-      background-color: #94ddc9
-  }
+label {
+    margin-bottom: 5px;
+}
 
-  header {
-      background-color: #998adb;
-      color: #fff;
-      padding: 10px 20px;
-      text-align: center;
-  }
+input[type="Voltage1"], input[type="Voltage2"], input[type="Interpulse"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    background-color: #f8f9f4;
+    border-radius: 5px;
+    font-size: 16px;
+}
 
-  form {
-      margin: 20px;
-      display: flex;
-      flex-direction: column;
-  }
+input[type="submit"], .button {
+    padding: 10px 20px;
+    background-color: #998adb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-  label {
-      margin-bottom: 5px;
-  }
+.input-container {
+    margin: auto;
+    margin-right: ;
+    margin-bottom: 10px;
+}
 
-  input[type="Voltage1"], input[type="Voltage2"], input[type="Interpulse"] {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-  }
+.button-container {
+    margin: auto;
+    margin-bottom: 40px;
+    text-align: center;
+}
 
-  input[type="submit"], .button {
-      padding: 10px 20px;
-      background-color: #998adb;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-  }
+.button-cont {
+    margin: auto;
+    margin-bottom: 40px;
+    text-align: center;
+}
 
-  .input-container {
-      margin: auto;
-      margin-right: ;
-      margin-bottom: 10px;
-  }
+.box {
+    margin-left: 60px;
+    margin-right: 60px;
+    text-align: left;
+    background-color: #f8f9f4;
+    padding: 60px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>WORMINATOR</h1>
+</header>
 
-  .button-container {
-      margin: auto;
-      margin-bottom: 40px;
-      text-align: center;
-  }
+<form action="/submit">
+    <div class="input-container">
+        <label for="Voltage1">[V]</label>
+        Voltage1: <input type="Voltage1" id="Voltage1" name="Voltage1" required>
+    </div>
+    <div class="input-container">
+        <label for="Voltage2">[V]</label>
+        Voltage2: <input type="Voltage2" id="Voltage2" name="Voltage2" required>
+    </div>
+    <div class="input-container">
+        <label for="Interpulse">[us]</label>
+        Interpulse: <input type="Interpulse" id="Interpulse" name="Interpulse" required>
+    </div>
+    <div class="button-container">
+        <input type="submit" value="Submit">
+    </div>
+</form>
 
-  .button-cont {
-      margin: auto;
-      text-align: center;
-  }
-
-
-  </style>
-  </head>
-  <body>
-  <header>
-      <h1>WORMINATOR</h1>
-  </header>
-
-  <form action="/values">
-      <div class="input-container">
-          <label for="Voltage1">[V]</label>
-          Voltage1: <input type="Voltage1" id="Voltage1" name="Voltage1" required>
-      </div>
-      <div class="input-container">
-          <label for="Voltage2">[V]</label>
-          Voltage2: <input type="Voltage2" id="Voltage2" name="Voltage2" required>
-      </div>
-      <div class="input-container">
-          <label for="Interpulse">[us]</label>
-          Interpulse: <input type="Interpulse" id="Interpulse" name="Interpulse" required>
-      </div>
-      <div class="button-container">
-          <input type="submit" value="Submit">
-      </div>
-  </form>
-
+<div>
   <div class="button-cont">
-
-    <a href="/stimulate" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
+  <a href="/stimulate" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
   </div>
-
-
-  </body>
-  </html>)rawliteral";
-
-char WEB_input_test[] = R"rawliteral(
-<!DOCTYPE HTML><html><head>
-  <title>ESP Input Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head><body>
-  <form action="/testInput">
-    input1: <input type="text" name="cap_value">
-    <input type="submit" value="Submit">
-  </form><br>
-</body></html>)rawliteral";
+  <div>
+    <div class="box">
+    <p>USER GUIDE:</p>
+    <p>-set the value of the voltages of the coil</p>
+      <p>-set the values of the duration between the firing of the two pulses</p>
+  </div>
+  </div>
+</div>
+</body>
+</html>)rawliteral";
 
 static const char *TAG = "example";
 // SoftAP
@@ -278,11 +231,13 @@ void wifi_init_softap(void)
  * Web page
  */
 
-struct userData{
+struct userData_t{
     int Voltage1;
     int Voltage2;
-    int MuS;
+    int Interpulse;
 };
+
+struct userData_t userData = {0, 0, 0};
 
 static void format_inputs(int* input_values, char* input_string){
     // Make sure input_values has 3 items
@@ -313,54 +268,36 @@ static void format_inputs(int* input_values, char* input_string){
     ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
 }
 
-static esp_err_t input_handler(httpd_req_t *req)
-{
-    const char* target = "cap_value";
-    const char* uri = "testInput";
+esp_err_t handler_main(httpd_req_t *req){
+    esp_err_t response = httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
+    ESP_LOGI(TAG, "New user signed on");
+    return response;
+}
+
+esp_err_t handler_stimulate(httpd_req_t *req){
+    esp_err_t response = httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
+    ESP_LOGI(TAG, "COIL GOES BRR");
+    return response;
+}
+
+esp_err_t handler_submit(httpd_req_t *req){
+    const char* target = "submit";
     int input_values[3];
 
-    const char* uri2 = req->uri;
+    const char* uri = req->uri;
 
-    ESP_LOGI(TAG, "buffer: %s", uri2);
-    char* box_input = &uri2[strlen(target)+1];
+    ESP_LOGI(TAG, "buffer: %s", uri);
+    char* box_input = &uri[strlen(target)+1];
     ESP_LOGI(TAG, "print value: %s", box_input);
 
     // format the http request and put the form inputs into input_values
     format_inputs(input_values, box_input);
+    userData.Voltage1 = input_values[0];
+    userData.Voltage2 = input_values[1];
+    userData.Interpulse = input_values[2];
 
-    return httpd_resp_send(req, WEB_input_test, HTTPD_RESP_USE_STRLEN);
-}
-
-
-esp_err_t get_req_handler(httpd_req_t *req)
-{
-    esp_err_t response = httpd_resp_send(req, WEB_off_resp, HTTPD_RESP_USE_STRLEN);
-    ESP_LOGI(TAG, "GPIO%i", LED_BUILTIN);
-    return response;
-}
-esp_err_t led_on_handler(httpd_req_t *req)
-{
-    esp_err_t response = httpd_resp_send(req, WEB_on_resp, HTTPD_RESP_USE_STRLEN);
-    gpio_set_level(LED_BUILTIN, 1);
-    ESP_LOGI(TAG, "GPIO%i set to on", LED_BUILTIN);
-    return response;
-
-}
-esp_err_t led_off_handler(httpd_req_t *req)
-{
-    esp_err_t response = httpd_resp_send(req, WEB_off_resp, HTTPD_RESP_USE_STRLEN);
-    gpio_set_level(LED_BUILTIN, 0);
-    ESP_LOGI(TAG, "GPIO%i set to off", LED_BUILTIN);
-    return response;
-}
-
-esp_err_t test_handler(httpd_req_t *req)
-{
-    const char* uri_test = req->uri;
-    ESP_LOGI(TAG, "buffer: %s", uri_test);
-    esp_err_t response = httpd_resp_send(req, WEB_test, HTTPD_RESP_USE_STRLEN);
-    ESP_LOGI(TAG, "testing");
-    return response;
+    ESP_LOGI(TAG, "Voltage 1: %d, Voltage 2: %d, Interpulse: %d", userData.Voltage1 ,userData.Voltage2 , userData.Interpulse);
+    return httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
 }
 
 /* This handler allows the custom error handling functionality to be
@@ -390,32 +327,25 @@ esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
     return ESP_FAIL;
 }
 
-static const httpd_uri_t input = {
-  .uri       = "/testInput",
-  .method    = HTTP_GET,
-  .handler   = input_handler,
-  .user_ctx  = NULL
-};
-
-static const httpd_uri_t uri_get = {
+static const httpd_uri_t handler_main_t = {
   .uri       = "/",
   .method    = HTTP_GET,
-  .handler   = test_handler,
+  .handler   = handler_main,
   .user_ctx  = NULL
 };
 
-static const httpd_uri_t ht_led_on = {
-    .uri       = "/led2on",
-    .method    = HTTP_GET,
-    .handler   = led_on_handler,
-    .user_ctx  = NULL
+static const httpd_uri_t handler_stimulate_t = {
+  .uri       = "/stimulate" ,
+  .method    = HTTP_GET,
+  .handler   = handler_stimulate,
+  .user_ctx  = NULL
 };
 
-static const httpd_uri_t ht_led_off = {
-    .uri       = "/led2off" ,
-    .method    = HTTP_GET,
-    .handler   = led_off_handler,
-    .user_ctx  = NULL
+static const httpd_uri_t handler_submit_t = {
+  .uri       = "/submit" ,
+  .method    = HTTP_GET,
+  .handler   = handler_submit,
+  .user_ctx  = NULL
 };
 
 static httpd_handle_t start_webserver(void)
@@ -436,10 +366,9 @@ static httpd_handle_t start_webserver(void)
     if (httpd_start(&server, &config) == ESP_OK) {
         // Set URI handlers
         ESP_LOGI(TAG, "Registering URI handlers");
-        httpd_register_uri_handler(server, &ht_led_off);
-        httpd_register_uri_handler(server, &ht_led_on);
-        httpd_register_uri_handler(server, &uri_get);
-        httpd_register_uri_handler(server, &input);
+        httpd_register_uri_handler(server, &handler_stimulate_t);
+        httpd_register_uri_handler(server, &handler_submit_t);
+        httpd_register_uri_handler(server, &handler_main_t);
         return server;
     }
 
