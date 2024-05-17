@@ -31,7 +31,7 @@
 #endif
 
 #define EXAMPLE_READ_LEN                    256
-#define ADC_BUFFER_SIZE                     1024 // Size of the buffer to store ADC data
+#define ADC_BUFFER_SIZE                     1024 
 
 #if CONFIG_IDF_TARGET_ESP32
 static adc_channel_t channel[2] = {ADC_CHANNEL_6, ADC_CHANNEL_7};
@@ -119,10 +119,9 @@ void app_main(void)
                     uint32_t chan_num = EXAMPLE_ADC_GET_CHANNEL(p);
                     uint32_t data = EXAMPLE_ADC_GET_DATA(p);
                     if (chan_num < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
-                        // Store data in buffer
                         adc_data_buffer[buffer_index++] = data;
                         if (buffer_index >= ADC_BUFFER_SIZE) {
-                            buffer_index = 0; // Wrap around or handle overflow as needed
+                            buffer_index = 0;
                         }
                         ESP_LOGI(TAG, "Unit: %s, Channel: %"PRIu32", Value: %"PRIx32, EXAMPLE_ADC_UNIT_STR(EXAMPLE_ADC_UNIT), chan_num, data);
                     } else {
