@@ -1,10 +1,13 @@
-/* Simple HTTP Server Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
+/* WORMINATOR CODE:
+    structure:
+      headers & constanst
+      frontend
+      wifi setup
+      data_formatting
+      timer functions/callbacks
+      backend
+      gpio functions
+      main
 */
 
 #include "freertos/FreeRTOS.h"
@@ -46,13 +49,18 @@
 #define EXAMPLE_ESP_WIFI_CHANNEL   CONFIG_ESP_WIFI_CHANNEL
 #define EXAMPLE_MAX_STA_CONN       CONFIG_ESP_MAX_STA_CONN
 
-#define OUT_PULSE_1 GPIO_NUM_1
-#define OUT_PULSE_2 GPIO_NUM_2
-
-#define LED_BUILTIN GPIO_NUM_2
+#define GPIO_PULSE_1 GPIO_NUM_1
+#define GPIO_PULSE_2 GPIO_NUM_2
+#define GPIO_CHARGE_1 GPIO_NUM_3
+#define GPIO_CHARGE_2 GPIO_NUM_4
 
 #define SAMPLES 80
 static char recording_data_array[SAMPLES*5];
+
+// ---------------------------------------------------------------
+/*
+ * frontend
+ */
 
 char WORMINATOR[] = R"rawliteral(
 <head>
@@ -232,69 +240,100 @@ void wifi_init_softap(void)
 
 // ---------------------------------------------------------------
 /*
- * Web page
+ * Data formatting
  */
 
-struct userData_t{
-    int Voltage1;
-    int Voltage2;
-    int Interpulse;
-};
+ struct userData_t{
+     int Voltage1;
+     int Voltage2;
+     int Interpulse;
+ };
 
-struct userData_t userData = {0, 0, 0};
+ struct userData_t userData = {0, 0, 0};
 
-static void format_inputs(int* input_values, char* input_string){
-    // Make sure input_values has 3 items
+ static void format_inputs(int* input_values, char* input_string){
+     // Make sure input_values has 3 items
 
-    int fm_count = 0; // Counter for the array
+     int fm_count = 0; // Counter for the array
 
-    // Tokenize the input string
-    char *fm_token = strtok(input_string, "&");
+     // Tokenize the input string
+     char *fm_token = strtok(input_string, "&");
 
-    while(fm_token != NULL && fm_count < 3) {
-        // Find the position of '='
-        char *pos = strchr(fm_token, '=');
+     while(fm_token != NULL && fm_count < 3) {
+         // Find the position of '='
+         char *pos = strchr(fm_token, '=');
 
-        if (pos != NULL) {
-            // Extract the value
-            char *value = pos + 1;
+         if (pos != NULL) {
+             // Extract the value
+             char *value = pos + 1;
 
-            // Convert the value to an integer and store it in the array
-            input_values[fm_count] = atoi(value);
-            fm_count++;
-        }
+             // Convert the value to an integer and store it in the array
+             input_values[fm_count] = atoi(value);
+             fm_count++;
+         }
 
-        // Move to the next token
-        fm_token = strtok(NULL, "&");
-    }
+         // Move to the next token
+         fm_token = strtok(NULL, "&");
+     }
 
-    // Output the values stored in the array
-    ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
+     // Output the values stored in the array
+     ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
+ }
+
+ static void format_measurements(void){
+     int i, j = 0;
+     for (i = 0; i < SAMPLES; i++) {
+         // Convert the integer to characters
+         int len = snprintf(NULL, 0, "%d", i*5); // Determine the length of the integer string
+         char temp[len + 1]; // Create a temporary buffer to store the integer string
+         snprintf(temp, len + 1, "%d", i*5); // Convert the integer to a string
+
+         // Append the characters of the integer to the character array
+         int k;
+         for (k = 0; temp[k] != '\0'; k++) {
+             recording_data_array[j++] = temp[k];
+         }
+
+         // Append a comma if it's not the last integer
+         if (i != SAMPLES - 1) {
+             recording_data_array[j++] = ',';
+         }
+     }
+
+     // Null-terminate the character array
+     recording_data_array[j] = '\0';
+ }
+
+
+// ---------------------------------------------------------------
+/*
+ * Timers
+ */
+
+static void callback_interpulse(void* arg){
+    gpio_set_level(GPIO_PULSE_2, 1);
 }
 
-static void format_measurements(void){
-    int i, j = 0;
-    for (i = 0; i < SAMPLES; i++) {
-        // Convert the integer to characters
-        int len = snprintf(NULL, 0, "%d", i*5); // Determine the length of the integer string
-        char temp[len + 1]; // Create a temporary buffer to store the integer string
-        snprintf(temp, len + 1, "%d", i*5); // Convert the integer to a string
-
-        // Append the characters of the integer to the character array
-        int k;
-        for (k = 0; temp[k] != '\0'; k++) {
-            recording_data_array[j++] = temp[k];
-        }
-
-        // Append a comma if it's not the last integer
-        if (i != SAMPLES - 1) {
-            recording_data_array[j++] = ',';
-        }
-    }
-
-    // Null-terminate the character array
-    recording_data_array[j] = '\0';
+static void callback_open_charge_1(void* arg){
+  gpio_set_level(GPIO_CHARGE_1, 0);
 }
+
+static void callback_open_charge_2(void* arg){
+  gpio_set_level(GPIO_CHARGE_2, 0);
+}
+
+static void callback_open_pulse_1(void* arg){
+  gpio_set_level(GPIO_CHARGE_1, 0);
+}
+
+static void callback_open_pulse_2(void* arg){
+  gpio_set_level(GPIO_CHARGE_2, 0);
+}
+
+// ---------------------------------------------------------------
+/*
+ * Backend
+ */
 
 esp_err_t handler_main(httpd_req_t *req){
     esp_err_t response = httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
@@ -329,8 +368,26 @@ esp_err_t handler_submit(httpd_req_t *req){
 }
 
 esp_err_t handler_get_data(httpd_req_t *req){
-    format_measurements();
+    // format_measurements();
     return httpd_resp_send(req, recording_data_array, HTTPD_RESP_USE_STRLEN);
+}
+
+esp_err_t handler_run_all(httpd_req_t *req){
+    return httpd_resp_send(req, recording_data_array, HTTPD_RESP_USE_STRLEN);
+}
+
+esp_err_t handler_test_chunk(httpd_req_t *req){
+    char temp_chunk[51];
+
+    for(int i=0; i < 5; i++){
+        for(int j = 0; j < 50; j++){
+            temp_chunk[j] = i + '0';
+        }
+        temp_chunk[50] = '\0';
+        httpd_resp_send_chunk(req, temp_chunk, HTTPD_RESP_USE_STRLEN);
+        ESP_LOGI(TAG, "sent array chunk filled with %d", i);
+    }
+    return httpd_resp_send_chunk(req, temp_chunk, 0); // TODO: invalid size
 }
 
 /* This handler allows the custom error handling functionality to be
@@ -388,6 +445,20 @@ static const httpd_uri_t handler_get_data_t = {
   .user_ctx  = NULL
 };
 
+static const httpd_uri_t handler_run_all_t = {
+  .uri       = "/run_all" ,
+  .method    = HTTP_GET,
+  .handler   = handler_run_all,
+  .user_ctx  = NULL
+};
+
+static const httpd_uri_t handler_test_chunk_t = {
+  .uri       = "/chunk" ,
+  .method    = HTTP_GET,
+  .handler   = handler_test_chunk,
+  .user_ctx  = NULL
+};
+
 static httpd_handle_t start_webserver(void)
 {
     httpd_handle_t server = NULL;
@@ -410,6 +481,8 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &handler_submit_t);
         httpd_register_uri_handler(server, &handler_main_t);
         httpd_register_uri_handler(server, &handler_get_data_t);
+        httpd_register_uri_handler(server, &handler_run_all_t);
+        httpd_register_uri_handler(server, &handler_test_chunk_t);
         return server;
     }
 
@@ -458,8 +531,8 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
  static void control_led_init(void)
 {
   //zero-initialize the config structure.
-    gpio_set_direction(LED_BUILTIN, GPIO_MODE_OUTPUT);
-    gpio_set_level(LED_BUILTIN, 0);
+    gpio_set_direction(GPIO_CHARGE_2, GPIO_MODE_OUTPUT);
+    gpio_set_level(GPIO_CHARGE_2, 0);
 }
 
 void app_main(void)
