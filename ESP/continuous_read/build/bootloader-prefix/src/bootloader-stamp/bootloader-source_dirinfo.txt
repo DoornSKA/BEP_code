@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=C:/Users/mgroe/esp/v5.2.1/esp-idf/components/bootloader/subproject
+source_dir=/home/skado/programming/esp/esp-idf/components/bootloader/subproject
 work_dir=
 

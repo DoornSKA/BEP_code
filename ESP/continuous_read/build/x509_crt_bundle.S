@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/mgroe/Coding/Projects/continuous_read/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /home/skado/bep/BEP_code/ESP/continuous_read/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

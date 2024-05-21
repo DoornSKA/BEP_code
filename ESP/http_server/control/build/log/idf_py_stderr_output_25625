@@ -1,0 +1,35 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400d6acf: continuous_adc_init at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:570 (discriminator 1)
+[0m
+[0;33m0x40089f93: _esp_error_check_failed at /home/skado/programming/esp/esp-idf/components/esp_system/esp_err.c:50
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091755: abort at /home/skado/programming/esp/esp-idf/components/newlib/abort.c:38
+0x40089f93: _esp_error_check_failed at /home/skado/programming/esp/esp-idf/components/esp_system/esp_err.c:50
+0x400d6acf: continuous_adc_init at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:570 (discriminator 1)
+0x400d6e83: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:607
+0x4015b17f: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400d6acf: continuous_adc_init at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:570 (discriminator 1)
+[0m
+[0;33m0x40089f93: _esp_error_check_failed at /home/skado/programming/esp/esp-idf/components/esp_system/esp_err.c:50
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091755: abort at /home/skado/programming/esp/esp-idf/components/newlib/abort.c:38
+0x40089f93: _esp_error_check_failed at /home/skado/programming/esp/esp-idf/components/esp_system/esp_err.c:50
+0x400d6acf: continuous_adc_init at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:570 (discriminator 1)
+0x400d6e83: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:607
+0x4015b17f: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m
