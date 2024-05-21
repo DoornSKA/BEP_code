@@ -57,6 +57,8 @@
 #define SAMPLES 80
 static char recording_data_array[SAMPLES*5];
 
+static const char *TAG = "example";
+
 // ---------------------------------------------------------------
 /*
  * frontend
@@ -179,7 +181,6 @@ input[type="submit"], .button {
 </body>
 </html>)rawliteral";
 
-static const char *TAG = "example";
 // SoftAP
 static void wifi_event_handler(void* arg, esp_event_base_t event_base,
                                     int32_t event_id, void* event_data)
@@ -377,13 +378,14 @@ esp_err_t handler_run_all(httpd_req_t *req){
 }
 
 esp_err_t handler_test_chunk(httpd_req_t *req){
-    char temp_chunk[51];
+    const int samples_amount = 360;
+    char temp_chunk[samples_amount];
 
-    for(int i=0; i < 5; i++){
-        for(int j = 0; j < 50; j++){
-            temp_chunk[j] = i + '0';
+    for(int i=0; i < 30; i++){
+        for(int j = 0; j < samples_amount; j++){
+            temp_chunk[j] = (i % 10) + '0';
         }
-        temp_chunk[50] = '\0';
+        temp_chunk[samples_amount] = '\0';
         httpd_resp_send_chunk(req, temp_chunk, HTTPD_RESP_USE_STRLEN);
         ESP_LOGI(TAG, "sent array chunk filled with %d", i);
     }
