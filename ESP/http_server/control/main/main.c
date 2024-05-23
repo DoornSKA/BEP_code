@@ -37,6 +37,9 @@
 #include "esp_adc/adc_continuous.h"
 #include "driver/gpio.h"
 
+#include "event_source.h"
+#include "esp_event_base.h"
+
 #if !CONFIG_IDF_TARGET_LINUX
 #include <esp_wifi.h>
 #include <esp_system.h>
@@ -80,13 +83,17 @@
 static char recording_data_array[SAMPLES*5];
 
 #if CONFIG_IDF_TARGET_ESP32
-static adc_channel_t channel[2] = {ADC_CHANNEL_6};
+static adc_channel_t channel[1] = {ADC_CHANNEL_6};
 #else
-static adc_channel_t channel[2] = {ADC_CHANNEL_2};
+static adc_channel_t channel[1] = {ADC_CHANNEL_2};
 #endif
 
 static TaskHandle_t s_task_handle;
 static adc_continuous_handle_t adc_handle;
+
+
+esp_event_loop_handle_t loop_with_task;
+esp_event_loop_handle_t loop_without_task;
 
 char WORMINATOR[] = R"rawliteral(
 <head>
@@ -285,6 +292,8 @@ static void format_inputs(int* input_values, char* input_string){
     // Tokenize the input string
     char *fm_token = strtok(input_string, "&");
 
+    ESP_LOGI(TAG, "test 3");
+
     while(fm_token != NULL && fm_count < 3) {
         // Find the position of '='
         char *pos = strchr(fm_token, '=');
@@ -308,6 +317,14 @@ static void format_inputs(int* input_values, char* input_string){
 
 void int_to_4char(int num, char* buffer) {
     sprintf(buffer, "%04d", num);
+}
+
+static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata, void *user_data)
+{
+    BaseType_t mustYield = pdFALSE;
+    // Notify that ADC continuous driver has done enough number of conversions
+    vTaskNotifyGiveFromISR(s_task_handle, &mustYield);
+    return (mustYield == pdTRUE);
 }
 
 static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t samples_amount){
@@ -337,7 +354,8 @@ static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t sam
         // Move the pointer forward by 4 characters
         ptr += 4;
     }
-    httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN);
+    ESP_LOGI(TAG, "sending chunck");
+    ESP_ERROR_CHECK(httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN));
 }
 
 esp_err_t handler_main(httpd_req_t *req){
@@ -378,24 +396,36 @@ esp_err_t handler_get_data(httpd_req_t *req){
 }
 
 esp_err_t handler_read_test(httpd_req_t *req){
+    ESP_LOGI(TAG, "starting /read_test");
     char dummy[0];
     esp_err_t ret;
     uint32_t ret_num = 0;
     uint8_t result[EXAMPLE_READ_LEN] = {0};
 
-    while (1) {
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-            for(int i = 0; i < 10; i++){
-              ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-              if (ret == ESP_OK){
-                  format_measurements(req, result, ret_num);
-                  vTaskDelay(15/portTICK_PERIOD_MS);
-              }
-            }
-            ret = httpd_resp_send_chunk(req, dummy, 0);
-            break;
+    s_task_handle = xTaskGetCurrentTaskHandle();
+    adc_continuous_evt_cbs_t cbs = {
+        .on_conv_done = s_conv_done_cb,
+    };
+    ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
+    ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
 
+    for(int i = 0; i < 10; i++){
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+        if (ret == ESP_OK){
+            ESP_LOGI(TAG, "sending chunck %d", i + 1);
+            format_measurements(req, result, ret_num);
+            vTaskDelay(10/portTICK_PERIOD_MS);
+        }
+        else{
+            ESP_ERROR_CHECK(ret);
+        }
     }
+    ESP_LOGI(TAG, "sending final chunck");
+    ret = httpd_resp_send_chunk(req, dummy, 0);
+
+    ESP_ERROR_CHECK(adc_continuous_stop(adc_handle));
+    ESP_ERROR_CHECK(adc_continuous_flush_pool(adc_handle));
     return ret;
 
 }
@@ -529,14 +559,6 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
  * GPIO & ADC
  */
 
- static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata, void *user_data)
- {
-     BaseType_t mustYield = pdFALSE;
-     // Notify that ADC continuous driver has done enough number of conversions
-     vTaskNotifyGiveFromISR(s_task_handle, &mustYield);
-
-     return (mustYield == pdTRUE);
- }
 
  static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc_continuous_handle_t *out_handle)
  {
@@ -602,17 +624,14 @@ void app_main(void)
     ESP_LOGI(TAG, "ESP_WIFI_MODE_AP");
     wifi_init_softap();
 
-
     // ADC
     continuous_adc_init(channel, sizeof(channel) / sizeof(adc_channel_t), &adc_handle);
 
-    adc_continuous_evt_cbs_t cbs = {
-        .on_conv_done = s_conv_done_cb,
-    };
-
-
-    ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
-    ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
+    // adc_continuous_evt_cbs_t cbs = {
+    //     .on_conv_done = s_conv_done_cb,
+    // };
+    //
+    // ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
 
     /* Register event handlers to stop the server when Wi-Fi or Ethernet is disconnected,
      * and re-start it upon connection.

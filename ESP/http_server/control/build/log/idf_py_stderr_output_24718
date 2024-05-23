@@ -1,0 +1,100 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x4008a39e: xQueueGenericSend at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:937 (discriminator 1)
+0x401240ea: sys_mutex_unlock at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:77
+0x4012442e: sys_arch_unprotect at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:483
+0x4011445b: lwip_select at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:2065
+0x400d53ed: esp_vfs_select at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:1098
+0x400e128b: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:282
+0x400e1362: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x4000bff0: _xtos_set_intlevel in ROM
+0x4008ae4b: vPortClearInterruptMaskFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:564
+ (inlined by) vPortExitCritical at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:504
+0x4008a910: xQueueSemaphoreTake at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1777
+0x401240c2: sys_mutex_lock at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:63
+0x40124420: sys_arch_protect at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:470
+0x40114417: lwip_select at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:2051
+0x400d53ed: esp_vfs_select at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:1098
+0x400e128b: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:282
+0x400e1362: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x4011442b: lwip_select at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:2054
+0x400d53ed: esp_vfs_select at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:1098
+0x400e128b: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:282
+0x400e1362: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x4000bfed: _xtos_set_intlevel in ROM
+0x4008ae4b: vPortClearInterruptMaskFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:564
+ (inlined by) vPortExitCritical at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:504
+0x4008a910: xQueueSemaphoreTake at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c:1777
+0x401240c2: sys_mutex_lock at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:63
+0x40124420: sys_arch_protect at /home/skado/programming/esp/esp-idf/components/lwip/port/freertos/sys_arch.c:470
+0x40114417: lwip_select at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:2051
+0x400d53ed: esp_vfs_select at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:1098
+0x400e128b: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:282
+0x400e1362: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x40114455: lwip_select at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1973
+0x400d53ed: esp_vfs_select at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:1098
+0x400e128b: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:282
+0x400e1362: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m

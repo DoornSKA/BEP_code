@@ -1,0 +1,53 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x40088033: xt_utils_wait_for_intr at /home/skado/programming/esp/esp-idf/components/xtensa/include/xt_utils.h:81
+ (inlined by) esp_cpu_wait_for_intr at /home/skado/programming/esp/esp-idf/components/esp_hw_support/cpu.c:132
+0x400d2a1b: esp_vApplicationIdleHook at /home/skado/programming/esp/esp-idf/components/esp_system/freertos_hooks.c:59
+0x4008bb6d: prvIdleTask at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:4273 (discriminator 1)
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x40088033: xt_utils_wait_for_intr at /home/skado/programming/esp/esp-idf/components/xtensa/include/xt_utils.h:81
+ (inlined by) esp_cpu_wait_for_intr at /home/skado/programming/esp/esp-idf/components/esp_hw_support/cpu.c:132
+0x400d2a1b: esp_vApplicationIdleHook at /home/skado/programming/esp/esp-idf/components/esp_system/freertos_hooks.c:59
+0x4008bb6d: prvIdleTask at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:4273 (discriminator 1)
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400818c2: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x40089f9d: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x40091891: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008d4da: vTaskGenericNotifyGiveFromISR at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:6087 (discriminator 1)
+0x40083145: s_conv_done_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:536
+0x4008524d: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:309
+0x400852e4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x400834c1: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x40088033: xt_utils_wait_for_intr at /home/skado/programming/esp/esp-idf/components/xtensa/include/xt_utils.h:81
+ (inlined by) esp_cpu_wait_for_intr at /home/skado/programming/esp/esp-idf/components/esp_hw_support/cpu.c:132
+0x400d2a1b: esp_vApplicationIdleHook at /home/skado/programming/esp/esp-idf/components/esp_system/freertos_hooks.c:59
+0x4008bb6d: prvIdleTask at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c:4273 (discriminator 1)
+0x4008aaa9: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m

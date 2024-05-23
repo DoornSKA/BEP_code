@@ -85,8 +85,23 @@ def chunked_response():
     sock.close()
 
     # Print the response (headers + body)
+    print('headers:')
     print(headers.decode('utf-8'))
-    print(body.decode('utf-8')) # misschien ascii
+    # print(body.decode('utf-8')) # misschien ascii
+
+    chunk_size = 4
+    integer_list = []
+
+    data = body.decode('utf-8')
+    for i in range(0, len(data), chunk_size):
+        chunk = data[i:i + chunk_size]
+        integer_list.append(int(chunk))
+
+    # print(integer_list)
+    plt.plot(integer_list)
+    plt.show()
+    # plt.savefig(r"./graphs/image.png")
+
 
 def main():
     c = Control()
