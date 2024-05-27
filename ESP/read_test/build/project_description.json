@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "continuous_read",
-    "project_version":    "ba9d8b2-dirty",
+    "project_version":    "193a120-dirty",
     "project_path":       "/home/skado/bep/BEP_code/ESP/read_test",
     "idf_path":           "/home/skado/programming/esp/esp-idf",
     "build_dir":          "/home/skado/bep/BEP_code/ESP/read_test/build",

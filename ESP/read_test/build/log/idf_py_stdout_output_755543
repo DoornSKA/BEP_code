@@ -1,0 +1,882 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b40ch ( 46092) map[0m
+[0;32mI (121) esp_image: segment 1: paddr=0001b434 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d6b0 vaddr=40080000 size=02968h ( 10600) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=19a6ch (105068) map[0m
+[0;32mI (171) esp_image: segment 4: paddr=00039a94 vaddr=40082968 size=0add4h ( 44500) load[0m
+[0;32mI (195) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (195) boot: Disabling RNG early entropy source...[0m
+[0;32mI (207) cpu_start: Multicore app[0m
+[0;32mI (216) cpu_start: Pro cpu start user code[0m
+[0;32mI (216) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (216) cpu_start: Application information:[0m
+[0;32mI (219) cpu_start: Project name:     continuous_read[0m
+[0;32mI (224) cpu_start: App version:      193a120-dirty[0m
+[0;32mI (230) cpu_start: Compile time:     May 24 2024 10:34:02[0m
+[0;32mI (236) cpu_start: ELF file SHA256:  3dd08f279...[0m
+[0;32mI (241) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (247) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (251) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (256) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (261) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (268) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (274) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (280) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (287) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (293) heap_init: At 4008D73C len 000128C4 (74 KiB): IRAM[0m
+[0;32mI (301) spi_flash: detected chip: generic[0m
+[0;32mI (304) spi_flash: flash io: dio[0m
+[0;33mW (308) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (322) main_task: Started on CPU0[0m
+[0;32mI (332) main_task: Calling app_main()[0m
+[0;32mI (332) EXAMPLE: test -1[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].atten is :0[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].channel is :6[0m
+[0;32mI (342) EXAMPLE: adc_pattern[0].unit is :0[0m
+[0;32mI (342) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (352) EXAMPLE: test 0[0m
+[0;32mI (352) EXAMPLE: test 1[0m
+[0;32mI (362) EXAMPLE: test 2[0m
+[0;32mI (362) EXAMPLE: test 3[0m
+[0;32mI (392) EXAMPLE: test 4[0m
+[0;32mI (392) TASK: ret is 0, ret_num is 512 bytes[0m
+[0;32mI (392) EXAMPLE: datap: 2229[0m
+[0;32mI (392) EXAMPLE: datap: 2155[0m
+[0;32mI (392) EXAMPLE: datap: 2223[0m
+[0;32mI (402) EXAMPLE: datap: 2223[0m
+[0;32mI (402) EXAMPLE: datap: 2222[0m
+[0;32mI (402) EXAMPLE: datap: 2217[0m
+[0;32mI (412) EXAMPLE: datap: 2223[0m
+[0;32mI (412) EXAMPLE: datap: 2224[0m
+[0;32mI (412) EXAMPLE: datap: 2224[0m
+[0;32mI (422) EXAMPLE: datap: 2215[0m
+[0;32mI (422) EXAMPLE: datap: 2223[0m
+[0;32mI (422) EXAMPLE: datap: 2219[0m
+[0;32mI (432) EXAMPLE: datap: 2230[0m
+[0;32mI (432) EXAMPLE: datap: 2221[0m
+[0;32mI (442) EXAMPLE: datap: 2175[0m
+[0;32mI (442) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2237[0m
+[0;32mI (452) EXAMPLE: datap: 2224[0m
+[0;32mI (452) EXAMPLE: datap: 2224[0m
+[0;32mI (452) EXAMPLE: datap: 2224[0m
+[0;32mI (462) EXAMPLE: datap: 2224[0m
+[0;32mI (462) EXAMPLE: datap: 2218[0m
+[0;32mI (462) EXAMPLE: datap: 2176[0m
+[0;32mI (472) EXAMPLE: datap: 2241[0m
+[0;32mI (472) EXAMPLE: datap: 2223[0m
+[0;32mI (472) EXAMPLE: datap: 2224[0m
+[0;32mI (482) EXAMPLE: datap: 2216[0m
+[0;32mI (482) EXAMPLE: datap: 2224[0m
+[0;32mI (492) EXAMPLE: datap: 2201[0m
+[0;32mI (492) EXAMPLE: datap: 2227[0m
+[0;32mI (492) EXAMPLE: datap: 2213[0m
+[0;32mI (502) EXAMPLE: datap: 2240[0m
+[0;32mI (502) EXAMPLE: datap: 2218[0m
+[0;32mI (502) EXAMPLE: datap: 2224[0m
+[0;32mI (512) EXAMPLE: datap: 2217[0m
+[0;32mI (512) EXAMPLE: datap: 2224[0m
+[0;32mI (512) EXAMPLE: datap: 2224[0m
+[0;32mI (522) EXAMPLE: datap: 2211[0m
+[0;32mI (522) EXAMPLE: datap: 2227[0m
+[0;32mI (522) EXAMPLE: datap: 2232[0m
+[0;32mI (532) EXAMPLE: datap: 2230[0m
+[0;32mI (532) EXAMPLE: datap: 2218[0m
+[0;32mI (542) EXAMPLE: datap: 2236[0m
+[0;32mI (542) EXAMPLE: datap: 2217[0m
+[0;32mI (542) EXAMPLE: datap: 2222[0m
+[0;32mI (552) EXAMPLE: datap: 2209[0m
+[0;32mI (552) EXAMPLE: datap: 2229[0m
+[0;32mI (552) EXAMPLE: datap: 2217[0m
+[0;32mI (562) EXAMPLE: datap: 2225[0m
+[0;32mI (562) EXAMPLE: datap: 2229[0m
+[0;32mI (562) EXAMPLE: datap: 2223[0m
+[0;32mI (572) EXAMPLE: datap: 2225[0m
+[0;32mI (572) EXAMPLE: datap: 2220[0m
+[0;32mI (572) EXAMPLE: datap: 2217[0m
+[0;32mI (582) EXAMPLE: datap: 2224[0m
+[0;32mI (582) EXAMPLE: datap: 2224[0m
+[0;32mI (592) EXAMPLE: datap: 2224[0m
+[0;32mI (592) EXAMPLE: datap: 2233[0m
+[0;32mI (592) EXAMPLE: datap: 2224[0m
+[0;32mI (602) EXAMPLE: datap: 2221[0m
+[0;32mI (602) EXAMPLE: datap: 2183[0m
+[0;32mI (602) EXAMPLE: datap: 2227[0m
+[0;32mI (612) EXAMPLE: datap: 2230[0m
+[0;32mI (612) EXAMPLE: datap: 2183[0m
+[0;32mI (612) EXAMPLE: datap: 2223[0m
+[0;32mI (622) EXAMPLE: datap: 2220[0m
+[0;32mI (622) EXAMPLE: datap: 2238[0m
+[0;32mI (622) EXAMPLE: datap: 2217[0m
+[0;32mI (632) EXAMPLE: datap: 2224[0m
+[0;32mI (632) EXAMPLE: datap: 2219[0m
+[0;32mI (632) EXAMPLE: datap: 2238[0m
+[0;32mI (642) EXAMPLE: datap: 2224[0m
+[0;32mI (642) EXAMPLE: datap: 2224[0m
+[0;32mI (652) EXAMPLE: datap: 2206[0m
+[0;32mI (652) EXAMPLE: datap: 2224[0m
+[0;32mI (652) EXAMPLE: datap: 2214[0m
+[0;32mI (662) EXAMPLE: datap: 2225[0m
+[0;32mI (662) EXAMPLE: datap: 2220[0m
+[0;32mI (662) EXAMPLE: datap: 2227[0m
+[0;32mI (672) EXAMPLE: datap: 2219[0m
+[0;32mI (672) EXAMPLE: datap: 2224[0m
+[0;32mI (672) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2226[0m
+[0;32mI (682) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2224[0m
+[0;32mI (692) EXAMPLE: datap: 2225[0m
+[0;32mI (692) EXAMPLE: datap: 2222[0m
+[0;32mI (702) EXAMPLE: datap: 2219[0m
+[0;32mI (702) EXAMPLE: datap: 2217[0m
+[0;32mI (702) EXAMPLE: datap: 2224[0m
+[0;32mI (712) EXAMPLE: datap: 2224[0m
+[0;32mI (712) EXAMPLE: datap: 2225[0m
+[0;32mI (712) EXAMPLE: datap: 2213[0m
+[0;32mI (722) EXAMPLE: datap: 2224[0m
+[0;32mI (722) EXAMPLE: datap: 2223[0m
+[0;32mI (722) EXAMPLE: datap: 2224[0m
+[0;32mI (732) EXAMPLE: datap: 2214[0m
+[0;32mI (732) EXAMPLE: datap: 2231[0m
+[0;32mI (732) EXAMPLE: datap: 2223[0m
+[0;32mI (742) EXAMPLE: datap: 2224[0m
+[0;32mI (742) EXAMPLE: datap: 2207[0m
+[0;32mI (752) EXAMPLE: datap: 2217[0m
+[0;32mI (752) EXAMPLE: datap: 2222[0m
+[0;32mI (752) EXAMPLE: datap: 2221[0m
+[0;32mI (762) EXAMPLE: datap: 2209[0m
+[0;32mI (762) EXAMPLE: datap: 2224[0m
+[0;32mI (762) EXAMPLE: datap: 2223[0m
+[0;32mI (772) EXAMPLE: datap: 2219[0m
+[0;32mI (772) EXAMPLE: datap: 2217[0m
+[0;32mI (772) EXAMPLE: datap: 2224[0m
+[0;32mI (782) EXAMPLE: datap: 2223[0m
+[0;32mI (782) EXAMPLE: datap: 2227[0m
+[0;32mI (782) EXAMPLE: datap: 2218[0m
+[0;32mI (792) EXAMPLE: datap: 2224[0m
+[0;32mI (792) EXAMPLE: datap: 2229[0m
+[0;32mI (802) EXAMPLE: datap: 2209[0m
+[0;32mI (802) EXAMPLE: datap: 2219[0m
+[0;32mI (802) EXAMPLE: datap: 2224[0m
+[0;32mI (812) EXAMPLE: datap: 2218[0m
+[0;32mI (812) EXAMPLE: datap: 2215[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (822) EXAMPLE: datap: 2206[0m
+[0;32mI (822) EXAMPLE: datap: 2222[0m
+[0;32mI (822) EXAMPLE: datap: 2229[0m
+[0;32mI (832) EXAMPLE: datap: 2219[0m
+[0;32mI (832) EXAMPLE: datap: 2209[0m
+[0;32mI (832) EXAMPLE: datap: 2246[0m
+[0;32mI (842) EXAMPLE: datap: 2224[0m
+[0;32mI (842) EXAMPLE: datap: 2222[0m
+[0;32mI (842) EXAMPLE: datap: 2226[0m
+[0;32mI (852) EXAMPLE: datap: 2224[0m
+[0;32mI (852) EXAMPLE: datap: 2214[0m
+[0;32mI (862) EXAMPLE: datap: 2224[0m
+
+***ERROR*** A stack overflow in task IDLE1 has been detected.
+
+
+Backtrace: 0x400816de:0x3ffb5880 0x400866d9:0x3ffb58a0 0x4008742e:0x3ffb58c0 0x40088443:0x3ffb5940 0x40087538:0x3ffb5960 0x400874ea:0x34323232 |<-CORRUPTED
+
+
+
+
+ELF file SHA256: 3dd08f279
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b40ch ( 46092) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=0001b434 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d6b0 vaddr=40080000 size=02968h ( 10600) load[0m
+[0;32mI (130) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=19a6ch (105068) map[0m
+[0;32mI (171) esp_image: segment 4: paddr=00039a94 vaddr=40082968 size=0add4h ( 44500) load[0m
+[0;32mI (195) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (195) boot: Disabling RNG early entropy source...[0m
+[0;32mI (207) cpu_start: Multicore app[0m
+[0;32mI (215) cpu_start: Pro cpu start user code[0m
+[0;32mI (215) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (216) cpu_start: Application information:[0m
+[0;32mI (219) cpu_start: Project name:     continuous_read[0m
+[0;32mI (224) cpu_start: App version:      193a120-dirty[0m
+[0;32mI (230) cpu_start: Compile time:     May 24 2024 10:34:02[0m
+[0;32mI (236) cpu_start: ELF file SHA256:  3dd08f279...[0m
+[0;32mI (241) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (246) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (251) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (256) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (261) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (268) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (274) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (280) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (287) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (293) heap_init: At 4008D73C len 000128C4 (74 KiB): IRAM[0m
+[0;32mI (301) spi_flash: detected chip: generic[0m
+[0;32mI (304) spi_flash: flash io: dio[0m
+[0;33mW (308) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (322) main_task: Started on CPU0[0m
+[0;32mI (332) main_task: Calling app_main()[0m
+[0;32mI (332) EXAMPLE: test -1[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].atten is :0[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].channel is :6[0m
+[0;32mI (342) EXAMPLE: adc_pattern[0].unit is :0[0m
+[0;32mI (342) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (352) EXAMPLE: test 0[0m
+[0;32mI (352) EXAMPLE: test 1[0m
+[0;32mI (362) EXAMPLE: test 2[0m
+[0;32mI (362) EXAMPLE: test 3[0m
+[0;32mI (392) EXAMPLE: test 4[0m
+[0;32mI (392) TASK: ret is 0, ret_num is 512 bytes[0m
+[0;32mI (392) EXAMPLE: datap: 2214[0m
+[0;32mI (392) EXAMPLE: datap: 2219[0m
+[0;32mI (392) EXAMPLE: datap: 2225[0m
+[0;32mI (402) EXAMPLE: datap: 2217[0m
+[0;32mI (402) EXAMPLE: datap: 2223[0m
+[0;32mI (402) EXAMPLE: datap: 2223[0m
+[0;32mI (412) EXAMPLE: datap: 2224[0m
+[0;32mI (412) EXAMPLE: datap: 2219[0m
+[0;32mI (412) EXAMPLE: datap: 2210[0m
+[0;32mI (422) EXAMPLE: datap: 2169[0m
+[0;32mI (422) EXAMPLE: datap: 2224[0m
+[0;32mI (422) EXAMPLE: datap: 2225[0m
+[0;32mI (432) EXAMPLE: datap: 2224[0m
+[0;32mI (432) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2213[0m
+[0;32mI (442) EXAMPLE: datap: 2217[0m
+[0;32mI (452) EXAMPLE: datap: 2224[0m
+[0;32mI (452) EXAMPLE: datap: 2224[0m
+[0;32mI (452) EXAMPLE: datap: 2219[0m
+[0;32mI (462) EXAMPLE: datap: 2221[0m
+[0;32mI (462) EXAMPLE: datap: 2224[0m
+[0;32mI (462) EXAMPLE: datap: 2203[0m
+[0;32mI (472) EXAMPLE: datap: 2220[0m
+[0;32mI (472) EXAMPLE: datap: 2225[0m
+[0;32mI (472) EXAMPLE: datap: 2192[0m
+[0;32mI (482) EXAMPLE: datap: 2215[0m
+[0;32mI (482) EXAMPLE: datap: 2214[0m
+[0;32mI (492) EXAMPLE: datap: 2227[0m
+[0;32mI (492) EXAMPLE: datap: 2227[0m
+[0;32mI (492) EXAMPLE: datap: 2206[0m
+[0;32mI (502) EXAMPLE: datap: 2221[0m
+[0;32mI (502) EXAMPLE: datap: 2259[0m
+[0;32mI (502) EXAMPLE: datap: 2221[0m
+[0;32mI (512) EXAMPLE: datap: 2228[0m
+[0;32mI (512) EXAMPLE: datap: 2219[0m
+[0;32mI (512) EXAMPLE: datap: 2221[0m
+[0;32mI (522) EXAMPLE: datap: 2223[0m
+[0;32mI (522) EXAMPLE: datap: 2240[0m
+[0;32mI (522) EXAMPLE: datap: 2227[0m
+[0;32mI (532) EXAMPLE: datap: 2222[0m
+[0;32mI (532) EXAMPLE: datap: 2215[0m
+[0;32mI (542) EXAMPLE: datap: 2222[0m
+[0;32mI (542) EXAMPLE: datap: 2224[0m
+[0;32mI (542) EXAMPLE: datap: 2215[0m
+[0;32mI (552) EXAMPLE: datap: 2213[0m
+[0;32mI (552) EXAMPLE: datap: 2224[0m
+[0;32mI (552) EXAMPLE: datap: 2224[0m
+[0;32mI (562) EXAMPLE: datap: 2201[0m
+[0;32mI (562) EXAMPLE: datap: 2223[0m
+[0;32mI (562) EXAMPLE: datap: 2230[0m
+[0;32mI (572) EXAMPLE: datap: 2224[0m
+[0;32mI (572) EXAMPLE: datap: 2224[0m
+[0;32mI (572) EXAMPLE: datap: 2215[0m
+[0;32mI (582) EXAMPLE: datap: 2225[0m
+[0;32mI (582) EXAMPLE: datap: 2225[0m
+[0;32mI (592) EXAMPLE: datap: 2215[0m
+[0;32mI (592) EXAMPLE: datap: 2266[0m
+[0;32mI (592) EXAMPLE: datap: 2220[0m
+[0;32mI (602) EXAMPLE: datap: 2231[0m
+[0;32mI (602) EXAMPLE: datap: 2222[0m
+[0;32mI (602) EXAMPLE: datap: 2223[0m
+[0;32mI (612) EXAMPLE: datap: 2220[0m
+[0;32mI (612) EXAMPLE: datap: 2231[0m
+[0;32mI (612) EXAMPLE: datap: 2218[0m
+[0;32mI (622) EXAMPLE: datap: 2210[0m
+[0;32mI (622) EXAMPLE: datap: 2220[0m
+[0;32mI (622) EXAMPLE: datap: 2221[0m
+[0;32mI (632) EXAMPLE: datap: 2219[0m
+[0;32mI (632) EXAMPLE: datap: 2224[0m
+[0;32mI (632) EXAMPLE: datap: 2196[0m
+[0;32mI (642) EXAMPLE: datap: 2227[0m
+[0;32mI (642) EXAMPLE: datap: 2222[0m
+[0;32mI (652) EXAMPLE: datap: 2224[0m
+[0;32mI (652) EXAMPLE: datap: 2221[0m
+[0;32mI (652) EXAMPLE: datap: 2219[0m
+[0;32mI (662) EXAMPLE: datap: 2221[0m
+[0;32mI (662) EXAMPLE: datap: 2212[0m
+[0;32mI (662) EXAMPLE: datap: 2227[0m
+[0;32mI (672) EXAMPLE: datap: 2224[0m
+[0;32mI (672) EXAMPLE: datap: 2217[0m
+[0;32mI (672) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2212[0m
+[0;32mI (682) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2211[0m
+[0;32mI (692) EXAMPLE: datap: 2230[0m
+[0;32mI (692) EXAMPLE: datap: 2227[0m
+[0;32mI (702) EXAMPLE: datap: 2224[0m
+[0;32mI (702) EXAMPLE: datap: 2222[0m
+[0;32mI (702) EXAMPLE: datap: 2224[0m
+[0;32mI (712) EXAMPLE: datap: 2227[0m
+[0;32mI (712) EXAMPLE: datap: 2210[0m
+[0;32mI (712) EXAMPLE: datap: 2221[0m
+[0;32mI (722) EXAMPLE: datap: 2231[0m
+[0;32mI (722) EXAMPLE: datap: 2228[0m
+[0;32mI (722) EXAMPLE: datap: 2217[0m
+[0;32mI (732) EXAMPLE: datap: 2224[0m
+[0;32mI (732) EXAMPLE: datap: 2219[0m
+[0;32mI (732) EXAMPLE: datap: 2224[0m
+[0;32mI (742) EXAMPLE: datap: 2223[0m
+[0;32mI (742) EXAMPLE: datap: 2227[0m
+[0;32mI (752) EXAMPLE: datap: 2234[0m
+[0;32mI (752) EXAMPLE: datap: 2224[0m
+[0;32mI (752) EXAMPLE: datap: 2221[0m
+[0;32mI (762) EXAMPLE: datap: 2213[0m
+[0;32mI (762) EXAMPLE: datap: 2223[0m
+[0;32mI (762) EXAMPLE: datap: 2207[0m
+[0;32mI (772) EXAMPLE: datap: 2221[0m
+[0;32mI (772) EXAMPLE: datap: 2235[0m
+[0;32mI (772) EXAMPLE: datap: 2221[0m
+[0;32mI (782) EXAMPLE: datap: 2349[0m
+[0;32mI (782) EXAMPLE: datap: 2218[0m
+[0;32mI (782) EXAMPLE: datap: 2224[0m
+[0;32mI (792) EXAMPLE: datap: 2224[0m
+[0;32mI (792) EXAMPLE: datap: 2223[0m
+[0;32mI (802) EXAMPLE: datap: 2219[0m
+[0;32mI (802) EXAMPLE: datap: 2198[0m
+[0;32mI (802) EXAMPLE: datap: 2217[0m
+[0;32mI (812) EXAMPLE: datap: 2239[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (822) EXAMPLE: datap: 2213[0m
+[0;32mI (822) EXAMPLE: datap: 2222[0m
+[0;32mI (822) EXAMPLE: datap: 2215[0m
+[0;32mI (832) EXAMPLE: datap: 2209[0m
+[0;32mI (832) EXAMPLE: datap: 2232[0m
+[0;32mI (832) EXAMPLE: datap: 2219[0m
+[0;32mI (842) EXAMPLE: datap: 2217[0m
+[0;32mI (842) EXAMPLE: datap: 2438[0m
+[0;32mI (842) EXAMPLE: datap: 2215[0m
+[0;32mI (852) EXAMPLE: datap: 2221[0m
+[0;32mI (852) EXAMPLE: datap: 2224[0m
+[0;32mI (862) EXAMPLE: datap: 2221[0m
+
+***ERROR*** A stack overflow in task IDLE1 has been detected.
+
+
+Backtrace: 0x400816de:0x3ffb5880 0x400866d9:0x3ffb58a0 0x4008742e:0x3ffb58c0 0x40088443:0x3ffb5940 0x40087538:0x3ffb5960 0x400874ea:0x31323232 |<-CORRUPTED
+
+
+
+
+ELF file SHA256: 3dd08f279
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b40ch ( 46092) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=0001b434 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d6b0 vaddr=40080000 size=02968h ( 10600) load[0m
+[0;32mI (130) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=19a6ch (105068) map[0m
+[0;32mI (171) esp_image: segment 4: paddr=00039a94 vaddr=40082968 size=0add4h ( 44500) load[0m
+[0;32mI (195) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (195) boot: Disabling RNG early entropy source...[0m
+[0;32mI (207) cpu_start: Multicore app[0m
+[0;32mI (215) cpu_start: Pro cpu start user code[0m
+[0;32mI (215) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (216) cpu_start: Application information:[0m
+[0;32mI (219) cpu_start: Project name:     continuous_read[0m
+[0;32mI (224) cpu_start: App version:      193a120-dirty[0m
+[0;32mI (230) cpu_start: Compile time:     May 24 2024 10:34:02[0m
+[0;32mI (236) cpu_start: ELF file SHA256:  3dd08f279...[0m
+[0;32mI (241) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (246) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (251) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (256) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (261) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (268) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (274) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (280) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (287) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (293) heap_init: At 4008D73C len 000128C4 (74 KiB): IRAM[0m
+[0;32mI (301) spi_flash: detected chip: generic[0m
+[0;32mI (304) spi_flash: flash io: dio[0m
+[0;33mW (308) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (322) main_task: Started on CPU0[0m
+[0;32mI (332) main_task: Calling app_main()[0m
+[0;32mI (332) EXAMPLE: test -1[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].atten is :0[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].channel is :6[0m
+[0;32mI (342) EXAMPLE: adc_pattern[0].unit is :0[0m
+[0;32mI (342) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (352) EXAMPLE: test 0[0m
+[0;32mI (352) EXAMPLE: test 1[0m
+[0;32mI (362) EXAMPLE: test 2[0m
+[0;32mI (362) EXAMPLE: test 3[0m
+[0;32mI (392) EXAMPLE: test 4[0m
+[0;32mI (392) TASK: ret is 0, ret_num is 512 bytes[0m
+[0;32mI (392) EXAMPLE: datap: 2230[0m
+[0;32mI (392) EXAMPLE: datap: 2223[0m
+[0;32mI (392) EXAMPLE: datap: 2208[0m
+[0;32mI (402) EXAMPLE: datap: 2221[0m
+[0;32mI (402) EXAMPLE: datap: 2226[0m
+[0;32mI (402) EXAMPLE: datap: 2221[0m
+[0;32mI (412) EXAMPLE: datap: 2219[0m
+[0;32mI (412) EXAMPLE: datap: 2225[0m
+[0;32mI (412) EXAMPLE: datap: 2382[0m
+[0;32mI (422) EXAMPLE: datap: 2224[0m
+[0;32mI (422) EXAMPLE: datap: 2241[0m
+[0;32mI (422) EXAMPLE: datap: 2225[0m
+[0;32mI (432) EXAMPLE: datap: 2197[0m
+[0;32mI (432) EXAMPLE: datap: 2223[0m
+[0;32mI (442) EXAMPLE: datap: 2234[0m
+[0;32mI (442) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2229[0m
+[0;32mI (452) EXAMPLE: datap: 2195[0m
+[0;32mI (452) EXAMPLE: datap: 2107[0m
+[0;32mI (452) EXAMPLE: datap: 2241[0m
+[0;32mI (462) EXAMPLE: datap: 2219[0m
+[0;32mI (462) EXAMPLE: datap: 2221[0m
+[0;32mI (462) EXAMPLE: datap: 2223[0m
+[0;32mI (472) EXAMPLE: datap: 2226[0m
+[0;32mI (472) EXAMPLE: datap: 2222[0m
+[0;32mI (472) EXAMPLE: datap: 2218[0m
+[0;32mI (482) EXAMPLE: datap: 2181[0m
+[0;32mI (482) EXAMPLE: datap: 2223[0m
+[0;32mI (492) EXAMPLE: datap: 2217[0m
+[0;32mI (492) EXAMPLE: datap: 2224[0m
+[0;32mI (492) EXAMPLE: datap: 2227[0m
+[0;32mI (502) EXAMPLE: datap: 2224[0m
+[0;32mI (502) EXAMPLE: datap: 2229[0m
+[0;32mI (502) EXAMPLE: datap: 2229[0m
+[0;32mI (512) EXAMPLE: datap: 2251[0m
+[0;32mI (512) EXAMPLE: datap: 2221[0m
+[0;32mI (512) EXAMPLE: datap: 2224[0m
+[0;32mI (522) EXAMPLE: datap: 2217[0m
+[0;32mI (522) EXAMPLE: datap: 2223[0m
+[0;32mI (522) EXAMPLE: datap: 2221[0m
+[0;32mI (532) EXAMPLE: datap: 2224[0m
+[0;32mI (532) EXAMPLE: datap: 2224[0m
+[0;32mI (542) EXAMPLE: datap: 2228[0m
+[0;32mI (542) EXAMPLE: datap: 2218[0m
+[0;32mI (542) EXAMPLE: datap: 2215[0m
+[0;32mI (552) EXAMPLE: datap: 2220[0m
+[0;32mI (552) EXAMPLE: datap: 2225[0m
+[0;32mI (552) EXAMPLE: datap: 2227[0m
+[0;32mI (562) EXAMPLE: datap: 2219[0m
+[0;32mI (562) EXAMPLE: datap: 2240[0m
+[0;32mI (562) EXAMPLE: datap: 2214[0m
+[0;32mI (572) EXAMPLE: datap: 2233[0m
+[0;32mI (572) EXAMPLE: datap: 2224[0m
+[0;32mI (572) EXAMPLE: datap: 2224[0m
+[0;32mI (582) EXAMPLE: datap: 2224[0m
+[0;32mI (582) EXAMPLE: datap: 2234[0m
+[0;32mI (592) EXAMPLE: datap: 2257[0m
+[0;32mI (592) EXAMPLE: datap: 2223[0m
+[0;32mI (592) EXAMPLE: datap: 2223[0m
+[0;32mI (602) EXAMPLE: datap: 2221[0m
+[0;32mI (602) EXAMPLE: datap: 2224[0m
+[0;32mI (602) EXAMPLE: datap: 2217[0m
+[0;32mI (612) EXAMPLE: datap: 2224[0m
+[0;32mI (612) EXAMPLE: datap: 2233[0m
+[0;32mI (612) EXAMPLE: datap: 2224[0m
+[0;32mI (622) EXAMPLE: datap: 2219[0m
+[0;32mI (622) EXAMPLE: datap: 2228[0m
+[0;32mI (622) EXAMPLE: datap: 2220[0m
+[0;32mI (632) EXAMPLE: datap: 2224[0m
+[0;32mI (632) EXAMPLE: datap: 2219[0m
+[0;32mI (632) EXAMPLE: datap: 2223[0m
+[0;32mI (642) EXAMPLE: datap: 2219[0m
+[0;32mI (642) EXAMPLE: datap: 2223[0m
+[0;32mI (652) EXAMPLE: datap: 2214[0m
+[0;32mI (652) EXAMPLE: datap: 2224[0m
+[0;32mI (652) EXAMPLE: datap: 2225[0m
+[0;32mI (662) EXAMPLE: datap: 2221[0m
+[0;32mI (662) EXAMPLE: datap: 2224[0m
+[0;32mI (662) EXAMPLE: datap: 2222[0m
+[0;32mI (672) EXAMPLE: datap: 2231[0m
+[0;32mI (672) EXAMPLE: datap: 2210[0m
+[0;32mI (672) EXAMPLE: datap: 2217[0m
+[0;32mI (682) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2233[0m
+[0;32mI (682) EXAMPLE: datap: 2225[0m
+[0;32mI (692) EXAMPLE: datap: 2212[0m
+[0;32mI (692) EXAMPLE: datap: 2244[0m
+[0;32mI (702) EXAMPLE: datap: 2218[0m
+[0;32mI (702) EXAMPLE: datap: 2221[0m
+[0;32mI (702) EXAMPLE: datap: 2229[0m
+[0;32mI (712) EXAMPLE: datap: 2221[0m
+[0;32mI (712) EXAMPLE: datap: 2227[0m
+[0;32mI (712) EXAMPLE: datap: 2219[0m
+[0;32mI (722) EXAMPLE: datap: 2241[0m
+[0;32mI (722) EXAMPLE: datap: 2214[0m
+[0;32mI (722) EXAMPLE: datap: 2382[0m
+[0;32mI (732) EXAMPLE: datap: 2224[0m
+[0;32mI (732) EXAMPLE: datap: 2218[0m
+[0;32mI (732) EXAMPLE: datap: 2224[0m
+[0;32mI (742) EXAMPLE: datap: 2221[0m
+[0;32mI (742) EXAMPLE: datap: 2222[0m
+[0;32mI (752) EXAMPLE: datap: 2224[0m
+[0;32mI (752) EXAMPLE: datap: 2217[0m
+[0;32mI (752) EXAMPLE: datap: 2405[0m
+[0;32mI (762) EXAMPLE: datap: 2219[0m
+[0;32mI (762) EXAMPLE: datap: 2221[0m
+[0;32mI (762) EXAMPLE: datap: 2212[0m
+[0;32mI (772) EXAMPLE: datap: 2233[0m
+[0;32mI (772) EXAMPLE: datap: 2219[0m
+[0;32mI (772) EXAMPLE: datap: 2224[0m
+[0;32mI (782) EXAMPLE: datap: 2213[0m
+[0;32mI (782) EXAMPLE: datap: 2226[0m
+[0;32mI (782) EXAMPLE: datap: 2218[0m
+[0;32mI (792) EXAMPLE: datap: 2221[0m
+[0;32mI (792) EXAMPLE: datap: 2195[0m
+[0;32mI (802) EXAMPLE: datap: 2226[0m
+[0;32mI (802) EXAMPLE: datap: 2225[0m
+[0;32mI (802) EXAMPLE: datap: 2219[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (812) EXAMPLE: datap: 2225[0m
+[0;32mI (822) EXAMPLE: datap: 2221[0m
+[0;32mI (822) EXAMPLE: datap: 2222[0m
+[0;32mI (822) EXAMPLE: datap: 2224[0m
+[0;32mI (832) EXAMPLE: datap: 2227[0m
+[0;32mI (832) EXAMPLE: datap: 2215[0m
+[0;32mI (832) EXAMPLE: datap: 2218[0m
+[0;32mI (842) EXAMPLE: datap: 2221[0m
+[0;32mI (842) EXAMPLE: datap: 2224[0m
+[0;32mI (842) EXAMPLE: datap: 2217[0m
+[0;32mI (852) EXAMPLE: datap: 2220[0m
+[0;32mI (852) EXAMPLE: datap: 1920[0m
+[0;32mI (862) EXAMPLE: datap: 2219[0m
+
+***ERROR*** A stack overflow in task IDLE1 has been detected.
+
+
+Backtrace: 0x400816de:0x3ffb5880 0x400866d9:0x3ffb58a0 0x4008742e:0x3ffb58c0 0x40088443:0x3ffb5940 0x40087538:0x3ffb5960 0x400874ea:0x39313232 |<-CORRUPTED
+
+
+
+
+ELF file SHA256: 3dd08f279
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b40ch ( 46092) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=0001b434 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d6b0 vaddr=40080000 size=02968h ( 10600) load[0m
+[0;32mI (130) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=19a6ch (105068) map[0m
+[0;32mI (171) esp_image: segment 4: paddr=00039a94 vaddr=40082968 size=0add4h ( 44500) load[0m
+[0;32mI (195) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (195) boot: Disabling RNG early entropy source...[0m
+[0;32mI (207) cpu_start: Multicore app[0m
+[0;32mI (215) cpu_start: Pro cpu start user code[0m
+[0;32mI (215) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (216) cpu_start: Application information:[0m
+[0;32mI (219) cpu_start: Project name:     continuous_read[0m
+[0;32mI (224) cpu_start: App version:      193a120-dirty[0m
+[0;32mI (230) cpu_start: Compile time:     May 24 2024 10:34:02[0m
+[0;32mI (236) cpu_start: ELF file SHA256:  3dd08f279...[0m
+[0;32mI (241) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (246) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (251) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (256) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (261) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (268) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (274) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (280) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (287) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (293) heap_init: At 4008D73C len 000128C4 (74 KiB): IRAM[0m
+[0;32mI (301) spi_flash: detected chip: generic[0m
+[0;32mI (304) spi_flash: flash io: dio[0m
+[0;33mW (308) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (322) main_task: Started on CPU0[0m
+[0;32mI (332) main_task: Calling app_main()[0m
+[0;32mI (332) EXAMPLE: test -1[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].atten is :0[0m
+[0;32mI (332) EXAMPLE: adc_pattern[0].channel is :6[0m
+[0;32mI (342) EXAMPLE: adc_pattern[0].unit is :0[0m
+[0;32mI (342) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (352) EXAMPLE: test 0[0m
+[0;32mI (352) EXAMPLE: test 1[0m
+[0;32mI (362) EXAMPLE: test 2[0m
+[0;32mI (362) EXAMPLE: test 3[0m
+[0;32mI (392) EXAMPLE: test 4[0m
+[0;32mI (392) TASK: ret is 0, ret_num is 512 bytes[0m
+[0;32mI (392) EXAMPLE: datap: 2221[0m
+[0;32mI (392) EXAMPLE: datap: 2221[0m
+[0;32mI (392) EXAMPLE: datap: 2215[0m
+[0;32mI (402) EXAMPLE: datap: 2224[0m
+[0;32mI (402) EXAMPLE: datap: 2210[0m
+[0;32mI (402) EXAMPLE: datap: 2219[0m
+[0;32mI (412) EXAMPLE: datap: 2225[0m
+[0;32mI (412) EXAMPLE: datap: 2235[0m
+[0;32mI (412) EXAMPLE: datap: 2221[0m
+[0;32mI (422) EXAMPLE: datap: 2224[0m
+[0;32mI (422) EXAMPLE: datap: 2219[0m
+[0;32mI (422) EXAMPLE: datap: 2227[0m
+[0;32mI (432) EXAMPLE: datap: 2218[0m
+[0;32mI (432) EXAMPLE: datap: 2238[0m
+[0;32mI (442) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2224[0m
+[0;32mI (442) EXAMPLE: datap: 2219[0m
+[0;32mI (452) EXAMPLE: datap: 2216[0m
+[0;32mI (452) EXAMPLE: datap: 2223[0m
+[0;32mI (452) EXAMPLE: datap: 2206[0m
+[0;32mI (462) EXAMPLE: datap: 2225[0m
+[0;32mI (462) EXAMPLE: datap: 2222[0m
+[0;32mI (462) EXAMPLE: datap: 2221[0m
+[0;32mI (472) EXAMPLE: datap: 2217[0m
+[0;32mI (472) EXAMPLE: datap: 2225[0m
+[0;32mI (472) EXAMPLE: datap: 2219[0m
+[0;32mI (482) EXAMPLE: datap: 2215[0m
+[0;32mI (482) EXAMPLE: datap: 2221[0m
+[0;32mI (492) EXAMPLE: datap: 2226[0m
+[0;32mI (492) EXAMPLE: datap: 2234[0m
+[0;32mI (492) EXAMPLE: datap: 2224[0m
+[0;32mI (502) EXAMPLE: datap: 2224[0m
+[0;32mI (502) EXAMPLE: datap: 2224[0m
+[0;32mI (502) EXAMPLE: datap: 2222[0m
+[0;32mI (512) EXAMPLE: datap: 2221[0m
+[0;32mI (512) EXAMPLE: datap: 2213[0m
+[0;32mI (512) EXAMPLE: datap: 2226[0m
+[0;32mI (522) EXAMPLE: datap: 2223[0m
+[0;32mI (522) EXAMPLE: datap: 2234[0m
+[0;32mI (522) EXAMPLE: datap: 2218[0m
+[0;32mI (532) EXAMPLE: datap: 2236[0m
+[0;32mI (532) EXAMPLE: datap: 2220[0m
+[0;32mI (542) EXAMPLE: datap: 2224[0m
+[0;32mI (542) EXAMPLE: datap: 2217[0m
+[0;32mI (542) EXAMPLE: datap: 2209[0m
+[0;32mI (552) EXAMPLE: datap: 2220[0m
+[0;32mI (552) EXAMPLE: datap: 2223[0m
+[0;32mI (552) EXAMPLE: datap: 2219[0m
+[0;32mI (562) EXAMPLE: datap: 2215[0m
+[0;32mI (562) EXAMPLE: datap: 2223[0m
+[0;32mI (562) EXAMPLE: datap: 2214[0m
+[0;32mI (572) EXAMPLE: datap: 2342[0m
+[0;32mI (572) EXAMPLE: datap: 2223[0m
+[0;32mI (572) EXAMPLE: datap: 2218[0m
+[0;32mI (582) EXAMPLE: datap: 2227[0m
+[0;32mI (582) EXAMPLE: datap: 2226[0m
+[0;32mI (592) EXAMPLE: datap: 2224[0m
+[0;32mI (592) EXAMPLE: datap: 2171[0m
+[0;32mI (592) EXAMPLE: datap: 2213[0m
+[0;32mI (602) EXAMPLE: datap: 2217[0m
+[0;32mI (602) EXAMPLE: datap: 2223[0m
+[0;32mI (602) EXAMPLE: datap: 2191[0m
+[0;32mI (612) EXAMPLE: datap: 2218[0m
+[0;32mI (612) EXAMPLE: datap: 2208[0m
+[0;32mI (612) EXAMPLE: datap: 2221[0m
+[0;32mI (622) EXAMPLE: datap: 2221[0m
+[0;32mI (622) EXAMPLE: datap: 2173[0m
+[0;32mI (622) EXAMPLE: datap: 2176[0m
+[0;32mI (632) EXAMPLE: datap: 2128[0m
+[0;32mI (632) EXAMPLE: datap: 2213[0m
+[0;32mI (632) EXAMPLE: datap: 2399[0m
+[0;32mI (642) EXAMPLE: datap: 2230[0m
+[0;32mI (642) EXAMPLE: datap: 2226[0m
+[0;32mI (652) EXAMPLE: datap: 2220[0m
+[0;32mI (652) EXAMPLE: datap: 2223[0m
+[0;32mI (652) EXAMPLE: datap: 2224[0m
+[0;32mI (662) EXAMPLE: datap: 2168[0m
+[0;32mI (662) EXAMPLE: datap: 2224[0m
+[0;32mI (662) EXAMPLE: datap: 2192[0m
+[0;32mI (672) EXAMPLE: datap: 2222[0m
+[0;32mI (672) EXAMPLE: datap: 2215[0m
+[0;32mI (672) EXAMPLE: datap: 2224[0m
+[0;32mI (682) EXAMPLE: datap: 2220[0m
+[0;32mI (682) EXAMPLE: datap: 2234[0m
+[0;32mI (682) EXAMPLE: datap: 2160[0m
+[0;32mI (692) EXAMPLE: datap: 2218[0m
+[0;32mI (692) EXAMPLE: datap: 2211[0m
+[0;32mI (702) EXAMPLE: datap: 2218[0m
+[0;32mI (702) EXAMPLE: datap: 2230[0m
+[0;32mI (702) EXAMPLE: datap: 2230[0m
+[0;32mI (712) EXAMPLE: datap: 2206[0m
+[0;32mI (712) EXAMPLE: datap: 2222[0m
+[0;32mI (712) EXAMPLE: datap: 2195[0m
+[0;32mI (722) EXAMPLE: datap: 2203[0m
+[0;32mI (722) EXAMPLE: datap: 2222[0m
+[0;32mI (722) EXAMPLE: datap: 2193[0m
+[0;32mI (732) EXAMPLE: datap: 2219[0m
+[0;32mI (732) EXAMPLE: datap: 2219[0m
+[0;32mI (732) EXAMPLE: datap: 2224[0m
+[0;32mI (742) EXAMPLE: datap: 2243[0m
+[0;32mI (742) EXAMPLE: datap: 2223[0m
+[0;32mI (752) EXAMPLE: datap: 2214[0m
+[0;32mI (752) EXAMPLE: datap: 2401[0m
+[0;32mI (752) EXAMPLE: datap: 2221[0m
+[0;32mI (762) EXAMPLE: datap: 2215[0m
+[0;32mI (762) EXAMPLE: datap: 2208[0m
+[0;32mI (762) EXAMPLE: datap: 2224[0m
+[0;32mI (772) EXAMPLE: datap: 2224[0m
+[0;32mI (772) EXAMPLE: datap: 2235[0m
+[0;32mI (772) EXAMPLE: datap: 2222[0m
+[0;32mI (782) EXAMPLE: datap: 2218[0m
+[0;32mI (782) EXAMPLE: datap: 2218[0m
+[0;32mI (782) EXAMPLE: datap: 2220[0m
+[0;32mI (792) EXAMPLE: datap: 2221[0m
+[0;32mI (792) EXAMPLE: datap: 2215[0m
+[0;32mI (802) EXAMPLE: datap: 2223[0m
+[0;32mI (802) EXAMPLE: datap: 2227[0m
+[0;32mI (802) EXAMPLE: datap: 2229[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (812) EXAMPLE: datap: 2218[0m
+[0;32mI (812) EXAMPLE: datap: 2224[0m
+[0;32mI (822) EXAMPLE: datap: 2215[0m
+[0;32mI (822) EXAMPLE: datap: 2257[0m
+[0;32mI (822) EXAMPLE: datap: 2224[0m
+[0;32mI (832) EXAMPLE: datap: 2222[0m
+[0;32mI (832) EXAMPLE: datap: 2222[0m
+[0;32mI (832) EXAMPLE: datap: 2223[0m
+[0;32mI (842) EXAMPLE: datap: 2235[0m
+[0;32mI (842) EXAMPLE: datap: 2225[0m
+[0;32mI (842) EXAMPLE: datap: 2224[0m
+[0;32mI (852) EXAMPLE: datap: 2217[0m
+[0;32mI (852) EXAMPLE: datap: 2222[0m
+[0;32mI (862) EXAMPLE: datap: 2219[0m
+
+***ERROR*** A stack overflow in task IDLE1 has been detected.
+
+
+Backtrace: 0x400816de:0x3ffb5880 0x400866d9:0x3ffb58a0 0x4008742e:0x3ffb58c0 0x40088443:0x3ffb5940 0x40087538:0x3ffb5960 0x400874ea:0x39313232 |<-CORRUPTED
+
+
+
+
+ELF file SHA256: 3dd08f279
+
+Rebooting...
+ets Jul 29 2019 12:21:46
+
+rst:0xc (SW_CPU_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b40ch ( 46092) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=0001b434 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d6b0 vaddr=40080000 size=02968h ( 10600) load[0m
+[0;32mI (130) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=19a6ch (105068) map[0m
+[0;32mI (171) esp_image: segment 4: paddr=00039a94 vaddr=40082968 size=0add4h ( 44500) load[0m
+[0;32mI (195) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (195) boot: Disabling RNG early entropy source...[0m
+[0;32mI (207) cpu_start: Multicore app[0m

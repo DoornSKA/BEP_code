@@ -1,6 +1,7 @@
 import socket
 import requests
 import matplotlib.pyplot as plt
+import csv
 from time import sleep
 
 class Control():
@@ -49,6 +50,7 @@ def read_chunked_response(sock):
             break  # End of chunks
 
         # Read the chunk data
+        print(chunk_size)
         chunk_data = sock.recv(chunk_size)
         response += chunk_data
 
@@ -96,6 +98,11 @@ def chunked_response():
     for i in range(0, len(data), chunk_size):
         chunk = data[i:i + chunk_size]
         integer_list.append(int(chunk))
+
+    with open("test_data.csv", 'w', newline='') as f:
+        wr = csv.writer(f, quoting=csv.QUOTE_ALL)
+        wr.writerow(integer_list)
+
 
     # print(integer_list)
     plt.plot(integer_list)

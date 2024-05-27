@@ -1,0 +1,547 @@
+ name:     continuous_read�ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 23 2024 17:03:02[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=0b1ach ( 45484) map[0m
+[0;32mI (120) esp_image: segment 1: paddr=0001b1d4 vaddr=3ffb0000 size=02274h (  8820) load[0m
+[0;32mI (124) esp_image: segment 2: paddr=0001d450 vaddr=40080000 size=02bc8h ( 11208) load[0m
+[0;32mI (131) esp_image: segment 3: paddr=00020020 vaddr=400d0020 size=16674h ( 91764) map[0m
+[0;32mI (166) esp_image: segment 4: paddr=0003669c vaddr=40082bc8 size=0ab74h ( 43892) load[0m
+[0;32mI (190) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (190) boot: Disabling RNG early entropy source...[0m
+[0;32mI (202) cpu_start: Multicore app[0m
+[0;32mI (211) cpu_start: Pro cpu start user code[0m
+[0;32mI (211) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (211) cpu_start: Application information:[0m
+[0;32mI (214) cpu_start: Project name:     continuous_read[0m
+[0;32mI (219) cpu_start: App version:      193a120-dirty[0m
+[0;32mI (225) cpu_start: Compile time:     May 24 2024 10:34:02[0m
+[0;32mI (231) cpu_start: ELF file SHA256:  64e6cb7b2...[0m
+[0;32mI (236) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (242) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (246) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (251) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (256) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (263) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (269) heap_init: At 3FFB2B50 len 0002D4B0 (181 KiB): DRAM[0m
+[0;32mI (275) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (282) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (288) heap_init: At 4008D73C len 000128C4 (74 KiB): IRAM[0m
+[0;32mI (296) spi_flash: detected chip: generic[0m
+[0;32mI (299) spi_flash: flash io: dio[0m
+[0;33mW (303) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (317) main_task: Started on CPU0[0m
+[0;32mI (327) main_task: Calling app_main()[0m
+[0;32mI (327) EXAMPLE: test -1[0m
+[0;32mI (327) EXAMPLE: adc_pattern[0].atten is :0[0m
+[0;32mI (327) EXAMPLE: adc_pattern[0].channel is :6[0m
+[0;32mI (337) EXAMPLE: adc_pattern[0].unit is :0[0m
+[0;32mI (337) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (347) EXAMPLE: test 0[0m
+[0;32mI (347) EXAMPLE: test 1[0m
+[0;32mI (357) EXAMPLE: test 2[0m
+[0;32mI (357) EXAMPLE: test 3[0m
+[0;32mI (387) EXAMPLE: test 4[0m
+[0;32mI (387) TASK: ret is 0, ret_num is 512 bytes[0m
+[0;32mI (387) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (387) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (387) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (397) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (397) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (397) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (407) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (407) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (407) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (417) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (417) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (427) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (427) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (427) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (437) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (437) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (437) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (447) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (447) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (447) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (457) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (457) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (467) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (467) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (467) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (477) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (477) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (477) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (487) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (487) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (487) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (497) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (497) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (507) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (507) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (507) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (517) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (517) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (517) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (527) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (527) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (527) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (537) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (537) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (547) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (547) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (547) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (557) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (557) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (557) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (567) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (567) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (577) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (577) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (577) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (587) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (587) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (587) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (597) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (597) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (597) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (607) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (607) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (617) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (617) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (617) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (627) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (627) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (627) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (637) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (637) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (637) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (647) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (647) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (657) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (657) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (657) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (667) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (667) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (667) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (677) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (677) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (677) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (687) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (687) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (697) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (697) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (697) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (707) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (707) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (707) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (717) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (717) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (717) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (727) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (727) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (737) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (737) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (737) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (747) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (747) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (747) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (757) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (757) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (757) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (767) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (767) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (777) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (777) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (777) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (787) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (787) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (787) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (797) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (797) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (797) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (807) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (807) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (817) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (817) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (817) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (827) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (827) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (827) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (837) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (837) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (837) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (847) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (847) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (857) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (857) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (857) EXAMPLE: datap: 0[0m
+PN�?[0;32mI (867) EXAMPLE: datap: 0[0m
+[0;32mI (867) EXAMPLE: datap: 0[0m
+[0;32mI (867) EXAMPLE: datap: 0[0m
+[0;32mI (877) EXAMPLE: datap: 0[0m
+[0;32mI (877) EXAMPLE: datap: 0[0m
+[0;32mI (877) EXAMPLE: datap: 0[0m
+[0;32mI (887) EXAMPLE: datap: 0[0m
+[0;32mI (887) EXAMPLE: datap: 0[0m
+[0;32mI (887) EXAMPLE: datap: 0[0m
+[0;32mI (897) EXAMPLE: datap: 0[0m
+[0;32mI (897) EXAMPLE: datap: 0[0m
+[0;32mI (897) EXAMPLE: datap: 0[0m
+[0;32mI (907) EXAMPLE: datap: 0[0m
+[0;32mI (907) EXAMPLE: datap: 0[0m
+[0;32mI (907) EXAMPLE: datap: 0[0m
+[0;32mI (917) EXAMPLE: datap: 0[0m
+[0;32mI (917) EXAMPLE: datap: 0[0m
+[0;32mI (917) EXAMPLE: datap: 0[0m
+[0;32mI (927) EXAMPLE: datap: 0[0m
+[0;32mI (927) EXAMPLE: datap: 0[0m
+[0;32mI (927) EXAMPLE: datap: 0[0m
+[0;32mI (937) EXAMPLE: datap: 0[0m
+[0;32mI (937) EXAMPLE: datap: 0[0m
+[0;32mI (937) EXAMPLE: datap: 0[0m
+[0;32mI (947) EXAMPLE: datap: 0[0m
+[0;32mI (947) EXAMPLE: datap: 0[0m
+[0;32mI (947) EXAMPLE: datap: 0[0m
+[0;32mI (957) EXAMPLE: datap: 0[0m
+[0;32mI (957) EXAMPLE: datap: 0[0m
+[0;32mI (957) EXAMPLE: datap: 0[0m
+[0;32mI (967) EXAMPLE: datap: 0[0m
+[0;32mI (967) EXAMPLE: datap: 0[0m
+[0;32mI (967) EXAMPLE: datap: 0[0m
+[0;32mI (977) EXAMPLE: datap: 0[0m
+[0;32mI (977) EXAMPLE: datap: 0[0m
+[0;32mI (977) EXAMPLE: datap: 0[0m
+[0;32mI (987) EXAMPLE: datap: 0[0m
+[0;32mI (987) EXAMPLE: datap: 0[0m
+[0;32mI (987) EXAMPLE: datap: 0[0m
+[0;32mI (997) EXAMPLE: datap: 0[0m
+[0;32mI (997) EXAMPLE: datap: 0[0m
+[0;32mI (997) EXAMPLE: datap: 0[0m
+[0;32mI (1007) EXAMPLE: datap: 0[0m
+[0;32mI (1007) EXAMPLE: datap: 0[0m
+[0;32mI (1007) EXAMPLE: datap: 0[0m
+[0;32mI (1017) EXAMPLE: datap: 0[0m
+[0;32mI (1017) EXAMPLE: datap: 0[0m
+[0;32mI (1017) EXAMPLE: datap: 0[0m
+[0;32mI (1027) EXAMPLE: datap: 0[0m
+[0;32mI (1027) EXAMPLE: datap: 0[0m
+[0;32mI (1027) EXAMPLE: datap: 0[0m
+[0;32mI (1037) EXAMPLE: datap: 0[0m
+[0;32mI (1037) EXAMPLE: datap: 0[0m
+[0;32mI (1037) EXAMPLE: datap: 0[0m
+[0;32mI (1047) EXAMPLE: datap: 0[0m
+[0;32mI (1047) EXAMPLE: datap: 0[0m
+[0;32mI (1047) EXAMPLE: datap: 0[0m
+[0;32mI (1057) EXAMPLE: datap: 0[0m
+[0;32mI (1057) EXAMPLE: datap: 0[0m
+[0;32mI (1057) EXAMPLE: datap: 0[0m
+[0;32mI (1067) EXAMPLE: datap: 0[0m
+[0;32mI (1067) EXAMPLE: datap: 0[0m
+[0;32mI (1067) EXAMPLE: datap: 0[0m
+[0;32mI (1077) EXAMPLE: datap: 0[0m
+[0;32mI (1077) EXAMPLE: datap: 0[0m
+[0;32mI (1077) EXAMPLE: datap: 0[0m
+[0;32mI (1087) EXAMPLE: datap: 0[0m
+[0;32mI (1087) EXAMPLE: datap: 0[0m
+[0;32mI (1087) EXAMPLE: datap: 0[0m
+[0;32mI (1097) EXAMPLE: datap: 0[0m
+[0;32mI (1097) EXAMPLE: datap: 0[0m
+[0;32mI (1097) EXAMPLE: datap: 0[0m
+[0;32mI (1107) EXAMPLE: datap: 0[0m
+[0;32mI (1107) EXAMPLE: datap: 0[0m
+[0;32mI (1107) EXAMPLE: datap: 0[0m
+[0;32mI (1117) EXAMPLE: datap: 0[0m
+[0;32mI (1117) EXAMPLE: datap: 0[0m
+[0;32mI (1117) EXAMPLE: datap: 0[0m
+[0;32mI (1127) EXAMPLE: datap: 0[0m
+[0;32mI (1127) EXAMPLE: datap: 0[0m
+[0;32mI (1127) EXAMPLE: datap: 0[0m
+[0;32mI (1137) EXAMPLE: datap: 0[0m
+[0;32mI (1137) EXAMPLE: datap: 0[0m
+[0;32mI (1137) EXAMPLE: datap: 0[0m
+[0;32mI (1147) EXAMPLE: datap: 0[0m
+[0;32mI (1147) EXAMPLE: datap: 0[0m
+[0;32mI (1147) EXAMPLE: datap: 0[0m
+[0;32mI (1157) EXAMPLE: datap: 0[0m
+[0;32mI (1157) EXAMPLE: datap: 0[0m
+[0;32mI (1157) EXAMPLE: datap: 0[0m
+[0;32mI (1167) EXAMPLE: datap: 0[0m
+[0;32mI (1167) EXAMPLE: datap: 0[0m
+[0;32mI (1167) EXAMPLE: datap: 0[0m
+[0;32mI (1177) EXAMPLE: datap: 0[0m
+[0;32mI (1177) EXAMPLE: datap: 0[0m
+[0;32mI (1187) EXAMPLE: datap: 0[0m
+[0;32mI (1187) EXAMPLE: datap: 0[0m
+[0;32mI (1187) EXAMPLE: datap: 0[0m
+[0;32mI (1197) EXAMPLE: datap: 0[0m
+[0;32mI (1197) EXAMPLE: datap: 0[0m
+[0;32mI (1197) EXAMPLE: datap: 0[0m
+[0;32mI (1207) EXAMPLE: datap: 0[0m
+[0;32mI (1207) EXAMPLE: datap: 0[0m
+[0;32mI (1207) EXAMPLE: datap: 0[0m
+[0;32mI (1217) EXAMPLE: datap: 0[0m
+[0;32mI (1217) EXAMPLE: datap: 0[0m
+[0;32mI (1217) EXAMPLE: datap: 0[0m
+[0;32mI (1227) EXAMPLE: datap: 0[0m
+[0;32mI (1227) EXAMPLE: datap: 0[0m
+[0;32mI (1227) EXAMPLE: datap: 0[0m
+[0;32mI (1237) EXAMPLE: datap: 0[0m
+[0;32mI (1237) EXAMPLE: datap: 0[0m
+[0;32mI (1237) EXAMPLE: datap: 0[0m
+[0;32mI (1247) EXAMPLE: datap: 0[0m
+[0;32mI (1247) EXAMPLE: datap: 0[0m
+[0;32mI (1247) EXAMPLE: datap: 0[0m
+[0;32mI (1257) EXAMPLE: datap: 0[0m
+[0;32mI (1257) EXAMPLE: datap: 0[0m
+[0;32mI (1257) EXAMPLE: datap: 0[0m
+[0;32mI (1267) EXAMPLE: datap: 0[0m
+[0;32mI (1267) EXAMPLE: datap: 0[0m
+[0;32mI (1267) EXAMPLE: datap: 0[0m
+[0;32mI (1277) EXAMPLE: datap: 0[0m
+[0;32mI (1277) EXAMPLE: datap: 0[0m
+[0;32mI (1277) EXAMPLE: PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?PN�?[0m
+[0;32mI (1327) EXAMPLE: test 4[0m
+[0;31mE (1327) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1337) EXAMPLE: test 4[0m
+[0;31mE (1347) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1347) EXAMPLE: test 4[0m
+[0;31mE (1357) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1367) EXAMPLE: test 4[0m
+[0;31mE (1367) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1377) EXAMPLE: test 4[0m
+[0;31mE (1377) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1387) EXAMPLE: test 4[0m
+[0;31mE (1387) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1397) EXAMPLE: test 4[0m
+[0;31mE (1397) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1407) EXAMPLE: test 4[0m
+[0;31mE (1407) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1417) EXAMPLE: test 4[0m
+[0;31mE (1427) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1427) EXAMPLE: test 4[0m
+[0;31mE (1437) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1437) EXAMPLE: test 4[0m
+[0;31mE (1447) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1457) EXAMPLE: test 4[0m
+[0;31mE (1457) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1467) EXAMPLE: test 4[0m
+[0;31mE (1467) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1477) EXAMPLE: test 4[0m
+[0;31mE (1477) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1487) EXAMPLE: test 4[0m
+[0;31mE (1487) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1497) EXAMPLE: test 4[0m
+[0;31mE (1497) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1507) EXAMPLE: test 4[0m
+[0;31mE (1517) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1517) EXAMPLE: test 4[0m
+[0;31mE (1527) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1527) EXAMPLE: test 4[0m
+[0;31mE (1537) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1547) EXAMPLE: test 4[0m
+[0;31mE (1547) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1557) EXAMPLE: test 4[0m
+[0;31mE (1557) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1567) EXAMPLE: test 4[0m
+[0;31mE (1567) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1577) EXAMPLE: test 4[0m
+[0;31mE (1577) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1587) EXAMPLE: test 4[0m
+[0;31mE (1587) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1597) EXAMPLE: test 4[0m
+[0;31mE (1607) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1607) EXAMPLE: test 4[0m
+[0;31mE (1617) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1627) EXAMPLE: test 4[0m
+[0;31mE (1627) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1637) EXAMPLE: test 4[0m
+[0;31mE (1637) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1647) EXAMPLE: test 4[0m
+[0;31mE (1647) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1657) EXAMPLE: test 4[0m
+[0;31mE (1657) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1667) EXAMPLE: test 4[0m
+[0;31mE (1667) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1677) EXAMPLE: test 4[0m
+[0;31mE (1677) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1687) EXAMPLE: test 4[0m
+[0;31mE (1697) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1697) EXAMPLE: test 4[0m
+[0;31mE (1707) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1717) EXAMPLE: test 4[0m
+[0;31mE (1717) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1727) EXAMPLE: test 4[0m
+[0;31mE (1727) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1737) EXAMPLE: test 4[0m
+[0;31mE (1737) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1747) EXAMPLE: test 4[0m
+[0;31mE (1747) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1757) EXAMPLE: test 4[0m
+[0;31mE (1757) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1767) EXAMPLE: test 4[0m
+[0;31mE (1777) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1777) EXAMPLE: test 4[0m
+[0;31mE (1787) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1787) EXAMPLE: test 4[0m
+[0;31mE (1797) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1807) EXAMPLE: test 4[0m
+[0;31mE (1807) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1817) EXAMPLE: test 4[0m
+[0;31mE (1817) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1827) EXAMPLE: test 4[0m
+[0;31mE (1827) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1837) EXAMPLE: test 4[0m
+[0;31mE (1837) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1847) EXAMPLE: test 4[0m
+[0;31mE (1847) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1857) EXAMPLE: test 4[0m
+[0;31mE (1867) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1867) EXAMPLE: test 4[0m
+[0;31mE (1877) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1877) EXAMPLE: test 4[0m
+[0;31mE (1887) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1897) EXAMPLE: test 4[0m
+[0;31mE (1897) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1907) EXAMPLE: test 4[0m
+[0;31mE (1907) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1917) EXAMPLE: test 4[0m
+[0;31mE (1917) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1927) EXAMPLE: test 4[0m
+[0;31mE (1927) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1937) EXAMPLE: test 4[0m
+[0;31mE (1937) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1947) EXAMPLE: test 4[0m
+[0;31mE (1957) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1957) EXAMPLE: test 4[0m
+[0;31mE (1967) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1967) EXAMPLE: test 4[0m
+[0;31mE (1977) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1987) EXAMPLE: test 4[0m
+[0;31mE (1987) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (1997) EXAMPLE: test 4[0m
+[0;31mE (1997) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2007) EXAMPLE: test 4[0m
+[0;31mE (2007) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2017) EXAMPLE: test 4[0m
+[0;31mE (2017) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2027) EXAMPLE: test 4[0m
+[0;31mE (2027) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2037) EXAMPLE: test 4[0m
+[0;31mE (2047) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2047) EXAMPLE: test 4[0m
+[0;31mE (2057) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2067) EXAMPLE: test 4[0m
+[0;31mE (2067) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2077) EXAMPLE: test 4[0m
+[0;31mE (2077) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2087) EXAMPLE: test 4[0m
+[0;31mE (2087) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2097) EXAMPLE: test 4[0m
+[0;31mE (2097) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2107) EXAMPLE: test 4[0m
+[0;31mE (2107) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2117) EXAMPLE: test 4[0m
+[0;31mE (2117) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2127) EXAMPLE: test 4[0m
+[0;31mE (2137) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2137) EXAMPLE: test 4[0m
+[0;31mE (2147) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2157) EXAMPLE: test 4[0m
+[0;31mE (2157) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2167) EXAMPLE: test 4[0m
+[0;31mE (2167) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2177) EXAMPLE: test 4[0m
+[0;31mE (2177) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2187) EXAMPLE: test 4[0m
+[0;31mE (2187) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2197) EXAMPLE: test 4[0m
+[0;31mE (2197) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2207) EXAMPLE: test 4[0m
+[0;31mE (2217) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2217) EXAMPLE: test 4[0m
+[0;31mE (2227) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2227) EXAMPLE: test 4[0m
+[0;31mE (2237) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2247) EXAMPLE: test 4[0m
+[0;31mE (2247) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2257) EXAMPLE: test 4[0m
+[0;31mE (2257) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2267) EXAMPLE: test 4[0m
+[0;31mE (2267) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2277) EXAMPLE: test 4[0m
+[0;31mE (2277) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2287) EXAMPLE: test 4[0m
+[0;31mE (2287) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2297) EXAMPLE: test 4[0m
+[0;31mE (2307) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2307) EXAMPLE: test 4[0m
+[0;31mE (2317) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2317) EXAMPLE: test 4[0m
+[0;31mE (2327) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2337) EXAMPLE: test 4[0m
+[0;31mE (2337) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2347) EXAMPLE: test 4[0m
+[0;31mE (2347) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2357) EXAMPLE: test 4[0m
+[0;31mE (2357) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2367) EXAMPLE: test 4[0m
+[0;31mE (2367) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2377) EXAMPLE: test 4[0m
+[0;31mE (2377) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2387) EXAMPLE: test 4[0m
+[0;31mE (2397) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2397) EXAMPLE: test 4[0m
+[0;31mE (2407) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2417) EXAMPLE: test 4[0m
+[0;31mE (2417) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2427) EXAMPLE: test 4[0m
+[0;31mE (2427) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2437) EXAMPLE: test 4[0m
+[0;31mE (2437) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2447) EXAMPLE: test 4[0m
+[0;31mE (2447) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2457) EXAMPLE: test 4[0m
+[0;31mE (2457) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2467) EXAMPLE: test 4[0m
+[0;31mE (2467) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2477) EXAMPLE: test 4[0m
+[0;31mE (2487) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2487) EXAMPLE: test 4[0m
+[0;31mE (2497) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2507) EXAMPLE: test 4[0m
+[0;31mE (2507) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2517) EXAMPLE: test 4[0m
+[0;31mE (2517) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2527) EXAMPLE: test 4[0m
+[0;31mE (2527) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2537) EXAMPLE: test 4[0m
+[0;31mE (2537) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2547) EXAMPLE: test 4[0m
+[0;31mE (2547) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2557) EXAMPLE: test 4[0m
+[0;31mE (2557) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2567) EXAMPLE: test 4[0m
+[0;31mE (2577) adc_continuous: adc_continuous_read(439): The driver is already stopped[0m
+[0;32mI (2577) EXAMPLE: test 4[0m
