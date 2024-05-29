@@ -54,19 +54,10 @@
 #define EXAMPLE_ADC_CONV_MODE               ADC_CONV_SINGLE_UNIT_1
 #define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_0
 #define EXAMPLE_ADC_BIT_WIDTH               SOC_ADC_DIGI_MAX_BITWIDTH
-
-#if CONFIG_IDF_TARGET_ESP32 || CONFIG_IDF_TARGET_ESP32S2
 #define EXAMPLE_ADC_OUTPUT_TYPE             ADC_DIGI_OUTPUT_FORMAT_TYPE1
-#define EXAMPLE_ADC_GET_CHANNEL(p_data)     ((p_data)->type1.channel)
-#define EXAMPLE_ADC_GET_DATA(p_data)        ((p_data)->type1.data)
-#else
-#define EXAMPLE_ADC_OUTPUT_TYPE             ADC_DIGI_OUTPUT_FORMAT_TYPE2
-#define EXAMPLE_ADC_GET_CHANNEL(p_data)     ((p_data)->type2.channel)
-#define EXAMPLE_ADC_GET_DATA(p_data)        ((p_data)->type2.data)
-#endif
 
-#define EXAMPLE_READ_LEN                    256
-#define ADC_BUFFER_SIZE                     1024
+#define EXAMPLE_READ_LEN                    512
+#define ADC_BUFFER_SIZE                     4096
 
 #define EXAMPLE_HTTP_QUERY_KEY_MAX_LEN  (64)
 #define EXAMPLE_ESP_WIFI_SSID      CONFIG_ESP_WIFI_SSID
@@ -329,7 +320,7 @@ static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_c
 
 static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t samples_amount){
     // Each integer will be converted to a 4-character string
-    size_t char_array_size = (samples_amount+1) * 4 + 1; // +1 for the null terminator
+    size_t char_array_size = (samples_amount) * 4 + 1; // +1 for the null terminator
     char* char_array = (char*)malloc(char_array_size);
 
     // Initialize the char array with null terminators
@@ -338,10 +329,10 @@ static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t sam
     // Pointer to traverse the char array
     char* ptr = char_array;
 
-    char small_buffer[5];
-    int_to_4char(samples_amount, small_buffer);
-    strcat(ptr, small_buffer);
-    ptr += 4;
+    // char small_buffer[5];
+    // int_to_4char(samples_amount, small_buffer);
+    // strcat(ptr, small_buffer);
+    // ptr += 4;
 
     for (size_t i = 1; i < samples_amount+1; ++i) {
         // Buffer to hold the 4-character string
@@ -354,7 +345,7 @@ static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t sam
         // Move the pointer forward by 4 characters
         ptr += 4;
     }
-    ESP_LOGI(TAG, "sending chunck");
+    ESP_LOGI(TAG, "sending chunck, samples_amount: %d", samples_amount);
     ESP_ERROR_CHECK(httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN));
 }
 
@@ -400,7 +391,11 @@ esp_err_t handler_read_test(httpd_req_t *req){
     char dummy[0];
     esp_err_t ret;
     uint32_t ret_num = 0;
-    uint8_t result[EXAMPLE_READ_LEN] = {0};
+    uint8_t result[EXAMPLE_READ_LEN];
+    memset(result, 0xcc, EXAMPLE_READ_LEN);
+
+    int array_size = EXAMPLE_READ_LEN*2+1;
+    char char_array[array_size];
 
     s_task_handle = xTaskGetCurrentTaskHandle();
     adc_continuous_evt_cbs_t cbs = {
@@ -409,23 +404,54 @@ esp_err_t handler_read_test(httpd_req_t *req){
     ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
     ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
 
+    uint32_t time1, time2;
+
     for(int i = 0; i < 10; i++){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-        ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-        if (ret == ESP_OK){
-            ESP_LOGI(TAG, "sending chunck %d", i + 1);
-            format_measurements(req, result, ret_num);
-            vTaskDelay(10/portTICK_PERIOD_MS);
-        }
-        else{
-            ESP_ERROR_CHECK(ret);
+        while(1){
+
+            char* ptr = char_array;
+            ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+            if (ret == ESP_OK){
+                time1 = esp_timer_get_time();
+                // ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
+                for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
+
+                    adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
+                    uint16_t data = (p)->type1.data;
+
+                    /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
+                    if ((p)->type1.channel < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
+                        char buffer[5];
+                        sprintf(buffer, "%04d", data);
+
+                        if ((ptr - char_array) + strlen(buffer) < array_size) {
+                            strcpy(ptr, buffer);
+                            ptr += strlen(buffer);
+                        } else {
+                            ESP_LOGE("TASK", "Buffer overflow prevented");
+                            break;
+                        }
+                    }
+                }
+                httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN);
+                time2 = esp_timer_get_time();
+
+                ESP_LOGI(TAG, "time1: %ld, time2: %ld, differentce: %ld", time1, time2, time2-time1);
+                // free(char_array);
+                // vTaskDelay(10);
+            }
+            else if (ret == ESP_ERR_TIMEOUT) {
+                //We try to read `EXAMPLE_READ_LEN` until API returns timeout, which means there's no available data
+                break;
+            }
         }
     }
-    ESP_LOGI(TAG, "sending final chunck");
-    ret = httpd_resp_send_chunk(req, dummy, 0);
-
     ESP_ERROR_CHECK(adc_continuous_stop(adc_handle));
     ESP_ERROR_CHECK(adc_continuous_flush_pool(adc_handle));
+
+    ret = httpd_resp_send_chunk(req, dummy, 0);
+    ESP_LOGI(TAG, "final chunck sent");
     return ret;
 
 }
@@ -565,13 +591,13 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
      adc_continuous_handle_t handle = NULL;
 
      adc_continuous_handle_cfg_t adc_config = {
-         .max_store_buf_size = 1024,
+         .max_store_buf_size = ADC_BUFFER_SIZE,
          .conv_frame_size = EXAMPLE_READ_LEN,
      };
      ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
 
      adc_continuous_config_t dig_cfg = {
-         .sample_freq_hz = 8 * 1000,
+         .sample_freq_hz = 5 * 1000,
          .conv_mode = EXAMPLE_ADC_CONV_MODE,
          .format = EXAMPLE_ADC_OUTPUT_TYPE,
      };

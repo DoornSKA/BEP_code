@@ -30,7 +30,7 @@
 #define EXAMPLE_ADC_GET_DATA(p_data)        ((p_data)->type2.data)
 #endif
 
-#define EXAMPLE_READ_LEN                    256
+#define EXAMPLE_READ_LEN                    512
 
 #if CONFIG_IDF_TARGET_ESP32
 static adc_channel_t channel[1] = {ADC_CHANNEL_6};
@@ -89,13 +89,13 @@ static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc
     adc_continuous_handle_t handle = NULL;
 
     adc_continuous_handle_cfg_t adc_config = {
-        .max_store_buf_size = 1024,
+        .max_store_buf_size = 2048,
         .conv_frame_size = EXAMPLE_READ_LEN,
     };
     ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
 
     adc_continuous_config_t dig_cfg = {
-        .sample_freq_hz = 20 * 1000,
+        .sample_freq_hz = 5 * 1000,
         .conv_mode = EXAMPLE_ADC_CONV_MODE,
         .format = EXAMPLE_ADC_OUTPUT_TYPE,
     };
@@ -122,8 +122,11 @@ void app_main(void)
 {
     esp_err_t ret;
     uint32_t ret_num = 0;
-    uint8_t result[EXAMPLE_READ_LEN] = {0};
+    uint8_t result[EXAMPLE_READ_LEN];
     memset(result, 0xcc, EXAMPLE_READ_LEN);
+
+    int array_size = EXAMPLE_READ_LEN*2+1;
+    char char_array[array_size];
 
     s_task_handle = xTaskGetCurrentTaskHandle();
 
@@ -133,21 +136,56 @@ void app_main(void)
     adc_continuous_evt_cbs_t cbs = {
         .on_conv_done = s_conv_done_cb,
     };
+
     ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(handle, &cbs, NULL));
     ESP_ERROR_CHECK(adc_continuous_start(handle));
 
-    while (1) {
+    // vTaskDelay(10);
+
+    for(int i = 0; i < 10; i++){
+        // char* char_array_2 = (char*) malloc((EXAMPLE_READ_LEN*2+1) * sizeof(char));
+        // memset(char_array, 0, sizeof(char_array));
+        // ESP_LOGI(TAG, "test 3");
+
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-            for(int i = 0; i < 10; i++){
-              ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-              if (ret == ESP_OK){
-                  format_measurements(result, ret_num);
-                  vTaskDelay(10/portTICK_PERIOD_MS);
-              }
+        // ESP_LOGI(TAG, "test 4");
+        while(1){
+
+            char* ptr = char_array;
+            ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+            if (ret == ESP_OK){
+                ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
+                for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
+
+                    adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
+                    uint16_t data = (p)->type1.data;
+
+                    /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
+                    if ((p)->type1.channel < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
+                        char buffer[5];
+                        sprintf(buffer, "%04d", data);
+
+                        if ((ptr - char_array) + strlen(buffer) < array_size) {
+                            strcpy(ptr, buffer);
+                            ptr += strlen(buffer);
+                        } else {
+                            ESP_LOGE("TASK", "Buffer overflow prevented");
+                            break;
+                        }
+                    }
+                }
+                ESP_LOGI(TAG, "%s", char_array);
+                // free(char_array);
+                // vTaskDelay(10);
             }
-            break;
+            else if (ret == ESP_ERR_TIMEOUT) {
+                //We try to read `EXAMPLE_READ_LEN` until API returns timeout, which means there's no available data
+                break;
+            }
+        }
     }
 
+    ESP_LOGI(TAG, "STOPPING");
     ESP_ERROR_CHECK(adc_continuous_stop(handle));
     ESP_ERROR_CHECK(adc_continuous_deinit(handle));
 }

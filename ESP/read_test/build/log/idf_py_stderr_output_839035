@@ -1,0 +1,113 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400816de: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400866d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008c209: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x4008b1ce: tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1120 (discriminator 1)
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008b55c: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:362
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+[0m
+[0;33m0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m0x4008b559: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:361
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008b55c: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:362
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+[0m
+[0;33m0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m0x4008b559: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:361
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008b55c: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:362
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+[0m
+[0;33m0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m0x4008b559: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:361
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008b55c: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:362
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+[0m
+[0;33m0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m0x4008b559: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:361
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008b55c: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:362
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+[0m
+[0;33m0x400014fd: strlen in ROM
+0x4000150d: strlen in ROM
+[0m
+[0;33m0x4008b559: insert_free_block at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:361
+ (inlined by) block_insert at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:388
+ (inlined by) tlsf_free at /home/skado/programming/esp/esp-idf/components/heap/tlsf/tlsf.c:1124
+0x4008b054: multi_heap_free_impl at /home/skado/programming/esp/esp-idf/components/heap/multi_heap.c:234
+0x40081fe6: heap_caps_free at /home/skado/programming/esp/esp-idf/components/heap/heap_caps.c:393
+0x4008c225: free at /home/skado/programming/esp/esp-idf/components/newlib/heap.c:39
+0x400d5925: app_main at /home/skado/bep/BEP_code/ESP/read_test/main/continuous_read_main.c:179
+0x400e927c: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087041: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m
