@@ -1,0 +1,226 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 27 2024 22:39:23[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=25de8h (155112) map[0m
+[0;32mI (158) esp_image: segment 1: paddr=00035e10 vaddr=3ffb0000 size=0457ch ( 17788) load[0m
+[0;32mI (165) esp_image: segment 2: paddr=0003a394 vaddr=40080000 size=05c84h ( 23684) load[0m
+[0;32mI (174) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=8d408h (578568) map[0m
+[0;32mI (373) esp_image: segment 4: paddr=000cd430 vaddr=40085c84 size=118cch ( 71884) load[0m
+[0;32mI (413) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (413) boot: Disabling RNG early entropy source...[0m
+[0;32mI (424) cpu_start: Multicore app[0m
+[0;32mI (433) cpu_start: Pro cpu start user code[0m
+[0;32mI (434) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (434) cpu_start: Application information:[0m
+[0;32mI (437) cpu_start: Project name:     simple[0m
+[0;32mI (441) cpu_start: App version:      d5ae769-dirty[0m
+[0;32mI (447) cpu_start: Compile time:     May 27 2024 22:39:16[0m
+[0;32mI (453) cpu_start: ELF file SHA256:  d7442b38e...[0m
+[0;32mI (458) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (464) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (468) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (473) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (478) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (485) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (491) heap_init: At 3FFB8848 len 000277B8 (157 KiB): DRAM[0m
+[0;32mI (497) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (504) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (510) heap_init: At 40097550 len 00008AB0 (34 KiB): IRAM[0m
+[0;32mI (518) spi_flash: detected chip: generic[0m
+[0;32mI (521) spi_flash: flash io: dio[0m
+[0;32mI (526) main_task: Started on CPU0[0m
+[0;32mI (536) main_task: Calling app_main()[0m
+[0;32mI (566) example: ESP_WIFI_MODE_AP[0m
+I (576) wifi:wifi driver task: 3ffc0700, prio:23, stack:6656, core=0
+I (586) wifi:wifi firmware version: a9f5b59
+I (586) wifi:wifi certification version: v7.0
+I (586) wifi:config NVS flash: enabled
+I (586) wifi:config nano formating: disabled
+I (586) wifi:Init data frame dynamic rx buffer num: 32
+I (596) wifi:Init static rx mgmt buffer num: 5
+I (596) wifi:Init management short buffer num: 32
+I (596) wifi:Init dynamic tx buffer num: 32
+I (606) wifi:Init static rx buffer size: 1600
+I (606) wifi:Init static rx buffer num: 10
+I (616) wifi:Init dynamic rx buffer num: 32
+[0;32mI (616) wifi_init: rx ba win: 6[0m
+[0;32mI (616) wifi_init: tcpip mbox: 32[0m
+[0;32mI (626) wifi_init: udp mbox: 6[0m
+[0;32mI (626) wifi_init: tcp mbox: 6[0m
+[0;32mI (636) wifi_init: tcp tx win: 5760[0m
+[0;32mI (636) wifi_init: tcp rx win: 5760[0m
+[0;32mI (636) wifi_init: tcp mss: 1440[0m
+[0;32mI (646) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (646) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (666) phy_init: phy_version 4791,2c4672b,Dec 20 2023,16:06:06[0m
+I (746) wifi:mode : softAP (48:e7:29:8c:37:85)
+I (846) wifi:Total power save buffer number: 16
+I (846) wifi:Init max length of beacon: 752/752
+I (846) wifi:Init max length of beacon: 752/752
+[0;32mI (856) example: wifi_init_softap finished. SSID:WhereDidTheWormsGo? password:JohanWasHere channel:1[0m
+[0;32mI (856) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (866) example: adc_pattern[0].atten is :1[0m
+[0;32mI (876) example: adc_pattern[0].channel is :6[0m
+[0;32mI (876) example: adc_pattern[0].unit is :0[0m
+[0;32mI (886) example: adc_pattern[1].atten is :1[0m
+[0;32mI (886) example: adc_pattern[1].channel is :7[0m
+[0;32mI (896) example: adc_pattern[1].unit is :0[0m
+[0;32mI (896) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (906) gpio: GPIO[35]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (916) example: Starting server on port: '80'[0m
+[0;32mI (926) example: Registering URI handlers[0m
+I (9796) wifi:new:<1,1>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1
+I (9796) wifi:station: 14:f6:d8:d5:86:8f join, AID=1, bgn, 40U
+[0;32mI (9836) example: station 14:f6:d8:d5:86:8f join, AID=1[0m
+[0;32mI (9896) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+I (10786) wifi:<ba-add>idx:2 (ifx:1, 14:f6:d8:d5:86:8f), tid:0, ssn:13, winSize:64
+[0;32mI (24426) example: starting /read_test_2[0m
+[0;32mI (24466) example: time1: 23944844, time2: 23950239, differentce: 5395[0m
+[0;32mI (24496) example: time1: 23976773, time2: 23980197, differentce: 3424[0m
+[0;32mI (24526) example: time1: 24008955, time2: 24012503, differentce: 3548[0m
+[0;32mI (24556) example: time1: 24040883, time2: 24044303, differentce: 3420[0m
+[0;32mI (24586) example: time1: 24073065, time2: 24076596, differentce: 3531[0m
+[0;32mI (24596) example: final chunck sent[0m
+[0;33mW (24606) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (35386) example: starting /read_test_2[0m
+[0;32mI (35426) example: time1: 34906999, time2: 34911805, differentce: 4806[0m
+[0;32mI (35456) example: time1: 34938940, time2: 34942853, differentce: 3913[0m
+[0;32mI (35486) example: time1: 34971098, time2: 34974902, differentce: 3804[0m
+[0;32mI (35516) example: time1: 35003047, time2: 35006835, differentce: 3788[0m
+[0;32mI (35546) example: time1: 35035196, time2: 35038942, differentce: 3746[0m
+[0;32mI (35556) example: final chunck sent[0m
+[0;32mI (61096) example: starting /read_test_2[0m
+[0;32mI (61136) example: time1: 60619913, time2: 60625088, differentce: 5175[0m
+[0;32mI (61166) example: time1: 60651850, time2: 60656213, differentce: 4363[0m
+[0;32mI (61196) example: time1: 60684008, time2: 60686850, differentce: 2842[0m
+[0;32mI (61236) example: time1: 60715976, time2: 60720141, differentce: 4165[0m
+[0;32mI (61266) example: time1: 60748102, time2: 60752341, differentce: 4239[0m
+[0;32mI (61266) example: final chunck sent[0m
+[0;33mW (61276) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (69676) example: starting /read_test_2[0m
+[0;32mI (69716) example: time1: 69199083, time2: 69204312, differentce: 5229[0m
+[0;32mI (69746) example: time1: 69231027, time2: 69233951, differentce: 2924[0m
+[0;32mI (69776) example: time1: 69263193, time2: 69267096, differentce: 3903[0m
+[0;32mI (69806) example: time1: 69295126, time2: 69298939, differentce: 3813[0m
+[0;32mI (69846) example: time1: 69327279, time2: 69331092, differentce: 3813[0m
+[0;32mI (69846) example: final chunck sent[0m
+[0;33mW (69856) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (84346) example: starting /read_test_2[0m
+[0;32mI (84386) example: time1: 83865039, time2: 83869891, differentce: 4852[0m
+[0;32mI (84416) example: time1: 83896956, time2: 83900307, differentce: 3351[0m
+[0;32mI (84446) example: time1: 83929109, time2: 83932687, differentce: 3578[0m
+[0;32mI (84476) example: time1: 83961050, time2: 83964899, differentce: 3849[0m
+[0;32mI (84506) example: time1: 83993212, time2: 83997033, differentce: 3821[0m
+[0;32mI (84506) example: final chunck sent[0m
+[0;33mW (84526) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (92226) example: starting /read_test_2[0m
+[0;32mI (92256) example: time1: 91743398, time2: 91749040, differentce: 5642[0m
+[0;32mI (92296) example: time1: 91775330, time2: 91779640, differentce: 4310[0m
+[0;32mI (92326) example: time1: 91807512, time2: 91811578, differentce: 4066[0m
+[0;32mI (92356) example: time1: 91839433, time2: 91843575, differentce: 4142[0m
+[0;32mI (92386) example: time1: 91871590, time2: 91875385, differentce: 3795[0m
+[0;32mI (92386) example: final chunck sent[0m
+[0;33mW (92406) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (103356) example: starting /read_test_2[0m
+[0;32mI (103396) example: time1: 102878606, time2: 102883930, differentce: 5324[0m
+[0;32mI (103426) example: time1: 102910519, time2: 102914344, differentce: 3825[0m
+[0;32mI (103456) example: time1: 102942681, time2: 102946957, differentce: 4276[0m
+[0;32mI (103486) example: time1: 102974629, time2: 102978440, differentce: 3811[0m
+[0;32mI (103526) example: time1: 103006779, time2: 103011139, differentce: 4360[0m
+[0;32mI (103526) example: final chunck sent[0m
+[0;33mW (103536) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (126506) example: starting /read_test_2[0m
+[0;32mI (126546) example: time1: 126024780, time2: 126033133, differentce: 8353[0m
+[0;32mI (126576) example: time1: 126056705, time2: 126060569, differentce: 3864[0m
+[0;32mI (126606) example: time1: 126088855, time2: 126093410, differentce: 4555[0m
+[0;32mI (126636) example: time1: 126120820, time2: 126123500, differentce: 2680[0m
+[0;32mI (126666) example: time1: 126152953, time2: 126156722, differentce: 3769[0m
+[0;32mI (126666) example: final chunck sent[0m
+[0;33mW (126696) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (145876) example: starting /read_test_2[0m
+[0;32mI (145916) example: time1: 145400985, time2: 145406170, differentce: 5185[0m
+[0;32mI (145946) example: time1: 145432921, time2: 145436687, differentce: 3766[0m
+[0;32mI (145976) example: time1: 145465095, time2: 145469059, differentce: 3964[0m
+[0;32mI (146016) example: time1: 145497020, time2: 145501812, differentce: 4792[0m
+[0;32mI (146046) example: time1: 145529185, time2: 145533406, differentce: 4221[0m
+[0;32mI (146046) example: final chunck sent[0m
+[0;33mW (146076) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (157526) example: starting /read_test_2[0m
+[0;32mI (157566) example: time1: 157050299, time2: 157057493, differentce: 7194[0m
+[0;32mI (157596) example: time1: 157082235, time2: 157086312, differentce: 4077[0m
+[0;32mI (157626) example: time1: 157114393, time2: 157117556, differentce: 3163[0m
+[0;32mI (157666) example: time1: 157146330, time2: 157150845, differentce: 4515[0m
+[0;32mI (157696) example: time1: 157178487, time2: 157181350, differentce: 2863[0m
+[0;32mI (157696) example: final chunck sent[0m
+[0;33mW (157716) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (164316) example: starting /read_test_2[0m
+[0;32mI (164356) example: time1: 163833980, time2: 163839591, differentce: 5611[0m
+[0;32mI (164386) example: time1: 163865913, time2: 163869718, differentce: 3805[0m
+[0;32mI (164416) example: time1: 163898078, time2: 163900844, differentce: 2766[0m
+[0;32mI (164446) example: time1: 163930027, time2: 163934112, differentce: 4085[0m
+[0;32mI (164476) example: time1: 163962161, time2: 163964551, differentce: 2390[0m
+[0;32mI (164476) example: final chunck sent[0m
+[0;33mW (164496) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (173756) example: starting /read_test_2[0m
+[0;32mI (173796) example: time1: 173279256, time2: 173284442, differentce: 5186[0m
+[0;32mI (173826) example: time1: 173311193, time2: 173315128, differentce: 3935[0m
+[0;32mI (173856) example: time1: 173343354, time2: 173347607, differentce: 4253[0m
+[0;32mI (173896) example: time1: 173375303, time2: 173379582, differentce: 4279[0m
+[0;32mI (173926) example: time1: 173407465, time2: 173411402, differentce: 3937[0m
+[0;32mI (173926) example: final chunck sent[0m
+[0;33mW (173936) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (179986) example: starting /read_test_2[0m
+[0;32mI (180026) example: time1: 179511250, time2: 179516870, differentce: 5620[0m
+[0;32mI (180056) example: time1: 179543191, time2: 179547472, differentce: 4281[0m
+[0;32mI (180096) example: time1: 179575368, time2: 179579855, differentce: 4487[0m
+[0;32mI (180126) example: time1: 179607281, time2: 179610944, differentce: 3663[0m
+[0;32mI (180156) example: time1: 179639443, time2: 179643634, differentce: 4191[0m
+[0;32mI (180156) example: final chunck sent[0m
+[0;33mW (180176) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (184246) example: starting /read_test_2[0m
+[0;32mI (184286) example: time1: 183768807, time2: 183774954, differentce: 6147[0m
+[0;32mI (184316) example: time1: 183800744, time2: 183804624, differentce: 3880[0m
+[0;32mI (184346) example: time1: 183832898, time2: 183837091, differentce: 4193[0m
+[0;32mI (184376) example: time1: 183864854, time2: 183868811, differentce: 3957[0m
+[0;32mI (184416) example: time1: 183896988, time2: 183902346, differentce: 5358[0m
+[0;32mI (184416) example: final chunck sent[0m
+[0;33mW (184436) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (188146) example: starting /read_test_2[0m
+[0;32mI (188186) example: time1: 187665780, time2: 187673182, differentce: 7402[0m
+[0;32mI (188216) example: time1: 187697685, time2: 187701139, differentce: 3454[0m
+[0;32mI (188246) example: time1: 187729850, time2: 187733932, differentce: 4082[0m
+[0;32mI (188276) example: time1: 187761799, time2: 187766080, differentce: 4281[0m
+[0;32mI (188306) example: time1: 187793945, time2: 187796756, differentce: 2811[0m
+[0;32mI (188306) example: final chunck sent[0m
+[0;33mW (188326) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (200446) example: starting /read_test_2[0m
+[0;32mI (200486) example: time1: 199966299, time2: 199971342, differentce: 5043[0m
+[0;32mI (200516) example: time1: 199998240, time2: 200002331, differentce: 4091[0m
+[0;32mI (200546) example: time1: 200030390, time2: 200034234, differentce: 3844[0m
+[0;32mI (200576) example: time1: 200062351, time2: 200066318, differentce: 3967[0m
+[0;32mI (200606) example: time1: 200094492, time2: 200098655, differentce: 4163[0m
+[0;32mI (200616) example: final chunck sent[0m
+[0;33mW (200616) httpd_txrx: httpd_sock_err: error in recv : 104[0m

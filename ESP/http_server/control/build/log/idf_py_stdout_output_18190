@@ -1,0 +1,73 @@
+[1/5] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/skado/bep/BEP_code/ESP/http_server/control/build/partition_table/partition-table.bin /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
+simple.bin binary size 0xced20 bytes. Smallest app partition is 0x100000 bytes. 0x312e0 bytes (19%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /home/skado/programming/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/skado/programming/esp/esp-idf -D "SERIAL_TOOL=/home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python;;/home/skado/programming/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/skado/bep/BEP_code/ESP/http_server/control/build -P /home/skado/programming/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 simple.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.7.0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+WARNING: Detected crystal freq 41.01MHz is quite different to normalized freq 40MHz. Unsupported crystal in use?
+Crystal is 40MHz
+MAC: 48:e7:29:8c:37:84
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000defff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26720 bytes to 16365...
+Writing at 0x00001000... (100 %)
+Wrote 26720 bytes (16365 compressed) at 0x00001000 in 0.8 seconds (effective 273.5 kbit/s)...
+Hash of data verified.
+Compressed 847136 bytes to 527180...
+Writing at 0x00010000... (3 %)
+Writing at 0x0001d68d... (6 %)
+Writing at 0x00027140... (9 %)
+Writing at 0x0002c4b4... (12 %)
+Writing at 0x00033db9... (15 %)
+Writing at 0x0003df1d... (18 %)
+Writing at 0x0004390d... (21 %)
+Writing at 0x0004978e... (24 %)
+Writing at 0x0004f50d... (27 %)
+Writing at 0x00055229... (30 %)
+Writing at 0x0005aee7... (33 %)
+Writing at 0x00060372... (36 %)
+Writing at 0x000656f6... (39 %)
+Writing at 0x0006abb9... (42 %)
+Writing at 0x0006ff5f... (45 %)
+Writing at 0x00075610... (48 %)
+Writing at 0x0007add1... (51 %)
+Writing at 0x00080e54... (54 %)
+Writing at 0x00086908... (57 %)
+Writing at 0x0008c3b2... (60 %)
+Writing at 0x00091fdc... (63 %)
+Writing at 0x00097b98... (66 %)
+Writing at 0x0009d471... (69 %)
+Writing at 0x000a3172... (72 %)
+Writing at 0x000a989c... (75 %)
+Writing at 0x000afc77... (78 %)
+Writing at 0x000b53d9... (81 %)
+Writing at 0x000be0cc... (84 %)
+Writing at 0x000c6bb2... (87 %)
+Writing at 0x000cc975... (90 %)
+Writing at 0x000d2481... (93 %)
+Writing at 0x000d86ee... (96 %)
+Writing at 0x000dda24... (100 %)
+Wrote 847136 bytes (527180 compressed) at 0x00010000 in 11.9 seconds (effective 569.4 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 384.8 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

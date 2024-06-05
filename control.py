@@ -94,7 +94,7 @@ def chunked_response():
     chunk_size = 4
     integer_list = []
 
-    data = body.decode('utf-8')
+    data = body.decode('ascii')
     for i in range(0, len(data), chunk_size):
         chunk = data[i:i + chunk_size]
         integer_list.append(int(chunk))

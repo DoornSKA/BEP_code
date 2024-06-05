@@ -1,0 +1,483 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7172
+load:0x40078000,len:15540
+load:0x40080400,len:4
+ho 8 tail 4 room 4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.2.1-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time May 27 2024 22:39:23[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v3.1[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (44) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=25de8h (155112) map[0m
+[0;32mI (158) esp_image: segment 1: paddr=00035e10 vaddr=3ffb0000 size=0457ch ( 17788) load[0m
+[0;32mI (165) esp_image: segment 2: paddr=0003a394 vaddr=40080000 size=05c84h ( 23684) load[0m
+[0;32mI (174) esp_image: segment 3: paddr=00040020 vaddr=400d0020 size=8d40ch (578572) map[0m
+[0;32mI (373) esp_image: segment 4: paddr=000cd434 vaddr=40085c84 size=118cch ( 71884) load[0m
+[0;32mI (413) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (413) boot: Disabling RNG early entropy source...[0m
+[0;32mI (424) cpu_start: Multicore app[0m
+[0;32mI (433) cpu_start: Pro cpu start user code[0m
+[0;32mI (434) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (434) cpu_start: Application information:[0m
+[0;32mI (437) cpu_start: Project name:     simple[0m
+[0;32mI (441) cpu_start: App version:      d5ae769-dirty[0m
+[0;32mI (447) cpu_start: Compile time:     May 27 2024 22:39:16[0m
+[0;32mI (453) cpu_start: ELF file SHA256:  96ba03639...[0m
+[0;32mI (458) cpu_start: ESP-IDF:          v5.2.1-dirty[0m
+[0;32mI (464) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (468) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (473) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (478) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (485) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (491) heap_init: At 3FFB8848 len 000277B8 (157 KiB): DRAM[0m
+[0;32mI (497) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (504) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (510) heap_init: At 40097550 len 00008AB0 (34 KiB): IRAM[0m
+[0;32mI (518) spi_flash: detected chip: generic[0m
+[0;32mI (521) spi_flash: flash io: dio[0m
+[0;32mI (526) main_task: Started on CPU0[0m
+[0;32mI (536) main_task: Calling app_main()[0m
+[0;32mI (566) example: ESP_WIFI_MODE_AP[0m
+I (576) wifi:wifi driver task: 3ffc0700, prio:23, stack:6656, core=0
+I (586) wifi:wifi firmware version: a9f5b59
+I (586) wifi:wifi certification version: v7.0
+I (586) wifi:config NVS flash: enabled
+I (586) wifi:config nano formating: disabled
+I (586) wifi:Init data frame dynamic rx buffer num: 32
+I (596) wifi:Init static rx mgmt buffer num: 5
+I (596) wifi:Init management short buffer num: 32
+I (596) wifi:Init dynamic tx buffer num: 32
+I (606) wifi:Init static rx buffer size: 1600
+I (606) wifi:Init static rx buffer num: 10
+I (616) wifi:Init dynamic rx buffer num: 32
+[0;32mI (616) wifi_init: rx ba win: 6[0m
+[0;32mI (616) wifi_init: tcpip mbox: 32[0m
+[0;32mI (626) wifi_init: udp mbox: 6[0m
+[0;32mI (626) wifi_init: tcp mbox: 6[0m
+[0;32mI (636) wifi_init: tcp tx win: 5760[0m
+[0;32mI (636) wifi_init: tcp rx win: 5760[0m
+[0;32mI (636) wifi_init: tcp mss: 1440[0m
+[0;32mI (646) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (646) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (666) phy_init: phy_version 4791,2c4672b,Dec 20 2023,16:06:06[0m
+I (746) wifi:mode : softAP (48:e7:29:8c:37:85)
+I (846) wifi:Total power save buffer number: 16
+I (846) wifi:Init max length of beacon: 752/752
+I (846) wifi:Init max length of beacon: 752/752
+[0;32mI (856) example: wifi_init_softap finished. SSID:WhereDidTheWormsGo? password:JohanWasHere channel:1[0m
+[0;32mI (856) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1[0m
+[0;32mI (866) example: adc_pattern[0].atten is :0[0m
+[0;32mI (876) example: adc_pattern[0].channel is :6[0m
+[0;32mI (876) example: adc_pattern[0].unit is :0[0m
+[0;32mI (886) example: adc_pattern[1].atten is :0[0m
+[0;32mI (886) example: adc_pattern[1].channel is :7[0m
+[0;32mI (896) example: adc_pattern[1].unit is :0[0m
+[0;32mI (896) gpio: GPIO[34]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (906) gpio: GPIO[35]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;32mI (916) example: Starting server on port: '80'[0m
+[0;32mI (926) example: Registering URI handlers[0m
+I (3526) wifi:new:<1,1>, old:<1,1>, ap:<1,1>, sta:<255,255>, prof:1
+I (3526) wifi:station: 14:f6:d8:d5:86:8f join, AID=1, bgn, 40U
+[0;32mI (3566) example: station 14:f6:d8:d5:86:8f join, AID=1[0m
+[0;32mI (3646) esp_netif_lwip: DHCP server assigned IP to a client, IP is: 192.168.4.2[0m
+I (4506) wifi:<ba-add>idx:2 (ifx:1, 14:f6:d8:d5:86:8f), tid:0, ssn:13, winSize:64
+[0;32mI (11556) example: starting /read_test[0m
+[0;32mI (11596) example: time1: 11077927, time2: 11084492, differentce: 6565[0m
+[0;32mI (11626) example: time1: 11109848, time2: 11114677, differentce: 4829[0m
+[0;32mI (11656) example: time1: 11141998, time2: 11146688, differentce: 4690[0m
+[0;32mI (11696) example: time1: 11173958, time2: 11180356, differentce: 6398[0m
+[0;32mI (11726) example: time1: 11206124, time2: 11209760, differentce: 3636[0m
+[0;32mI (11756) example: time1: 11238049, time2: 11241890, differentce: 3841[0m
+[0;32mI (11786) example: time1: 11270194, time2: 11273572, differentce: 3378[0m
+[0;32mI (11816) example: time1: 11302155, time2: 11306412, differentce: 4257[0m
+[0;32mI (11846) example: time1: 11334100, time2: 11337561, differentce: 3461[0m
+[0;32mI (11886) example: time1: 11366242, time2: 11369769, differentce: 3527[0m
+[0;32mI (11916) example: time1: 11398202, time2: 11403146, differentce: 4944[0m
+[0;32mI (11946) example: time1: 11430356, time2: 11434638, differentce: 4282[0m
+[0;32mI (11976) example: time1: 11462321, time2: 11466574, differentce: 4253[0m
+[0;32mI (12006) example: time1: 11494462, time2: 11498610, differentce: 4148[0m
+[0;32mI (12046) example: time1: 11526419, time2: 11530341, differentce: 3922[0m
+[0;32mI (12076) example: time1: 11558549, time2: 11562381, differentce: 3832[0m
+[0;32mI (12106) example: time1: 11590502, time2: 11594043, differentce: 3541[0m
+[0;32mI (12136) example: time1: 11622462, time2: 11626184, differentce: 3722[0m
+[0;32mI (12166) example: time1: 11654616, time2: 11658284, differentce: 3668[0m
+[0;32mI (12206) example: time1: 11686553, time2: 11690172, differentce: 3619[0m
+[0;32mI (12236) example: time1: 11718706, time2: 11722442, differentce: 3736[0m
+[0;32mI (12266) example: time1: 11750675, time2: 11754355, differentce: 3680[0m
+[0;32mI (12296) example: time1: 11782833, time2: 11786767, differentce: 3934[0m
+[0;32mI (12326) example: time1: 11814770, time2: 11818643, differentce: 3873[0m
+[0;32mI (12366) example: time1: 11846895, time2: 11850557, differentce: 3662[0m
+[0;32mI (12396) example: time1: 11878868, time2: 11882352, differentce: 3484[0m
+[0;33mW (12426) httpd_txrx: httpd_sock_err: error in send : 104[0m
+[0;32mI (12426) example: time1: 11910813, time2: 11914557, differentce: 3744[0m
+[0;33mW (12456) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12456) example: time1: 11942939, time2: 11945597, differentce: 2658[0m
+[0;33mW (12486) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12486) example: time1: 11974880, time2: 11977075, differentce: 2195[0m
+[0;33mW (12516) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12516) example: time1: 12007029, time2: 12009203, differentce: 2174[0m
+[0;33mW (12556) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12556) example: time1: 12038990, time2: 12041430, differentce: 2440[0m
+[0;33mW (12586) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12586) example: time1: 12071136, time2: 12073363, differentce: 2227[0m
+[0;33mW (12616) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12616) example: time1: 12103080, time2: 12105251, differentce: 2171[0m
+[0;33mW (12646) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12646) example: time1: 12135282, time2: 12137811, differentce: 2529[0m
+[0;33mW (12676) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12676) example: time1: 12167179, time2: 12169351, differentce: 2172[0m
+[0;33mW (12716) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12716) example: time1: 12199132, time2: 12201318, differentce: 2186[0m
+[0;33mW (12746) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12746) example: time1: 12231301, time2: 12233708, differentce: 2407[0m
+[0;33mW (12776) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12776) example: time1: 12263234, time2: 12265412, differentce: 2178[0m
+[0;33mW (12806) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12806) example: time1: 12295388, time2: 12297564, differentce: 2176[0m
+[0;33mW (12836) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12846) example: time1: 12327352, time2: 12329757, differentce: 2405[0m
+[0;33mW (12876) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12876) example: time1: 12359496, time2: 12361684, differentce: 2188[0m
+[0;33mW (12906) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12906) example: time1: 12391439, time2: 12393613, differentce: 2174[0m
+[0;33mW (12936) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12936) example: time1: 12423592, time2: 12426552, differentce: 2960[0m
+[0;33mW (12966) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (12966) example: time1: 12455549, time2: 12457762, differentce: 2213[0m
+[0;33mW (12996) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13006) example: time1: 12487490, time2: 12489671, differentce: 2181[0m
+[0;33mW (13036) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13036) example: time1: 12519644, time2: 12521822, differentce: 2178[0m
+[0;33mW (13066) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13066) example: time1: 12551608, time2: 12553980, differentce: 2372[0m
+[0;33mW (13096) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13096) example: time1: 12583746, time2: 12585946, differentce: 2200[0m
+[0;33mW (13126) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13126) example: time1: 12615695, time2: 12617873, differentce: 2178[0m
+[0;33mW (13166) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13166) example: time1: 12647864, time2: 12650313, differentce: 2449[0m
+[0;33mW (13196) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13196) example: time1: 12679797, time2: 12681980, differentce: 2183[0m
+[0;33mW (13226) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13226) example: time1: 12711951, time2: 12714125, differentce: 2174[0m
+[0;33mW (13256) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13256) example: time1: 12743915, time2: 12746327, differentce: 2412[0m
+[0;33mW (13286) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13286) example: time1: 12775848, time2: 12778030, differentce: 2182[0m
+[0;33mW (13326) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13326) example: time1: 12808002, time2: 12810179, differentce: 2177[0m
+[0;33mW (13356) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13356) example: time1: 12839967, time2: 12842373, differentce: 2406[0m
+[0;33mW (13386) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13386) example: time1: 12872104, time2: 12874280, differentce: 2176[0m
+[0;33mW (13416) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13416) example: time1: 12904053, time2: 12906225, differentce: 2172[0m
+[0;33mW (13446) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13446) example: time1: 12936215, time2: 12938798, differentce: 2583[0m
+[0;33mW (13486) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13486) example: time1: 12968160, time2: 12970357, differentce: 2197[0m
+[0;33mW (13516) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13516) example: time1: 13000309, time2: 13002483, differentce: 2174[0m
+[0;33mW (13546) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13546) example: time1: 13032258, time2: 13034430, differentce: 2172[0m
+[0;33mW (13576) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13576) example: time1: 13064223, time2: 13066666, differentce: 2443[0m
+[0;33mW (13606) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13606) example: time1: 13096360, time2: 13098541, differentce: 2181[0m
+[0;33mW (13646) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13646) example: time1: 13128309, time2: 13130487, differentce: 2178[0m
+[0;33mW (13676) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13676) example: time1: 13160479, time2: 13162906, differentce: 2427[0m
+[0;33mW (13706) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13706) example: time1: 13192412, time2: 13194592, differentce: 2180[0m
+[0;33mW (13736) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13736) example: time1: 13224565, time2: 13226739, differentce: 2174[0m
+[0;33mW (13766) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13766) example: time1: 13256530, time2: 13258939, differentce: 2409[0m
+[0;33mW (13806) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13806) example: time1: 13288668, time2: 13290852, differentce: 2184[0m
+[0;33mW (13836) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13836) example: time1: 13320616, time2: 13322797, differentce: 2181[0m
+[0;33mW (13866) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13866) example: time1: 13352581, time2: 13355006, differentce: 2425[0m
+[0;33mW (13896) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13896) example: time1: 13384731, time2: 13386990, differentce: 2259[0m
+[0;33mW (13926) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13926) example: time1: 13416672, time2: 13418852, differentce: 2180[0m
+[0;33mW (13966) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13966) example: time1: 13448825, time2: 13451469, differentce: 2644[0m
+[0;33mW (13996) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (13996) example: time1: 13480778, time2: 13482972, differentce: 2194[0m
+[0;33mW (14026) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14026) example: time1: 13512924, time2: 13515100, differentce: 2176[0m
+[0;33mW (14056) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14056) example: time1: 13544892, time2: 13547224, differentce: 2332[0m
+[0;33mW (14086) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14096) example: time1: 13577046, time2: 13579487, differentce: 2441[0m
+[0;33mW (14126) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14126) example: time1: 13608975, time2: 13611157, differentce: 2182[0m
+[0;33mW (14156) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14156) example: time1: 13640924, time2: 13643100, differentce: 2176[0m
+[0;33mW (14186) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14186) example: time1: 13673109, time2: 13675616, differentce: 2507[0m
+[0;33mW (14216) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14216) example: time1: 13705026, time2: 13707204, differentce: 2178[0m
+[0;33mW (14246) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14246) example: time1: 13737180, time2: 13739358, differentce: 2178[0m
+[0;33mW (14286) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14286) example: time1: 13769160, time2: 13771661, differentce: 2501[0m
+[0;33mW (14316) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14316) example: time1: 13801282, time2: 13803462, differentce: 2180[0m
+[0;33mW (14346) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14346) example: time1: 13833231, time2: 13835409, differentce: 2178[0m
+[0;33mW (14376) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14376) example: time1: 13865416, time2: 13867873, differentce: 2457[0m
+[0;33mW (14406) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14416) example: time1: 13897333, time2: 13899525, differentce: 2192[0m
+[0;33mW (14446) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14446) example: time1: 13929282, time2: 13931463, differentce: 2181[0m
+[0;33mW (14476) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14476) example: time1: 13961463, time2: 13964195, differentce: 2732[0m
+[0;33mW (14506) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14506) example: time1: 13993400, time2: 13995662, differentce: 2262[0m
+[0;33mW (14536) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14536) example: time1: 14025538, time2: 14027718, differentce: 2180[0m
+[0;33mW (14576) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14576) example: time1: 14057503, time2: 14059799, differentce: 2296[0m
+[0;33mW (14606) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14606) example: time1: 14089656, time2: 14092082, differentce: 2426[0m
+[0;33mW (14636) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14636) example: time1: 14121593, time2: 14123775, differentce: 2182[0m
+[0;33mW (14666) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14666) example: time1: 14153767, time2: 14156139, differentce: 2372[0m
+[0;33mW (14696) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14696) example: time1: 14185711, time2: 14188107, differentce: 2396[0m
+[0;33mW (14736) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14736) example: time1: 14217640, time2: 14219847, differentce: 2207[0m
+[0;33mW (14766) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14766) example: time1: 14249794, time2: 14251964, differentce: 2170[0m
+[0;33mW (14766) httpd_txrx: httpd_sock_err: error in send : 128[0m
+[0;32mI (14776) example: final chunck sent[0m
+[0;33mW (14776) httpd_uri: httpd_uri: uri handler execution failed[0m
+[0;32mI (19066) example: starting /read_test[0m
+[0;32mI (19106) example: time1: 18584197, time2: 18590909, differentce: 6712[0m
+[0;32mI (19136) example: time1: 18616130, time2: 18620852, differentce: 4722[0m
+[0;32mI (19166) example: time1: 18648292, time2: 18652970, differentce: 4678[0m
+[0;32mI (19196) example: time1: 18680253, time2: 18688072, differentce: 7819[0m
+[0;32mI (19236) example: time1: 18712394, time2: 18719949, differentce: 7555[0m
+[0;32mI (19256) example: time1: 18744323, time2: 18749149, differentce: 4826[0m
+[0;32mI (19296) example: time1: 18776504, time2: 18780927, differentce: 4423[0m
+[0;32mI (19326) example: time1: 18808441, time2: 18814213, differentce: 5772[0m
+[0;32mI (19356) example: time1: 18840398, time2: 18846189, differentce: 5791[0m
+[0;32mI (19386) example: time1: 18872540, time2: 18877150, differentce: 4610[0m
+[0;32mI (19426) example: time1: 18904508, time2: 18911751, differentce: 7243[0m
+[0;32mI (19456) example: time1: 18936662, time2: 18941297, differentce: 4635[0m
+[0;32mI (19486) example: time1: 18968599, time2: 18972879, differentce: 4280[0m
+[0;32mI (19516) example: time1: 19000764, time2: 19005508, differentce: 4744[0m
+[0;32mI (19546) example: time1: 19032705, time2: 19038412, differentce: 5707[0m
+[0;32mI (19576) example: time1: 19064843, time2: 19068605, differentce: 3762[0m
+[0;32mI (19616) example: time1: 19096828, time2: 19100812, differentce: 3984[0m
+[0;32mI (19646) example: time1: 19128749, time2: 19132866, differentce: 4117[0m
+[0;32mI (19676) example: time1: 19160914, time2: 19164754, differentce: 3840[0m
+[0;32mI (19706) example: time1: 19192863, time2: 19197093, differentce: 4230[0m
+[0;32mI (19736) example: time1: 19225016, time2: 19228831, differentce: 3815[0m
+[0;32mI (19776) example: time1: 19256965, time2: 19260397, differentce: 3432[0m
+[0;32mI (19806) example: time1: 19289119, time2: 19292567, differentce: 3448[0m
+[0;32mI (19836) example: time1: 19321044, time2: 19324292, differentce: 3248[0m
+[0;32mI (19866) example: time1: 19353197, time2: 19356742, differentce: 3545[0m
+[0;32mI (19896) example: time1: 19385170, time2: 19388853, differentce: 3683[0m
+[0;32mI (19936) example: time1: 19417123, time2: 19421010, differentce: 3887[0m
+[0;32mI (19966) example: time1: 19449253, time2: 19452886, differentce: 3633[0m
+[0;32mI (19996) example: time1: 19481205, time2: 19484791, differentce: 3586[0m
+[0;32mI (20026) example: time1: 19513391, time2: 19517131, differentce: 3740[0m
+[0;32mI (20056) example: time1: 19545308, time2: 19549375, differentce: 4067[0m
+[0;32mI (20096) example: time1: 19577477, time2: 19581932, differentce: 4455[0m
+[0;32mI (20126) example: time1: 19609426, time2: 19613552, differentce: 4126[0m
+[0;32mI (20156) example: time1: 19641576, time2: 19645427, differentce: 3851[0m
+[0;32mI (20186) example: time1: 19673509, time2: 19677134, differentce: 3625[0m
+[0;32mI (20216) example: time1: 19705469, time2: 19709073, differentce: 3604[0m
+[0;32mI (20256) example: time1: 19737623, time2: 19741708, differentce: 4085[0m
+[0;32mI (20286) example: time1: 19769584, time2: 19774124, differentce: 4540[0m
+[0;32mI (20316) example: time1: 19801729, time2: 19805206, differentce: 3477[0m
+[0;32mI (20346) example: time1: 19833658, time2: 19837298, differentce: 3640[0m
+[0;32mI (20376) example: time1: 19865836, time2: 19869404, differentce: 3568[0m
+[0;32mI (20416) example: time1: 19897776, time2: 19901543, differentce: 3767[0m
+[0;32mI (20446) example: time1: 19929922, time2: 19933526, differentce: 3604[0m
+[0;32mI (20476) example: time1: 19961883, time2: 19965297, differentce: 3414[0m
+[0;32mI (20506) example: time1: 19993828, time2: 19997349, differentce: 3521[0m
+[0;32mI (20546) example: time1: 20026005, time2: 20030046, differentce: 4041[0m
+[0;32mI (20576) example: time1: 20057930, time2: 20061689, differentce: 3759[0m
+[0;32mI (20606) example: time1: 20090076, time2: 20094184, differentce: 4108[0m
+[0;32mI (20636) example: time1: 20122057, time2: 20125975, differentce: 3918[0m
+[0;32mI (20666) example: time1: 20154174, time2: 20157818, differentce: 3644[0m
+[0;32mI (20706) example: time1: 20186147, time2: 20190142, differentce: 3995[0m
+[0;32mI (20736) example: time1: 20218292, time2: 20221988, differentce: 3696[0m
+[0;32mI (20766) example: time1: 20250237, time2: 20253969, differentce: 3732[0m
+[0;32mI (20796) example: time1: 20282198, time2: 20285861, differentce: 3663[0m
+[0;32mI (20826) example: time1: 20314352, time2: 20317758, differentce: 3406[0m
+[0;32mI (20866) example: time1: 20346273, time2: 20349774, differentce: 3501[0m
+[0;32mI (20896) example: time1: 20378446, time2: 20382916, differentce: 4470[0m
+[0;32mI (20926) example: time1: 20410383, time2: 20415301, differentce: 4918[0m
+[0;32mI (20956) example: time1: 20442564, time2: 20446487, differentce: 3923[0m
+[0;32mI (20986) example: time1: 20474493, time2: 20478176, differentce: 3683[0m
+[0;32mI (21026) example: time1: 20506635, time2: 20510268, differentce: 3633[0m
+[0;32mI (21056) example: time1: 20538616, time2: 20542721, differentce: 4105[0m
+[0;32mI (21086) example: time1: 20570549, time2: 20573963, differentce: 3414[0m
+[0;32mI (21116) example: time1: 20602686, time2: 20606339, differentce: 3653[0m
+[0;32mI (21146) example: time1: 20634671, time2: 20638530, differentce: 3859[0m
+[0;32mI (21186) example: time1: 20666796, time2: 20670495, differentce: 3699[0m
+[0;32mI (21216) example: time1: 20698745, time2: 20702305, differentce: 3560[0m
+[0;32mI (21246) example: time1: 20730911, time2: 20735136, differentce: 4225[0m
+[0;32mI (21276) example: time1: 20762844, time2: 20766282, differentce: 3438[0m
+[0;32mI (21306) example: time1: 20794989, time2: 20798606, differentce: 3617[0m
+[0;32mI (21346) example: time1: 20826958, time2: 20830391, differentce: 3433[0m
+[0;32mI (21376) example: time1: 20858887, time2: 20862155, differentce: 3268[0m
+[0;32mI (21406) example: time1: 20891033, time2: 20894709, differentce: 3676[0m
+[0;32mI (21446) example: time1: 20922996, time2: 20930334, differentce: 7338[0m
+[0;32mI (21466) example: time1: 20955179, time2: 20958900, differentce: 3721[0m
+[0;32mI (21506) example: time1: 20987096, time2: 20990498, differentce: 3402[0m
+[0;32mI (21536) example: time1: 21019249, time2: 21023229, differentce: 3980[0m
+[0;32mI (21566) example: time1: 21051222, time2: 21055176, differentce: 3954[0m
+[0;32mI (21596) example: time1: 21083352, time2: 21086905, differentce: 3553[0m
+[0;32mI (21636) example: time1: 21115316, time2: 21119689, differentce: 4373[0m
+[0;32mI (21666) example: time1: 21147285, time2: 21151011, differentce: 3726[0m
+[0;32mI (21696) example: time1: 21179415, time2: 21183530, differentce: 4115[0m
+[0;32mI (21726) example: time1: 21211376, time2: 21215358, differentce: 3982[0m
+[0;32mI (21756) example: time1: 21243521, time2: 21247230, differentce: 3709[0m
+[0;32mI (21786) example: time1: 21275454, time2: 21279133, differentce: 3679[0m
+[0;32mI (21826) example: time1: 21307620, time2: 21311281, differentce: 3661[0m
+[0;32mI (21856) example: time1: 21339558, time2: 21346121, differentce: 6563[0m
+[0;32mI (21886) example: time1: 21371738, time2: 21375560, differentce: 3822[0m
+[0;32mI (21916) example: time1: 21403679, time2: 21408120, differentce: 4441[0m
+[0;32mI (21956) example: time1: 21435617, time2: 21442682, differentce: 7065[0m
+[0;32mI (21986) example: time1: 21467797, time2: 21471890, differentce: 4093[0m
+[0;32mI (22016) example: time1: 21499722, time2: 21503886, differentce: 4164[0m
+[0;32mI (22046) example: time1: 21531884, time2: 21536241, differentce: 4357[0m
+[0;32mI (22076) example: time1: 21563844, time2: 21567542, differentce: 3698[0m
+[0;32mI (22116) example: time1: 21595966, time2: 21599916, differentce: 3950[0m
+[0;32mI (22146) example: time1: 21627927, time2: 21631493, differentce: 3566[0m
+[0;32mI (22176) example: time1: 21660108, time2: 21663844, differentce: 3736[0m
+[0;32mI (22206) example: time1: 21692029, time2: 21695689, differentce: 3660[0m
+[0;32mI (22236) example: time1: 21723966, time2: 21727267, differentce: 3301[0m
+[0;32mI (22276) example: time1: 21756140, time2: 21760328, differentce: 4188[0m
+[0;32mI (22276) example: final chunck sent[0m
+[0;33mW (22296) httpd_txrx: httpd_sock_err: error in recv : 104[0m
+[0;32mI (42316) example: starting /read_test_2[0m
+[0;32mI (42356) example: time1: 41838398, time2: 41843176, differentce: 4778[0m
+[0;32mI (42386) example: time1: 41870331, time2: 41874114, differentce: 3783[0m
+[0;32mI (42416) example: time1: 41902489, time2: 41906402, differentce: 3913[0m
+[0;32mI (42446) example: time1: 41934446, time2: 41938290, differentce: 3844[0m
+[0;32mI (42486) example: time1: 41966587, time2: 41970399, differentce: 3812[0m
+[0;32mI (42516) example: time1: 41998528, time2: 42002344, differentce: 3816[0m
+[0;32mI (42546) example: time1: 42030690, time2: 42034614, differentce: 3924[0m
+[0;32mI (42586) example: time1: 42062642, time2: 42069753, differentce: 7111[0m
+[0;32mI (42616) example: time1: 42094607, time2: 42103850, differentce: 9243[0m
+[0;32mI (42646) example: time1: 42126733, time2: 42130764, differentce: 4031[0m
+[0;32mI (42676) example: time1: 42158689, time2: 42162278, differentce: 3589[0m
+[0;32mI (42706) example: time1: 42190839, time2: 42194221, differentce: 3382[0m
+[0;32mI (42746) example: time1: 42222784, time2: 42229728, differentce: 6944[0m
+[0;32mI (42776) example: time1: 42254950, time2: 42259792, differentce: 4842[0m
+[0;32mI (42806) example: time1: 42286894, time2: 42290866, differentce: 3972[0m
+[0;32mI (42836) example: time1: 42319044, time2: 42326242, differentce: 7198[0m
+[0;32mI (42866) example: time1: 42351005, time2: 42354876, differentce: 3871[0m
+[0;32mI (42896) example: time1: 42382954, time2: 42386762, differentce: 3808[0m
+[0;32mI (42926) example: time1: 42415095, time2: 42418880, differentce: 3785[0m
+[0;32mI (42966) example: time1: 42447056, time2: 42450637, differentce: 3581[0m
+[0;32mI (42996) example: time1: 42479210, time2: 42482987, differentce: 3777[0m
+[0;32mI (43036) example: time1: 42511150, time2: 42520341, differentce: 9191[0m
+[0;32mI (43056) example: time1: 42543304, time2: 42546873, differentce: 3569[0m
+[0;32mI (43096) example: time1: 42575241, time2: 42580010, differentce: 4769[0m
+[0;32mI (43126) example: time1: 42607410, time2: 42610031, differentce: 2621[0m
+[0;32mI (43156) example: time1: 42639355, time2: 42642162, differentce: 2807[0m
+[0;32mI (43186) example: time1: 42671300, time2: 42674481, differentce: 3181[0m
+[0;32mI (43216) example: time1: 42703478, time2: 42706922, differentce: 3444[0m
+[0;32mI (43246) example: time1: 42735418, time2: 42739139, differentce: 3721[0m
+[0;32mI (43286) example: time1: 42767588, time2: 42770121, differentce: 2533[0m
+[0;32mI (43316) example: time1: 42799497, time2: 42802883, differentce: 3386[0m
+[0;32mI (43346) example: time1: 42831678, time2: 42834797, differentce: 3119[0m
+[0;32mI (43376) example: time1: 42863623, time2: 42866381, differentce: 2758[0m
+[0;32mI (43406) example: time1: 42895765, time2: 42898392, differentce: 2627[0m
+[0;32mI (43446) example: time1: 42927714, time2: 42930923, differentce: 3209[0m
+[0;32mI (43476) example: time1: 42959682, time2: 42962326, differentce: 2644[0m
+[0;32mI (43506) example: time1: 42991812, time2: 42994355, differentce: 2543[0m
+[0;32mI (43536) example: time1: 43023761, time2: 43026809, differentce: 3048[0m
+[0;32mI (43566) example: time1: 43055926, time2: 43058228, differentce: 2302[0m
+[0;32mI (43606) example: time1: 43087859, time2: 43090468, differentce: 2609[0m
+[0;32mI (43636) example: time1: 43120005, time2: 43123254, differentce: 3249[0m
+[0;32mI (43666) example: time1: 43151994, time2: 43154425, differentce: 2431[0m
+[0;32mI (43696) example: time1: 43184103, time2: 43187337, differentce: 3234[0m
+[0;32mI (43726) example: time1: 43216088, time2: 43218519, differentce: 2431[0m
+[0;32mI (43766) example: time1: 43248005, time2: 43250600, differentce: 2595[0m
+[0;32mI (43796) example: time1: 43280162, time2: 43283034, differentce: 2872[0m
+[0;32mI (43826) example: time1: 43312143, time2: 43314604, differentce: 2461[0m
+[0;32mI (43856) example: time1: 43344265, time2: 43346806, differentce: 2541[0m
+[0;32mI (43886) example: time1: 43376233, time2: 43379109, differentce: 2876[0m
+[0;32mI (43926) example: time1: 43408367, time2: 43411569, differentce: 3202[0m
+[0;32mI (43956) example: time1: 43440344, time2: 43442765, differentce: 2421[0m
+[0;32mI (43986) example: time1: 43472486, time2: 43475127, differentce: 2641[0m
+[0;32mI (44016) example: time1: 43504426, time2: 43507574, differentce: 3148[0m
+[0;32mI (44046) example: time1: 43536395, time2: 43538845, differentce: 2450[0m
+[0;32mI (44086) example: time1: 43568525, time2: 43571425, differentce: 2900[0m
+[0;32mI (44116) example: time1: 43600502, time2: 43602938, differentce: 2436[0m
+[0;32mI (44146) example: time1: 43632619, time2: 43635569, differentce: 2950[0m
+[0;32mI (44176) example: time1: 43664604, time2: 43667070, differentce: 2466[0m
+[0;32mI (44216) example: time1: 43696718, time2: 43699942, differentce: 3224[0m
+[0;32mI (44246) example: time1: 43728686, time2: 43730939, differentce: 2253[0m
+[0;32mI (44276) example: time1: 43760832, time2: 43763747, differentce: 2915[0m
+[0;32mI (44306) example: time1: 43792809, time2: 43795258, differentce: 2449[0m
+[0;32mI (44336) example: time1: 43824718, time2: 43828091, differentce: 3373[0m
+[0;32mI (44366) example: time1: 43856907, time2: 43859334, differentce: 2427[0m
+[0;32mI (44406) example: time1: 43888832, time2: 43891278, differentce: 2446[0m
+[0;32mI (44436) example: time1: 43920974, time2: 43923275, differentce: 2301[0m
+[0;32mI (44466) example: time1: 43952922, time2: 43955252, differentce: 2330[0m
+[0;32mI (44496) example: time1: 43985092, time2: 43987467, differentce: 2375[0m
+[0;32mI (44536) example: time1: 44017029, time2: 44019884, differentce: 2855[0m
+[0;32mI (44566) example: time1: 44049198, time2: 44051651, differentce: 2453[0m
+[0;32mI (44596) example: time1: 44081131, time2: 44084651, differentce: 3520[0m
+[0;32mI (44626) example: time1: 44113112, time2: 44115530, differentce: 2418[0m
+[0;32mI (44656) example: time1: 44145234, time2: 44147572, differentce: 2338[0m
+[0;32mI (44696) example: time1: 44177198, time2: 44180461, differentce: 3263[0m
+[0;32mI (44726) example: time1: 44209368, time2: 44211806, differentce: 2438[0m
+[0;32mI (44756) example: time1: 44241293, time2: 44243837, differentce: 2544[0m
+[0;32mI (44786) example: time1: 44273462, time2: 44276308, differentce: 2846[0m
+[0;32mI (44816) example: time1: 44305423, time2: 44307863, differentce: 2440[0m
+[0;32mI (44856) example: time1: 44337541, time2: 44340417, differentce: 2876[0m
+[0;32mI (44886) example: time1: 44369529, time2: 44371984, differentce: 2455[0m
+[0;32mI (44916) example: time1: 44401462, time2: 44404052, differentce: 2590[0m
+[0;32mI (44946) example: time1: 44433604, time2: 44436398, differentce: 2794[0m
+[0;32mI (44976) example: time1: 44465577, time2: 44467984, differentce: 2407[0m
+[0;32mI (45016) example: time1: 44497714, time2: 44500348, differentce: 2634[0m
+[0;32mI (45046) example: time1: 44529651, time2: 44531920, differentce: 2269[0m
+[0;32mI (45076) example: time1: 44561801, time2: 44565098, differentce: 3297[0m
+[0;32mI (45106) example: time1: 44593790, time2: 44596061, differentce: 2271[0m
+[0;32mI (45136) example: time1: 44625907, time2: 44628751, differentce: 2844[0m
+[0;32mI (45176) example: time1: 44657860, time2: 44660428, differentce: 2568[0m
+[0;32mI (45206) example: time1: 44689813, time2: 44692251, differentce: 2438[0m
+[0;32mI (45236) example: time1: 44721946, time2: 44724272, differentce: 2326[0m
+[0;32mI (45266) example: time1: 44753903, time2: 44756232, differentce: 2329[0m
+[0;32mI (45296) example: time1: 44786061, time2: 44788384, differentce: 2323[0m
+[0;32mI (45336) example: time1: 44818006, time2: 44820423, differentce: 2417[0m
+[0;32mI (45366) example: time1: 44850151, time2: 44852990, differentce: 2839[0m
+[0;32mI (45396) example: time1: 44882140, time2: 44884552, differentce: 2412[0m
+[0;32mI (45426) example: time1: 44914258, time2: 44916863, differentce: 2605[0m
+[0;32mI (45456) example: time1: 44946218, time2: 44948696, differentce: 2478[0m
+[0;32mI (45496) example: time1: 44978171, time2: 44980662, differentce: 2491[0m
+[0;32mI (45526) example: time1: 45010329, time2: 45012209, differentce: 1880[0m
+[0;32mI (45526) example: final chunck sent[0m
+[0;33mW (45536) httpd_txrx: httpd_sock_err: error in recv : 104[0m

@@ -52,11 +52,11 @@
 #define _EXAMPLE_ADC_UNIT_STR(unit)         #unit
 #define EXAMPLE_ADC_UNIT_STR(unit)          _EXAMPLE_ADC_UNIT_STR(unit)
 #define EXAMPLE_ADC_CONV_MODE               ADC_CONV_SINGLE_UNIT_1
-#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_0
+#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_6
 #define EXAMPLE_ADC_BIT_WIDTH               SOC_ADC_DIGI_MAX_BITWIDTH
 #define EXAMPLE_ADC_OUTPUT_TYPE             ADC_DIGI_OUTPUT_FORMAT_TYPE1
 
-#define EXAMPLE_READ_LEN                    512
+#define EXAMPLE_READ_LEN                    1024
 #define ADC_BUFFER_SIZE                     4096
 
 #define EXAMPLE_HTTP_QUERY_KEY_MAX_LEN  (64)
@@ -72,12 +72,6 @@
 
 #define SAMPLES 80
 static char recording_data_array[SAMPLES*5];
-
-#if CONFIG_IDF_TARGET_ESP32
-static adc_channel_t channel[1] = {ADC_CHANNEL_6};
-#else
-static adc_channel_t channel[1] = {ADC_CHANNEL_2};
-#endif
 
 static TaskHandle_t s_task_handle;
 static adc_continuous_handle_t adc_handle;
@@ -306,47 +300,12 @@ static void format_inputs(int* input_values, char* input_string){
     ESP_LOGI(TAG, "input1: %d, input2: %d, input3 = %d", input_values[0], input_values[1], input_values[2]);
 }
 
-void int_to_4char(int num, char* buffer) {
-    sprintf(buffer, "%04d", num);
-}
-
 static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata, void *user_data)
 {
     BaseType_t mustYield = pdFALSE;
     // Notify that ADC continuous driver has done enough number of conversions
     vTaskNotifyGiveFromISR(s_task_handle, &mustYield);
     return (mustYield == pdTRUE);
-}
-
-static void format_measurements(httpd_req_t *req, uint8_t* int_array, size_t samples_amount){
-    // Each integer will be converted to a 4-character string
-    size_t char_array_size = (samples_amount) * 4 + 1; // +1 for the null terminator
-    char* char_array = (char*)malloc(char_array_size);
-
-    // Initialize the char array with null terminators
-    memset(char_array, 0, char_array_size);
-
-    // Pointer to traverse the char array
-    char* ptr = char_array;
-
-    // char small_buffer[5];
-    // int_to_4char(samples_amount, small_buffer);
-    // strcat(ptr, small_buffer);
-    // ptr += 4;
-
-    for (size_t i = 1; i < samples_amount+1; ++i) {
-        // Buffer to hold the 4-character string
-        char buffer[5]; // 4 characters + 1 for null terminator
-        int_to_4char(int_array[i], buffer);
-
-        // Append the 4-character string to the char array
-        strcat(ptr, buffer);
-
-        // Move the pointer forward by 4 characters
-        ptr += 4;
-    }
-    ESP_LOGI(TAG, "sending chunck, samples_amount: %d", samples_amount);
-    ESP_ERROR_CHECK(httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN));
 }
 
 esp_err_t handler_main(httpd_req_t *req){
@@ -406,7 +365,7 @@ esp_err_t handler_read_test(httpd_req_t *req){
 
     uint32_t time1, time2;
 
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < 100; i++){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
         while(1){
 
@@ -453,20 +412,85 @@ esp_err_t handler_read_test(httpd_req_t *req){
     ret = httpd_resp_send_chunk(req, dummy, 0);
     ESP_LOGI(TAG, "final chunck sent");
     return ret;
-
 }
 
-/* This handler allows the custom error handling functionality to be
- * tested from client side. For that, when a PUT request 0 is sent to
- * URI /ctrl, the /hello and /echo URIs are unregistered and following
- * custom error handler http_404_error_handler() is registered.
- * Afterwards, when /hello or /echo is requested, this custom error
- * handler is invoked which, after sending an error message to client,
- * either closes the underlying socket (when requested URI is /echo)
- * or keeps it open (when requested URI is /hello). This allows the
- * client to infer if the custom error handler is functioning as expected
- * by observing the socket state.
- */
+esp_err_t handler_read_test_2(httpd_req_t *req){
+    ESP_LOGI(TAG, "starting /read_test_2");
+    char dummy[0];
+    esp_err_t ret;
+    uint32_t ret_num = 0;
+    uint8_t result[EXAMPLE_READ_LEN];
+    memset(result, 0xcc, EXAMPLE_READ_LEN);
+
+    int array_size = EXAMPLE_READ_LEN+1;
+    char char_array[array_size];
+
+    s_task_handle = xTaskGetCurrentTaskHandle();
+    adc_continuous_evt_cbs_t cbs = {
+        .on_conv_done = s_conv_done_cb,
+    };
+    ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
+    ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
+
+    uint32_t time1, time2;
+
+    for(int i = 0; i < 5; i++){
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        // while(1){
+
+            char* ptr = char_array;
+            ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+            if (ret == ESP_OK){
+                time1 = esp_timer_get_time();
+                // ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
+                for (int i = 0; i < ret_num; i += 2*SOC_ADC_DIGI_RESULT_BYTES) {
+
+                    adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
+                    uint16_t data = (p)->type1.data;
+                    uint16_t data_2 = (p+SOC_ADC_DIGI_RESULT_BYTES)->type1.data;
+
+
+                    /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
+                    if ((p+SOC_ADC_DIGI_RESULT_BYTES)->type1.channel < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
+                        char buffer[5];
+                        sprintf(buffer, "%04d", (data + data_2)/2);
+
+                        if ((ptr - char_array) + strlen(buffer) < array_size) {
+                            strcpy(ptr, buffer);
+                            ptr += strlen(buffer);
+                        } else {
+                            ESP_LOGE("TASK", "Buffer overflow prevented");
+                            break;
+                        }
+                    }
+                }
+                httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN);
+                time2 = esp_timer_get_time();
+
+                ESP_LOGI(TAG, "time1: %ld, time2: %ld, differentce: %ld", time1, time2, time2-time1);
+                // free(char_array);
+                // vTaskDelay(10);
+            }
+            else if (ret == ESP_ERR_TIMEOUT) {
+                //We try to read `EXAMPLE_READ_LEN` until API returns timeout, which means there's no available data
+                break;
+            }
+        // }
+    }
+    ESP_ERROR_CHECK(adc_continuous_stop(adc_handle));
+    ESP_ERROR_CHECK(adc_continuous_flush_pool(adc_handle));
+
+    ret = httpd_resp_send_chunk(req, dummy, 0);
+    ESP_LOGI(TAG, "final chunck sent");
+    return ret;
+}
+
+
+
+
+
+
+
 esp_err_t http_404_error_handler(httpd_req_t *req, httpd_err_code_t err)
 {
     if (strcmp("/hello", req->uri) == 0) {
@@ -518,6 +542,13 @@ static const httpd_uri_t handler_read_test_t = {
   .user_ctx  = NULL
 };
 
+static const httpd_uri_t handler_read_test_2_t = {
+  .uri       = "/read_test_2" ,
+  .method    = HTTP_GET,
+  .handler   = handler_read_test_2,
+  .user_ctx  = NULL
+};
+
 static httpd_handle_t start_webserver(void)
 {
     httpd_handle_t server = NULL;
@@ -541,6 +572,7 @@ static httpd_handle_t start_webserver(void)
         httpd_register_uri_handler(server, &handler_main_t);
         httpd_register_uri_handler(server, &handler_get_data_t);
         httpd_register_uri_handler(server, &handler_read_test_t);
+        httpd_register_uri_handler(server, &handler_read_test_2_t);
         return server;
     }
 
@@ -597,7 +629,7 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
      ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
 
      adc_continuous_config_t dig_cfg = {
-         .sample_freq_hz = 5 * 1000,
+         .sample_freq_hz = 8 * 1000,
          .conv_mode = EXAMPLE_ADC_CONV_MODE,
          .format = EXAMPLE_ADC_OUTPUT_TYPE,
      };
@@ -631,6 +663,8 @@ void app_main(void)
 {
     static httpd_handle_t server = NULL;
     adc_handle = NULL;
+    uint8_t adc_precision = 2;
+    static adc_channel_t channel[2] = {ADC_CHANNEL_6, ADC_CHANNEL_7};
 
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -640,7 +674,7 @@ void app_main(void)
     ESP_ERROR_CHECK(ret);
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    control_led_init();
+    // control_led_init();
 
     /* This helper function configures Wi-Fi or Ethernet, as selected in menuconfig.
      * Read "Establishing Wi-Fi or Ethernet Connection" section in
@@ -653,25 +687,17 @@ void app_main(void)
     // ADC
     continuous_adc_init(channel, sizeof(channel) / sizeof(adc_channel_t), &adc_handle);
 
-    // adc_continuous_evt_cbs_t cbs = {
-    //     .on_conv_done = s_conv_done_cb,
-    // };
-    //
-    // ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
 
-    /* Register event handlers to stop the server when Wi-Fi or Ethernet is disconnected,
-     * and re-start it upon connection.
-     */
-#if !CONFIG_IDF_TARGET_LINUX
-#ifdef CONFIG_EXAMPLE_CONNECT_WIFI
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
-    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
-#endif // CONFIG_EXAMPLE_CONNECT_WIFI
-#ifdef CONFIG_EXAMPLE_CONNECT_ETHERNET
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &connect_handler, &server));
-    ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ETHERNET_EVENT_DISCONNECTED, &disconnect_handler, &server));
-#endif // CONFIG_EXAMPLE_CONNECT_ETHERNET
-#endif // !CONFIG_IDF_TARGET_LINUX
+    #if !CONFIG_IDF_TARGET_LINUX
+    #ifdef CONFIG_EXAMPLE_CONNECT_WIFI
+        ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
+        ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
+    #endif // CONFIG_EXAMPLE_CONNECT_WIFI
+    #ifdef CONFIG_EXAMPLE_CONNECT_ETHERNET
+        ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_ETH_GOT_IP, &connect_handler, &server));
+        ESP_ERROR_CHECK(esp_event_handler_register(ETH_EVENT, ETHERNET_EVENT_DISCONNECTED, &disconnect_handler, &server));
+    #endif // CONFIG_EXAMPLE_CONNECT_ETHERNET
+    #endif // !CONFIG_IDF_TARGET_LINUX
 
     /* Start the server for the first time */
     server = start_webserver();
