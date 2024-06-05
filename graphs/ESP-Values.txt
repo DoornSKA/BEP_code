@@ -1,0 +1,6 @@
+Attenuation	 - High clip	 - Low clip
+0DB		 - 1.030	 - 0.078
+2.5DB		 - 1.355	 - 0.068
+6DB		 - 1.870	 - 0.090
+12DB		 - 2.650	 - 0.130
+
