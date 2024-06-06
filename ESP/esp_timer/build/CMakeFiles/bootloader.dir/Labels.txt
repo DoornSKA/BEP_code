@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader
+/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader-complete.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "/home/skado/bep/BEP_code/ESP/esp_timer/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}

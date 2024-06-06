@@ -62,7 +62,7 @@ def read_chunked_response(sock):
 def chunked_response():
     # Example usage:
     host = '192.168.4.1'
-    path = '/read_test'
+    path = '/read_test_2'
 
     # Create a socket connection
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
