@@ -1,0 +1,23 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+In file included from /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:43:
+/home/skado/programming/esp/esp-idf/components/driver/deprecated/driver/adc.h:19:2: warning: #warning "legacy adc driver is deprecated, please migrate to use esp_adc/adc_oneshot.h and esp_adc/adc_continuous.h for oneshot mode and continuous mode drivers respectively" [-Wcpp]
+   19 | #warning "legacy adc driver is deprecated, please migrate to use esp_adc/adc_oneshot.h and esp_adc/adc_continuous.h for oneshot mode and continuous mode drivers respectively"
+      |  ^~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'handler_submit':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:338:23: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  338 |     char* box_input = &uri[strlen(target)+1];
+      |                       ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'app_main':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:750:27: warning: unused variable 'channel_oneshot' [-Wunused-variable]
+  750 |     static adc2_channel_t channel_oneshot = ADC_CHANNEL_9;
+      |                           ^~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: At top level:
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:737:14: warning: 'control_led_init' defined but not used [-Wunused-function]
+  737 |  static void control_led_init(void)
+      |              ^~~~~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a

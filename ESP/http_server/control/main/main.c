@@ -33,8 +33,12 @@
 #include "esp_event.h"
 #include "esp_netif.h"
 #include "esp_tls.h"
+#include "soc/soc_caps.h"
 
 #include "esp_adc/adc_continuous.h"
+#include "esp_adc/adc_oneshot.h"
+#include "esp_adc/adc_cali.h"
+#include "esp_adc/adc_cali_scheme.h"
 #include "driver/gpio.h"
 
 #include "event_source.h"
@@ -52,11 +56,11 @@
 #define _EXAMPLE_ADC_UNIT_STR(unit)         #unit
 #define EXAMPLE_ADC_UNIT_STR(unit)          _EXAMPLE_ADC_UNIT_STR(unit)
 #define EXAMPLE_ADC_CONV_MODE               ADC_CONV_SINGLE_UNIT_1
-#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_6
+#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_0
 #define EXAMPLE_ADC_BIT_WIDTH               SOC_ADC_DIGI_MAX_BITWIDTH
 #define EXAMPLE_ADC_OUTPUT_TYPE             ADC_DIGI_OUTPUT_FORMAT_TYPE1
 
-#define EXAMPLE_READ_LEN                    1024
+#define EXAMPLE_READ_LEN                    512
 #define ADC_BUFFER_SIZE                     4096
 
 #define EXAMPLE_HTTP_QUERY_KEY_MAX_LEN  (64)
@@ -75,10 +79,7 @@ static char recording_data_array[SAMPLES*5];
 
 static TaskHandle_t s_task_handle;
 static adc_continuous_handle_t adc_handle;
-
-
-esp_event_loop_handle_t loop_with_task;
-esp_event_loop_handle_t loop_without_task;
+static adc_oneshot_unit_handle_t adc2_handle;
 
 char WORMINATOR[] = R"rawliteral(
 <head>
@@ -308,6 +309,12 @@ static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_c
     return (mustYield == pdTRUE);
 }
 
+static bool IRAM_ATTR s_pool_ovf_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata, void *user_data)
+{
+    ESP_LOGE(TAG, "POOL OVERFLOW");
+    return true;
+}
+
 esp_err_t handler_main(httpd_req_t *req){
     esp_err_t response = httpd_resp_send(req, WORMINATOR, HTTPD_RESP_USE_STRLEN);
     ESP_LOGI(TAG, "New user signed on");
@@ -359,6 +366,7 @@ esp_err_t handler_read_test(httpd_req_t *req){
     s_task_handle = xTaskGetCurrentTaskHandle();
     adc_continuous_evt_cbs_t cbs = {
         .on_conv_done = s_conv_done_cb,
+        .on_pool_ovf = s_pool_ovf_cb,
     };
     ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
     ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
@@ -428,6 +436,7 @@ esp_err_t handler_read_test_2(httpd_req_t *req){
     s_task_handle = xTaskGetCurrentTaskHandle();
     adc_continuous_evt_cbs_t cbs = {
         .on_conv_done = s_conv_done_cb,
+        .on_pool_ovf = s_pool_ovf_cb
     };
     ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
     ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
@@ -442,18 +451,22 @@ esp_err_t handler_read_test_2(httpd_req_t *req){
             ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
             if (ret == ESP_OK){
                 time1 = esp_timer_get_time();
+                uint16_t data = 0;
+                uint16_t data2 = 0;
                 // ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
-                for (int i = 0; i < ret_num; i += 2*SOC_ADC_DIGI_RESULT_BYTES) {
-
+                for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
                     adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
-                    uint16_t data = (p)->type1.data;
-                    uint16_t data_2 = (p+SOC_ADC_DIGI_RESULT_BYTES)->type1.data;
-
-
+                    int channel = (p)->type1.channel;
+                    ESP_LOGI(TAG, "data1: %d, data2: %d, channel: %d", data, data2, channel);
+                    if (channel == 7){
+                        data = (p)->type1.data;
+                    }
+                    else if (channel == 6){
+                        data2 = (p)->type1.data;
                     /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
-                    if ((p+SOC_ADC_DIGI_RESULT_BYTES)->type1.channel < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
-                        char buffer[5];
-                        sprintf(buffer, "%04d", (data + data_2)/2);
+                        char buffer[6];
+                        sprintf(buffer, "%04d", (data + data2)/2);
+
 
                         if ((ptr - char_array) + strlen(buffer) < array_size) {
                             strcpy(ptr, buffer);
@@ -485,8 +498,58 @@ esp_err_t handler_read_test_2(httpd_req_t *req){
     return ret;
 }
 
+esp_err_t program_1(httpd_req_t *req)
+{
+    esp_err_t ret = ESP_OK;
+    // Init parameters
+    // Init timers
+    // Get parameters
+    // Get charge time
+    // Start charge timer - time needed to fill adc frame (samples/sf)
+    // Turn on pulse
+    // In the callback start the adc
+    // In the main code wait for the conversion frame to fill
+    // Open the charge gates
+    // Make measurement on ADC 2
+    // Close pulse gate
+    // Send chuncked responses, close with the measured voltage
+    // cleanup
 
+    return ret;
+}
 
+esp_err_t program_2(httpd_req_t *req)
+{
+    esp_err_t ret = ESP_OK;
+    // Init parameters
+    // Init timers
+    // Get parameters
+    // Get charge time 1
+    // Get charge time 2
+    // Start longer charge timer 1 - time needed to fill adc frame (samples/sf)
+    // Close charge gate 1
+    // Start timer for charge time 1 - charge time 2 + Interpulse
+    // On callback:
+    //      Start timer for charge time 2
+    //      Close charge gate 2
+    // In the callback of timer 1 start the adc
+    // In the main code wait for the conversion frame to fill
+    // Open the charge gates
+    // Make measurement on ADC 2
+    // Close pulse gate
+    // Send chuncked responses, close with the measured voltage
+    // cleanup
+
+    return ret;
+}
+
+esp_err_t program_3(httpd_req_t *req)
+{
+    esp_err_t ret = ESP_OK;
+    // run program 1 with an interpulse duration added
+
+    return ret;
+}
 
 
 
@@ -621,18 +684,36 @@ static void connect_handler(void* arg, esp_event_base_t event_base,
  static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc_continuous_handle_t *out_handle)
  {
      adc_continuous_handle_t handle = NULL;
+     adc_oneshot_unit_handle_t handle_oneshot = NULL;
 
+     // ADC1
      adc_continuous_handle_cfg_t adc_config = {
-         .max_store_buf_size = ADC_BUFFER_SIZE,
-         .conv_frame_size = EXAMPLE_READ_LEN,
+       .max_store_buf_size = ADC_BUFFER_SIZE,
+       .conv_frame_size = EXAMPLE_READ_LEN,
      };
-     ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
 
      adc_continuous_config_t dig_cfg = {
-         .sample_freq_hz = 8 * 1000,
-         .conv_mode = EXAMPLE_ADC_CONV_MODE,
-         .format = EXAMPLE_ADC_OUTPUT_TYPE,
+       .sample_freq_hz = 8 * 1000,
+       .conv_mode = EXAMPLE_ADC_CONV_MODE,
+       .format = EXAMPLE_ADC_OUTPUT_TYPE,
      };
+
+     // ADC2
+     adc_oneshot_unit_init_cfg_t adc_config_oneshot_init = {
+        .unit_id = ADC_UNIT_2,
+        .ulp_mode = ADC_ULP_MODE_DISABLE,
+      };
+
+     adc_oneshot_chan_cfg_t adc_config_oneshot = {
+       .bitwidth = ADC_BITWIDTH_DEFAULT,
+       .atten = EXAMPLE_ADC_ATTEN,
+     };
+
+
+     ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
+     // ESP_ERROR_CHECK(adc_oneshot_new_unit(&adc_config_oneshot_init, &handle_oneshot));
+     // ESP_ERROR_CHECK(adc_oneshot_config_channel(adc2_handle, ADC_CHANNEL_9, &adc_config_oneshot));
+
 
      adc_digi_pattern_config_t adc_pattern[SOC_ADC_PATT_LEN_MAX] = {0};
      dig_cfg.pattern_num = channel_num;
@@ -663,8 +744,9 @@ void app_main(void)
 {
     static httpd_handle_t server = NULL;
     adc_handle = NULL;
-    uint8_t adc_precision = 2;
+
     static adc_channel_t channel[2] = {ADC_CHANNEL_6, ADC_CHANNEL_7};
+    static adc_channel_t channel_oneshot = ADC_CHANNEL_9;
 
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -686,6 +768,7 @@ void app_main(void)
 
     // ADC
     continuous_adc_init(channel, sizeof(channel) / sizeof(adc_channel_t), &adc_handle);
+
 
 
     #if !CONFIG_IDF_TARGET_LINUX

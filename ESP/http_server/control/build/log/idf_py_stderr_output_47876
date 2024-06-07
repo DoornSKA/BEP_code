@@ -1,0 +1,49 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x400829f7: lock_acquire_generic at /home/skado/programming/esp/esp-idf/components/newlib/locks.c:130
+[0m
+[0;33m0x400818d6: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x4008a175: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4009192d: abort at /home/skado/programming/esp/esp-idf/components/newlib/abort.c:38
+0x400829f7: lock_acquire_generic at /home/skado/programming/esp/esp-idf/components/newlib/locks.c:130
+0x40082b35: _lock_acquire_recursive at /home/skado/programming/esp/esp-idf/components/newlib/locks.c:158
+0x40082bae: __retarget_lock_acquire_recursive at /home/skado/programming/esp/esp-idf/components/newlib/locks.c:314
+0x4014b32a: _vfprintf_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:846 (discriminator 2)
+0x40146fcd: vprintf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vprintf.c:34
+0x4015bcb1: esp_log_writev at /home/skado/programming/esp/esp-idf/components/log/log.c:215
+0x400902c1: esp_log_write at /home/skado/programming/esp/esp-idf/components/log/log.c:225
+0x400832f9: s_pool_ovf_cb at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:314 (discriminator 1)
+0x40085479: s_adc_dma_intr at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:336
+0x400854b4: adc_dma_intr_handler at /home/skado/programming/esp/esp-idf/components/esp_adc/adc_continuous.c:277
+0x40083691: _xt_lowint1 at /home/skado/programming/esp/esp-idf/components/xtensa/xtensa_vectors.S:1240
+0x400d5ed1: uart_tx_char at /home/skado/programming/esp/esp-idf/components/vfs/vfs_uart.c:163
+0x400d66b7: uart_write at /home/skado/programming/esp/esp-idf/components/vfs/vfs_uart.c:218
+0x400d54f7: console_write at /home/skado/programming/esp/esp-idf/components/vfs/vfs_console.c:73 (discriminator 1)
+0x400d4c16: esp_vfs_write at /home/skado/programming/esp/esp-idf/components/vfs/vfs.c:482 (discriminator 4)
+0x4000bd83: _write_r in ROM
+0x4000117d: __swrite in ROM
+0x400592fe: __sflush_r in ROM
+0x4005937a: _fflush_r in ROM
+0x40146bed: __sfvwrite_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/fvwrite.c:251
+0x4014e793: __sprint_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfiprintf.c:429
+ (inlined by) __sprint_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:399
+0x4014e156: _vfprintf_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:1774 (discriminator 1)
+0x40146fcd: vprintf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vprintf.c:34
+0x4015bcb1: esp_log_writev at /home/skado/programming/esp/esp-idf/components/log/log.c:215
+0x400902c1: esp_log_write at /home/skado/programming/esp/esp-idf/components/log/log.c:225
+0x400d6b7e: handler_read_test_2 at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:460 (discriminator 1)
+0x400e24a5: httpd_uri at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_uri.c:329
+0x400e2cb1: httpd_parse_req at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_parse.c:667
+0x400e2d50: httpd_req_new at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_parse.c:795
+0x400e1acc: httpd_sess_process at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_sess.c:426
+0x400e0d54: httpd_process_session at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:255
+0x40155337: httpd_sess_enum at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_sess.c:50 (discriminator 1)
+0x400e144a: httpd_server at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:305
+0x400e14b2: httpd_thread at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:327
+0x4008ac81: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m
