@@ -33,12 +33,12 @@ class plot_data():
     def filter_data(self, data):
         response = signal.filtfilt(self.b, self.a, data)
         return response
-    
+
     def results_to_voltage(self, data, response):
         voltages_data = [reading / self.ADC_RESOLUTION * self.VRef for reading in data]
         voltages_response = [reading / self.ADC_RESOLUTION * self.VRef for reading in response]
         return voltages_data, voltages_response
-    
+
     def compare_data(self, data, response):
         average_filter = sum(response)/len(response)
         average_orig = sum(data)/len(data)
@@ -47,7 +47,7 @@ class plot_data():
         difference_orig = sum([abs(average_orig - data[i])/self.ADC_RESOLUTION for i in range(len(data))])/len(data)
 
         print(f"average_filter: {average_filter}\n average_orig: {average_orig}\n difference_filter: {difference_filter}\n difference_orig: {difference_orig}")
-    
+
     @staticmethod
     def get_data():
         with open("test_data.csv", newline='') as f:
@@ -56,7 +56,7 @@ class plot_data():
 
         data = [int(e) for e in data_s[0]]
         return data
-    
+
     def plot_magnitude_response(self):
         w, h = signal.freqz(self.b, self.a, worN=8000)
         frequencies = w * self.f_sample / (2*np.pi)
@@ -70,13 +70,18 @@ class plot_data():
 
     @staticmethod
     def plot_data(data, response):
-        plt.plot(data)
-        plt.plot(response)
+        f, (ax1, ax2) = plt.subplots(1, 2)
+        ax1.plot(data)
+        ax1.plot(response)
+
+        ax2.plot(fft(data))
+        ax2.plot(fft(response))
         plt.show()
+
 
 if __name__ == '__main__':
     f = plot_data(500,1500)
     data = f.get_data()
     f.plot_data(data, f.filter_data(data))
-    v_data, v_response = f.results_to_voltage(data, f.filter_data(data))
-    f.plot_data(v_data, v_response)
+    # v_data, v_response = f.results_to_voltage(data, f.filter_data(data))
+    # f.plot_data(v_data, v_response)

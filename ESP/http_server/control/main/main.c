@@ -71,8 +71,9 @@
 
 #define OUT_PULSE_1 GPIO_NUM_1
 #define OUT_PULSE_2 GPIO_NUM_2
-
-#define LED_BUILTIN GPIO_NUM_2
+#define OUT_CHARGE_1 GPIO_NUM_3
+#define OUT_CHARGE_2 GPIO_NUM_3
+#define OUT_BLANKING GPIO_NUM_5
 
 #define SAMPLES 80
 static char recording_data_array[SAMPLES*5];
@@ -259,6 +260,45 @@ void wifi_init_softap(void)
 
 // ---------------------------------------------------------------
 /*
+ * Timers
+ */
+
+typedef struct timerData_t{
+    int gpio;
+    uint8_t level;
+    int64_t time;
+    uint64_t meas; // 0 for no measurement, set to 1 to get a measurement
+}timerData_t;
+
+typedef struct timerData_req_t{
+    int gpio;
+    uint8_t level;
+    int64_t time;
+    uint16_t meas; // 0 for no measurement, set to 1 to get a measurement
+    httpd_req_t req;
+}timerData_req_t;
+
+static void timer_gpio_callback(void* arg)
+{
+    uint64_t t_cb = esp_timer_get_time();
+    timer_GPIO_item* e = (timer_GPIO_item*)arg;
+    e-> level ^= 1;
+    gpio_set_level(e->gpio, e->level);
+    e->time = t_cb;
+}
+
+static void timer_gpio_callback_req(void* arg)
+{
+    uint64_t t_cb = esp_timer_get_time();
+    timer_GPIO_item* e = (timer_GPIO_item*)arg;
+    gpio_set_level(e->gpio, e->level);
+    e->time = t_cb;
+
+    MeasureADC(1, 3);
+}
+
+// ---------------------------------------------------------------
+/*
  * Web page
  */
 
@@ -313,6 +353,76 @@ static bool IRAM_ATTR s_pool_ovf_cb(adc_continuous_handle_t handle, const adc_co
 {
     ESP_LOGE(TAG, "POOL OVERFLOW");
     return true;
+}
+
+static esp_err_t MeasureADC(httpd_req_t *req, uint16_t amount_of_chuncks){
+    esp_err_t ret;
+    uint32_t ret_num = 0;
+    uint8_t result[EXAMPLE_READ_LEN];
+    memset(result, 0xcc, EXAMPLE_READ_LEN);
+
+    int array_size = EXAMPLE_READ_LEN*2+1;
+    char char_array[array_size];
+
+    s_task_handle = xTaskGetCurrentTaskHandle();
+    adc_continuous_evt_cbs_t cbs = {
+        .on_conv_done = s_conv_done_cb,
+        .on_pool_ovf = s_pool_ovf_cb,
+    };
+    ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
+    ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
+
+    // uint32_t time1, time2;
+
+    for(int i = 0; i < amount_of_chuncks; i++){
+        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+        // while(1){
+
+            char* ptr = char_array;
+            ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+            if (ret == ESP_OK){
+                // time1 = esp_timer_get_time();
+                uint16_t data = 0;
+                uint16_t data2 = 0;
+                // ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
+                for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
+                    adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
+                    int channel = (p)->type1.channel;
+                    ESP_LOGI(TAG, "data1: %d, data2: %d, channel: %d", data, data2, channel);
+                    if (channel == 7){
+                        data = (p)->type1.data;
+                    }
+                    else if (channel == 6){
+                        data2 = (p)->type1.data;
+                    /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
+                        char buffer[6];
+                        sprintf(buffer, "%04d", (data + data2)/2);
+
+
+                        if ((ptr - char_array) + strlen(buffer) < array_size) {
+                            strcpy(ptr, buffer);
+                            ptr += strlen(buffer);
+                        } else {
+                            ESP_LOGE("TASK", "Buffer overflow prevented");
+                            break;
+                        }
+                    }
+                }
+                httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN);
+                // time2 = esp_timer_get_time();
+
+                // ESP_LOGI(TAG, "time1: %ld, time2: %ld, differentce: %ld", time1, time2, time2-time1);
+                // free(char_array);
+                // vTaskDelay(10);
+            }
+            else if (ret == ESP_ERR_TIMEOUT) {
+                //We try to read `EXAMPLE_READ_LEN` until API returns timeout, which means there's no available data
+                break;
+            }
+        // }
+    }
+    ESP_ERROR_CHECK(adc_continuous_stop(adc_handle));
+    ESP_ERROR_CHECK(adc_continuous_flush_pool(adc_handle));
 }
 
 esp_err_t handler_main(httpd_req_t *req){
@@ -501,44 +611,97 @@ esp_err_t handler_read_test_2(httpd_req_t *req){
 esp_err_t program_1(httpd_req_t *req)
 {
     esp_err_t ret = ESP_OK;
-    // Init parameters
-    // Init timers
-    // Get parameters
-    // Get charge time
-    // Start charge timer - time needed to fill adc frame (samples/sf)
-    // Turn on pulse
-    // In the callback start the adc
-    // In the main code wait for the conversion frame to fill
-    // Open the charge gates
-    // Make measurement on ADC 2
-    // Close pulse gate
-    // Send chuncked responses, close with the measured voltage
-    // cleanup
+    int64_t t_base;
 
-    return ret;
-}
+    const int est_timer_creation = 12;
+    const int charge_time_1 = 10000;
+    const int charge_time_2 = 10000;
+    const int interpulse_duration = 100;
+    const int blanking_duration = 1000;
 
-esp_err_t program_2(httpd_req_t *req)
-{
-    esp_err_t ret = ESP_OK;
-    // Init parameters
-    // Init timers
-    // Get parameters
-    // Get charge time 1
-    // Get charge time 2
-    // Start longer charge timer 1 - time needed to fill adc frame (samples/sf)
-    // Close charge gate 1
-    // Start timer for charge time 1 - charge time 2 + Interpulse
-    // On callback:
-    //      Start timer for charge time 2
-    //      Close charge gate 2
-    // In the callback of timer 1 start the adc
-    // In the main code wait for the conversion frame to fill
-    // Open the charge gates
-    // Make measurement on ADC 2
-    // Close pulse gate
-    // Send chuncked responses, close with the measured voltage
-    // cleanup
+
+    timerData_t timer_pulse_1_i = {OUT_PULSE_1, 0, 0, 0};
+    timerData_t timer_pulse_2_i = {OUT_PULSE_2, 0, 0, interpulse_duration};
+    timerData_t timer_charge_1_i = {OUT_CHARGE_1, 0, 0, charge_time_1};
+    timerData_t timer_charge_2_i = {OUT_CHARGE_2, 0, 0, timer_pulse_2_i.time - charge_time_2};
+    timerData_req_t timer_blanking_i = {OUT_BLANKING, 0, 0, blanking_duration, req};
+
+    const esp_timer_create_args_t timer_args_pulse_1 = {
+            .callback = &timer_gpio_callback,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_1",
+            .arg = (void*)&timer_pulse_1_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    const esp_timer_create_args_t timer_args_pulse_2 = {
+            .callback = &timer_gpio_callback,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_2",
+            .arg = (void*)&timer_pulse_2_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    const esp_timer_create_args_t timer_args_charge_1 = {
+            .callback = &timer_gpio_callback,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_3",
+            .arg = (void*)&timer_charge_1_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    const esp_timer_create_args_t timer_args_charge_2 = {
+            .callback = &timer_gpio_callback,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_4",
+            .arg = (void*)&timer_charge_2_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    const esp_timer_create_args_t timer_args_blanking = {
+            .callback = &timer_gpio_callback_req,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_5",
+            .arg = (void*)&timer_blanking_i,
+            .dispatch_method = ESP_TIMER_TASK
+    };
+
+    esp_timer_handle_t timer_pulse_1;
+    esp_timer_handle_t timer_pulse_2;
+    esp_timer_handle_t timer_charge_1;
+    esp_timer_handle_t timer_charge_2;
+    esp_timer_handle_t timer_blanking;
+
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_pulse_1, &timer_pulse_1));
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_pulse_2, &timer_pulse_2));
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_charge_1, &timer_charge_1));
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_charge_2, &timer_charge_2));
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_blanking, &timer_blanking));
+
+    usleep(400);
+    // temp = 4996
+    /* Start the timers */
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_pulse_1, 100000));
+    t_base = esp_timer_get_time();
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_pulse_2, 100000-(esp_timer_get_time()-t_base) - creation + timer_pulse_2.time));
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_charge_1, 100000-(esp_timer_get_time()-t_base) - creation + timer_charge_1_i.time));
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_charge_2, 100000-(esp_timer_get_time()-t_base) - creation + timer_charge_1_i.time));
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_blanking, 100000-(esp_timer_get_time()-t_base) - creation + timer_blanking_i.time));
+
+    MeasureADC(req, 1);
+
+    usleep(200000);
+    // ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    ESP_ERROR_CHECK(esp_timer_delete(oneshot_timer_1));
+    ESP_ERROR_CHECK(esp_timer_delete(oneshot_timer_2));
+    ESP_ERROR_CHECK(esp_timer_delete(oneshot_timer_3));
+
+    ESP_LOGI(TAG, "pulse 1: %lld\npulse 2: %lld\ncharge 1: %lld\ncharge 2: %lld\nblanking: %lld", timer_pulse_1_i.time, timer_pulse_2_i.time, timer_charge_1_i.time, timer_charge_2_i.time, timer_blanking_i.time);
+    ESP_LOGI(TAG, "d pulse: %lld\nd charge 1: %lld\nd charge 2: %lld\nd blanking: %lld", timer_pulse_2_i.time - timer_pulse_1_i.time, timer_charge_1_i.time - timer_pulse_1_i.time, timer_charge_2_i.time - timer_pulse_2_i.time, timer_blanking_i.time - timer_pulse_1_i.time);
 
     return ret;
 }
