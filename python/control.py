@@ -3,6 +3,7 @@ import requests
 import matplotlib.pyplot as plt
 import csv
 from time import sleep
+from data_accuracy import plot_data as p_data
 
 class Control():
     def __init__(self, ip_address="192.168.4.1"):
