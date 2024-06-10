@@ -1,7 +1,7 @@
 {
     "version":            "1.1",
     "project_name":       "simple",
-    "project_version":    "5910937-dirty",
+    "project_version":    "472bf45-dirty",
     "project_path":       "/home/skado/bep/BEP_code/ESP/http_server/control",
     "idf_path":           "/home/skado/programming/esp/esp-idf",
     "build_dir":          "/home/skado/bep/BEP_code/ESP/http_server/control/build",

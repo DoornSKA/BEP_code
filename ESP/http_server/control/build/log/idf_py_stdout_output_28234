@@ -1,0 +1,430 @@
+[1/11] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[2/11] Linking C static library esp-idf/esp_app_format/libesp_app_format.a
+[3/11] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[4/11] No install step for 'bootloader'
+[5/11] Completed 'bootloader'
+[6/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj 
+/home/skado/.espressif/tools/xtensa-esp-elf/esp-13.2.0_20230928/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc -DESP_PLATFORM -DIDF_VER=\"v5.2.1-dirty\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -DUNITY_INCLUDE_CONFIG_H -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/home/skado/bep/BEP_code/ESP/http_server/control/build/config -I/home/skado/bep/BEP_code/ESP/http_server/control/main -I/home/skado/programming/esp/esp-idf/components/newlib/platform_include -I/home/skado/programming/esp/esp-idf/components/freertos/config/include -I/home/skado/programming/esp/esp-idf/components/freertos/config/include/freertos -I/home/skado/programming/esp/esp-idf/components/freertos/config/xtensa/include -I/home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/home/skado/programming/esp/esp-idf/components/freertos/esp_additions/include -I/home/skado/programming/esp/esp-idf/components/esp_hw_support/include -I/home/skado/programming/esp/esp-idf/components/esp_hw_support/include/soc -I/home/skado/programming/esp/esp-idf/components/esp_hw_support/include/soc/esp32 -I/home/skado/programming/esp/esp-idf/components/esp_hw_support/port/esp32/. -I/home/skado/programming/esp/esp-idf/components/heap/include -I/home/skado/programming/esp/esp-idf/components/log/include -I/home/skado/programming/esp/esp-idf/components/soc/include -I/home/skado/programming/esp/esp-idf/components/soc/esp32 -I/home/skado/programming/esp/esp-idf/components/soc/esp32/include -I/home/skado/programming/esp/esp-idf/components/hal/platform_port/include -I/home/skado/programming/esp/esp-idf/components/hal/esp32/include -I/home/skado/programming/esp/esp-idf/components/hal/include -I/home/skado/programming/esp/esp-idf/components/esp_rom/include -I/home/skado/programming/esp/esp-idf/components/esp_rom/include/esp32 -I/home/skado/programming/esp/esp-idf/components/esp_rom/esp32 -I/home/skado/programming/esp/esp-idf/components/esp_common/include -I/home/skado/programming/esp/esp-idf/components/esp_system/include -I/home/skado/programming/esp/esp-idf/components/esp_system/port/soc -I/home/skado/programming/esp/esp-idf/components/esp_system/port/include/private -I/home/skado/programming/esp/esp-idf/components/xtensa/esp32/include -I/home/skado/programming/esp/esp-idf/components/xtensa/include -I/home/skado/programming/esp/esp-idf/components/xtensa/deprecated_include -I/home/skado/programming/esp/esp-idf/components/lwip/include -I/home/skado/programming/esp/esp-idf/components/lwip/include/apps -I/home/skado/programming/esp/esp-idf/components/lwip/include/apps/sntp -I/home/skado/programming/esp/esp-idf/components/lwip/lwip/src/include -I/home/skado/programming/esp/esp-idf/components/lwip/port/include -I/home/skado/programming/esp/esp-idf/components/lwip/port/freertos/include -I/home/skado/programming/esp/esp-idf/components/lwip/port/esp32xx/include -I/home/skado/programming/esp/esp-idf/components/lwip/port/esp32xx/include/arch -I/home/skado/programming/esp/esp-idf/components/lwip/port/esp32xx/include/sys -I/home/skado/programming/esp/esp-idf/examples/common_components/protocol_examples_common/include -I/home/skado/programming/esp/esp-idf/components/esp_ringbuf/include -I/home/skado/programming/esp/esp-idf/components/efuse/include -I/home/skado/programming/esp/esp-idf/components/efuse/esp32/include -I/home/skado/programming/esp/esp-idf/components/esp_mm/include -I/home/skado/programming/esp/esp-idf/components/driver/include -I/home/skado/programming/esp/esp-idf/components/driver/deprecated -I/home/skado/programming/esp/esp-idf/components/driver/analog_comparator/include -I/home/skado/programming/esp/esp-idf/components/driver/dac/include -I/home/skado/programming/esp/esp-idf/components/driver/gpio/include -I/home/skado/programming/esp/esp-idf/components/driver/gptimer/include -I/home/skado/programming/esp/esp-idf/components/driver/i2c/include -I/home/skado/programming/esp/esp-idf/components/driver/i2s/include -I/home/skado/programming/esp/esp-idf/components/driver/ledc/include -I/home/skado/programming/esp/esp-idf/components/driver/mcpwm/include -I/home/skado/programming/esp/esp-idf/components/driver/parlio/include -I/home/skado/programming/esp/esp-idf/components/driver/pcnt/include -I/home/skado/programming/esp/esp-idf/components/driver/rmt/include -I/home/skado/programming/esp/esp-idf/components/driver/sdio_slave/include -I/home/skado/programming/esp/esp-idf/components/driver/sdmmc/include -I/home/skado/programming/esp/esp-idf/components/driver/sigma_delta/include -I/home/skado/programming/esp/esp-idf/components/driver/spi/include -I/home/skado/programming/esp/esp-idf/components/driver/temperature_sensor/include -I/home/skado/programming/esp/esp-idf/components/driver/touch_sensor/include -I/home/skado/programming/esp/esp-idf/components/driver/twai/include -I/home/skado/programming/esp/esp-idf/components/driver/uart/include -I/home/skado/programming/esp/esp-idf/components/driver/usb_serial_jtag/include -I/home/skado/programming/esp/esp-idf/components/driver/touch_sensor/esp32/include -I/home/skado/programming/esp/esp-idf/components/esp_pm/include -I/home/skado/programming/esp/esp-idf/components/mbedtls/port/include -I/home/skado/programming/esp/esp-idf/components/mbedtls/mbedtls/include -I/home/skado/programming/esp/esp-idf/components/mbedtls/mbedtls/library -I/home/skado/programming/esp/esp-idf/components/mbedtls/esp_crt_bundle/include -I/home/skado/programming/esp/esp-idf/components/mbedtls/mbedtls/3rdparty/everest/include -I/home/skado/programming/esp/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m -I/home/skado/programming/esp/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m/p256-m -I/home/skado/programming/esp/esp-idf/components/esp_bootloader_format/include -I/home/skado/programming/esp/esp-idf/components/esp_app_format/include -I/home/skado/programming/esp/esp-idf/components/bootloader_support/include -I/home/skado/programming/esp/esp-idf/components/bootloader_support/bootloader_flash/include -I/home/skado/programming/esp/esp-idf/components/esp_partition/include -I/home/skado/programming/esp/esp-idf/components/app_update/include -I/home/skado/programming/esp/esp-idf/components/spi_flash/include -I/home/skado/programming/esp/esp-idf/components/pthread/include -I/home/skado/programming/esp/esp-idf/components/esp_timer/include -I/home/skado/programming/esp/esp-idf/components/app_trace/include -I/home/skado/programming/esp/esp-idf/components/esp_event/include -I/home/skado/programming/esp/esp-idf/components/nvs_flash/include -I/home/skado/programming/esp/esp-idf/components/esp_phy/include -I/home/skado/programming/esp/esp-idf/components/esp_phy/esp32/include -I/home/skado/programming/esp/esp-idf/components/vfs/include -I/home/skado/programming/esp/esp-idf/components/esp_netif/include -I/home/skado/programming/esp/esp-idf/components/wpa_supplicant/include -I/home/skado/programming/esp/esp-idf/components/wpa_supplicant/port/include -I/home/skado/programming/esp/esp-idf/components/wpa_supplicant/esp_supplicant/include -I/home/skado/programming/esp/esp-idf/components/esp_coex/include -I/home/skado/programming/esp/esp-idf/components/esp_wifi/include -I/home/skado/programming/esp/esp-idf/components/esp_wifi/wifi_apps/include -I/home/skado/programming/esp/esp-idf/components/unity/include -I/home/skado/programming/esp/esp-idf/components/unity/unity/src -I/home/skado/programming/esp/esp-idf/components/cmock/CMock/src -I/home/skado/programming/esp/esp-idf/components/console -I/home/skado/programming/esp/esp-idf/components/http_parser -I/home/skado/programming/esp/esp-idf/components/esp-tls -I/home/skado/programming/esp/esp-idf/components/esp-tls/esp-tls-crypto -I/home/skado/programming/esp/esp-idf/components/esp_adc/include -I/home/skado/programming/esp/esp-idf/components/esp_adc/interface -I/home/skado/programming/esp/esp-idf/components/esp_adc/esp32/include -I/home/skado/programming/esp/esp-idf/components/esp_adc/deprecated/include -I/home/skado/programming/esp/esp-idf/components/esp_eth/include -I/home/skado/programming/esp/esp-idf/components/esp_gdbstub/include -I/home/skado/programming/esp/esp-idf/components/esp_hid/include -I/home/skado/programming/esp/esp-idf/components/tcp_transport/include -I/home/skado/programming/esp/esp-idf/components/esp_http_client/include -I/home/skado/programming/esp/esp-idf/components/esp_http_server/include -I/home/skado/programming/esp/esp-idf/components/esp_https_ota/include -I/home/skado/programming/esp/esp-idf/components/esp_psram/include -I/home/skado/programming/esp/esp-idf/components/esp_lcd/include -I/home/skado/programming/esp/esp-idf/components/esp_lcd/interface -I/home/skado/programming/esp/esp-idf/components/protobuf-c/protobuf-c -I/home/skado/programming/esp/esp-idf/components/protocomm/include/common -I/home/skado/programming/esp/esp-idf/components/protocomm/include/security -I/home/skado/programming/esp/esp-idf/components/protocomm/include/transports -I/home/skado/programming/esp/esp-idf/components/protocomm/include/crypto/srp6a -I/home/skado/programming/esp/esp-idf/components/esp_local_ctrl/include -I/home/skado/programming/esp/esp-idf/components/espcoredump/include -I/home/skado/programming/esp/esp-idf/components/espcoredump/include/port/xtensa -I/home/skado/programming/esp/esp-idf/components/wear_levelling/include -I/home/skado/programming/esp/esp-idf/components/sdmmc/include -I/home/skado/programming/esp/esp-idf/components/fatfs/diskio -I/home/skado/programming/esp/esp-idf/components/fatfs/src -I/home/skado/programming/esp/esp-idf/components/fatfs/vfs -I/home/skado/programming/esp/esp-idf/components/idf_test/include -I/home/skado/programming/esp/esp-idf/components/idf_test/include/esp32 -I/home/skado/programming/esp/esp-idf/components/ieee802154/include -I/home/skado/programming/esp/esp-idf/components/json/cJSON -I/home/skado/programming/esp/esp-idf/components/mqtt/esp-mqtt/include -I/home/skado/programming/esp/esp-idf/components/nvs_sec_provider/include -I/home/skado/programming/esp/esp-idf/components/perfmon/include -I/home/skado/programming/esp/esp-idf/components/spiffs/include -I/home/skado/programming/esp/esp-idf/components/wifi_provisioning/include -mlongcalls -Wno-frame-address  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/home/skado/bep/BEP_code/ESP/http_server/control=. -fmacro-prefix-map=/home/skado/programming/esp/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj -c /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'MeasureADC':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:84:1: error: parameter 'WORMINATOR' is initialized
+   84 | char WORMINATOR[] = R"rawliteral(
+      | ^~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:84:21: error: variable-sized object may not be initialized except with an empty initializer
+   84 | char WORMINATOR[] = R"rawliteral(
+      |                     ^~~~~~~~~~~~~
+   85 | <head>
+      | ~~~~~~               
+   86 | <meta charset="UTF-8">
+      | ~~~~~~~~~~~~~~~~~~~~~~
+   87 | <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   88 | <title>Header and form</title>
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   89 | <style>
+      | ~~~~~~~              
+   90 | /* CSS styles */
+      | ~~~~~~~~~~~~~~~~     
+   91 | body {
+      | ~~~~~~               
+   92 |     font-family: OCR A Std, monospace;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   93 |     margin: 0;
+      |     ~~~~~~~~~~       
+   94 |     padding: 0;
+      |     ~~~~~~~~~~~      
+   95 |     background-color: #94ddc9
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~
+   96 | }
+      | ~                    
+   97 | 
+      |                      
+   98 | header {
+      | ~~~~~~~~             
+   99 |     background-color: #998adb;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  100 |     color: #fff;
+      |     ~~~~~~~~~~~~     
+  101 |     padding: 10px 20px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  102 |     text-align: center;
+      |     ~~~~~~~~~~~~~~~~~~~
+  103 | }
+      | ~                    
+  104 | 
+      |                      
+  105 | form {
+      | ~~~~~~               
+  106 |     margin: 20px;
+      |     ~~~~~~~~~~~~~    
+  107 |     display: flex;
+      |     ~~~~~~~~~~~~~~   
+  108 |     flex-direction: column;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~
+  109 | }
+      | ~                    
+  110 | 
+      |                      
+  111 | label {
+      | ~~~~~~~              
+  112 |     margin-bottom: 5px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  113 | }
+      | ~                    
+  114 | 
+      |                      
+  115 | input[type="Voltage1"], input[type="Voltage2"], input[type="Interpulse"] {
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  116 |     padding: 10px;
+      |     ~~~~~~~~~~~~~~   
+  117 |     margin-bottom: 10px;
+      |     ~~~~~~~~~~~~~~~~~~~~
+  118 |     border: 1px solid black;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~
+  119 |     background-color: #f8f9f4;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  120 |     border-radius: 5px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  121 |     font-size: 16px;
+      |     ~~~~~~~~~~~~~~~~ 
+  122 | }
+      | ~                    
+  123 | 
+      |                      
+  124 | input[type="submit"], .button {
+      | ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  125 |     padding: 10px 20px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  126 |     background-color: #998adb;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  127 |     color: #fff;
+      |     ~~~~~~~~~~~~     
+  128 |     border: none;
+      |     ~~~~~~~~~~~~~    
+  129 |     border-radius: 5px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  130 |     font-size: 16px;
+      |     ~~~~~~~~~~~~~~~~ 
+  131 |     cursor: pointer;
+      |     ~~~~~~~~~~~~~~~~ 
+  132 | }
+      | ~                    
+  133 | 
+      |                      
+  134 | .input-container {
+      | ~~~~~~~~~~~~~~~~~~   
+  135 |     margin: auto;
+      |     ~~~~~~~~~~~~~    
+  136 |     margin-right: ;
+      |     ~~~~~~~~~~~~~~~  
+  137 |     margin-bottom: 10px;
+      |     ~~~~~~~~~~~~~~~~~~~~
+  138 | }
+      | ~                    
+  139 | 
+      |                      
+  140 | .button-container {
+      | ~~~~~~~~~~~~~~~~~~~  
+  141 |     margin: auto;
+      |     ~~~~~~~~~~~~~    
+  142 |     margin-bottom: 40px;
+      |     ~~~~~~~~~~~~~~~~~~~~
+  143 |     text-align: center;
+      |     ~~~~~~~~~~~~~~~~~~~
+  144 | }
+      | ~                    
+  145 | 
+      |                      
+  146 | .button-cont {
+      | ~~~~~~~~~~~~~~       
+  147 |     margin: auto;
+      |     ~~~~~~~~~~~~~    
+  148 |     margin-bottom: 40px;
+      |     ~~~~~~~~~~~~~~~~~~~~
+  149 |     text-align: center;
+      |     ~~~~~~~~~~~~~~~~~~~
+  150 | }
+      | ~                    
+  151 | 
+      |                      
+  152 | .box {
+      | ~~~~~~               
+  153 |     margin-left: 60px;
+      |     ~~~~~~~~~~~~~~~~~~
+  154 |     margin-right: 60px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  155 |     text-align: left;
+      |     ~~~~~~~~~~~~~~~~~
+  156 |     background-color: #f8f9f4;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  157 |     padding: 60px;
+      |     ~~~~~~~~~~~~~~   
+  158 |     border: 3px solid black;
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~
+  159 |     border-radius: 5px;
+      |     ~~~~~~~~~~~~~~~~~~~
+  160 | }
+      | ~                    
+  161 | </style>
+      | ~~~~~~~~             
+  162 | </head>
+      | ~~~~~~~              
+  163 | <body>
+      | ~~~~~~               
+  164 | <header>
+      | ~~~~~~~~             
+  165 |     <h1>WORMINATOR</h1>
+      |     ~~~~~~~~~~~~~~~~~~~
+  166 | </header>
+      | ~~~~~~~~~            
+  167 | 
+      |                      
+  168 | <form action="/submit">
+      | ~~~~~~~~~~~~~~~~~~~~~~~
+  169 |     <div class="input-container">
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  170 |         <label for="Voltage1">[V]</label>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  171 |         Voltage1: <input type="Voltage1" id="Voltage1" name="Voltage1" required>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  172 |     </div>
+      |     ~~~~~~           
+  173 |     <div class="input-container">
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  174 |         <label for="Voltage2">[V]</label>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  175 |         Voltage2: <input type="Voltage2" id="Voltage2" name="Voltage2" required>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  176 |     </div>
+      |     ~~~~~~           
+  177 |     <div class="input-container">
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  178 |         <label for="Interpulse">[us]</label>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  179 |         Interpulse: <input type="Interpulse" id="Interpulse" name="Interpulse" required>
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  180 |     </div>
+      |     ~~~~~~           
+  181 |     <div class="button-container">
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  182 |         <input type="submit" value="Submit">
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  183 |     </div>
+      |     ~~~~~~           
+  184 | </form>
+      | ~~~~~~~              
+  185 | 
+      |                      
+  186 | <div>
+      | ~~~~~                
+  187 |   <div class="button-cont">
+      |   ~~~~~~~~~~~~~~~~~~~~~~~~~
+  188 |   <a href="/stimulate" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
+      |   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  189 |   </div>
+      |   ~~~~~~             
+  190 |   <div>
+      |   ~~~~~              
+  191 |     <div class="box">
+      |     ~~~~~~~~~~~~~~~~~
+  192 |     <p>USER GUIDE:</p>
+      |     ~~~~~~~~~~~~~~~~~~
+  193 |     <p>-set the value of the voltages of the coil</p>
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  194 |       <p>-set the values of the duration between the firing of the two pulses</p>
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  195 |   </div>
+      |   ~~~~~~             
+  196 |   </div>
+      |   ~~~~~~             
+  197 | </div>
+      | ~~~~~~               
+  198 | </body>
+      | ~~~~~~~              
+  199 | </html>)rawliteral";
+      | ~~~~~~~~~~~~~~~~~~~  
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:201:20: error: storage class specified for parameter 'TAG'
+  201 | static const char *TAG = "example";
+      |                    ^~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:201:1: error: parameter 'TAG' is initialized
+  201 | static const char *TAG = "example";
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:205:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  205 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:218:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  218 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:270:2: error: storage class specified for parameter 'timerData_t'
+  270 | }timerData_t;
+      |  ^~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:278:2: error: storage class specified for parameter 'timerData_req_t'
+  278 | }timerData_req_t;
+      |  ^~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:281:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  281 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:290:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  290 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:304:1: warning: empty declaration
+  304 | struct userData_t{
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:310:8: error: parameter 'userData' is initialized
+  310 | struct userData_t userData = {0, 0, 0};
+      |        ^~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:312:65: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  312 | static void format_inputs(int* input_values, char* input_string){
+      |                                                                 ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:344:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  344 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:352:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  352 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:357:74: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  357 | static esp_err_t MeasureADC(httpd_req_t *req, uint16_t amount_of_chuncks){
+      |                                                                          ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:427:41: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  427 | esp_err_t handler_main(httpd_req_t *req){
+      |                                         ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:433:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  433 | esp_err_t handler_stimulate(httpd_req_t *req){
+      |                                              ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:439:43: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  439 | esp_err_t handler_submit(httpd_req_t *req){
+      |                                           ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:459:45: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  459 | esp_err_t handler_get_data(httpd_req_t *req){
+      |                                             ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:464:46: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  464 | esp_err_t handler_read_test(httpd_req_t *req){
+      |                                              ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:534:48: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  534 | esp_err_t handler_read_test_2(httpd_req_t *req){
+      |                                                ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:546:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  546 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:645:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  645 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:655:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  655 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:670:26: error: storage class specified for parameter 'handler_main_t'
+  670 | static const httpd_uri_t handler_main_t = {
+      |                          ^~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:670:1: error: parameter 'handler_main_t' is initialized
+  670 | static const httpd_uri_t handler_main_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:673:16: error: 'handler_main' undeclared (first use in this function); did you mean 'handler_main_t'?
+  673 |   .handler   = handler_main,
+      |                ^~~~~~~~~~~~
+      |                handler_main_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:673:16: note: each undeclared identifier is reported only once for each function it appears in
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:677:26: error: storage class specified for parameter 'handler_stimulate_t'
+  677 | static const httpd_uri_t handler_stimulate_t = {
+      |                          ^~~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:677:1: error: parameter 'handler_stimulate_t' is initialized
+  677 | static const httpd_uri_t handler_stimulate_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:680:16: error: 'handler_stimulate' undeclared (first use in this function); did you mean 'handler_stimulate_t'?
+  680 |   .handler   = handler_stimulate,
+      |                ^~~~~~~~~~~~~~~~~
+      |                handler_stimulate_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:684:26: error: storage class specified for parameter 'handler_submit_t'
+  684 | static const httpd_uri_t handler_submit_t = {
+      |                          ^~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:684:1: error: parameter 'handler_submit_t' is initialized
+  684 | static const httpd_uri_t handler_submit_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:687:16: error: 'handler_submit' undeclared (first use in this function); did you mean 'handler_submit_t'?
+  687 |   .handler   = handler_submit,
+      |                ^~~~~~~~~~~~~~
+      |                handler_submit_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:691:26: error: storage class specified for parameter 'handler_get_data_t'
+  691 | static const httpd_uri_t handler_get_data_t = {
+      |                          ^~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:691:1: error: parameter 'handler_get_data_t' is initialized
+  691 | static const httpd_uri_t handler_get_data_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:694:16: error: 'handler_get_data' undeclared (first use in this function); did you mean 'handler_get_data_t'?
+  694 |   .handler   = handler_get_data,
+      |                ^~~~~~~~~~~~~~~~
+      |                handler_get_data_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:698:26: error: storage class specified for parameter 'handler_read_test_t'
+  698 | static const httpd_uri_t handler_read_test_t = {
+      |                          ^~~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:698:1: error: parameter 'handler_read_test_t' is initialized
+  698 | static const httpd_uri_t handler_read_test_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:701:16: error: 'handler_read_test' undeclared (first use in this function); did you mean 'handler_read_test_t'?
+  701 |   .handler   = handler_read_test,
+      |                ^~~~~~~~~~~~~~~~~
+      |                handler_read_test_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:705:26: error: storage class specified for parameter 'handler_read_test_2_t'
+  705 | static const httpd_uri_t handler_read_test_2_t = {
+      |                          ^~~~~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:705:1: error: parameter 'handler_read_test_2_t' is initialized
+  705 | static const httpd_uri_t handler_read_test_2_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:708:16: error: 'handler_read_test_2' undeclared (first use in this function); did you mean 'handler_read_test_t'?
+  708 |   .handler   = handler_read_test_2,
+      |                ^~~~~~~~~~~~~~~~~~~
+      |                handler_read_test_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:712:26: error: storage class specified for parameter 'handler_program_1_t'
+  712 | static const httpd_uri_t handler_program_1_t = {
+      |                          ^~~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:712:1: error: parameter 'handler_program_1_t' is initialized
+  712 | static const httpd_uri_t handler_program_1_t = {
+      | ^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:715:16: error: 'handler_program_1' undeclared (first use in this function); did you mean 'handler_program_1_t'?
+  715 |   .handler   = handler_program_1,
+      |                ^~~~~~~~~~~~~~~~~
+      |                handler_program_1_t
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:720:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  720 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:749:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  749 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:756:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  756 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:770:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  770 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:786:2: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  786 |  {
+      |  ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:838:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  838 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:853:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  853 | {
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:82:18: error: old-style parameter declarations in prototyped function definition
+   82 | static esp_err_t MeasureADC(httpd_req_t *req, uint16_t amount_of_chuncks)
+      |                  ^~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:901: error: expected '{' at end of input
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:900:1: error: no return statement in function returning non-void [-Werror=return-type]
+  900 | }
+      | ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: At top level:
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:82:18: warning: 'MeasureADC' defined but not used [-Wunused-function]
+   82 | static esp_err_t MeasureADC(httpd_req_t *req, uint16_t amount_of_chuncks)
+      |                  ^~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:80:34: warning: 'adc2_handle' defined but not used [-Wunused-variable]
+   80 | static adc_oneshot_unit_handle_t adc2_handle;
+      |                                  ^~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:79:32: warning: 'adc_handle' defined but not used [-Wunused-variable]
+   79 | static adc_continuous_handle_t adc_handle;
+      |                                ^~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:78:21: warning: 's_task_handle' defined but not used [-Wunused-variable]
+   78 | static TaskHandle_t s_task_handle;
+      |                     ^~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+ninja: build stopped: subcommand failed.
