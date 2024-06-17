@@ -4,17 +4,26 @@ import matplotlib.pyplot as plt
 from scipy import signal
 import csv
 from time import time as t
+import os
 
+# This class is used to filter data and plot the results
 class plot_data():
-    def __init__(self, f_pass, f_stop):
+    def __init__(self, f_pass, f_stop, filter_type):
         self.f_sample = 8000
         self.f_pass = f_pass
         self.f_stop = f_stop
         self.fs = 0.5
         self.ADC_RESOLUTION = 4095
-        self.VRef = 1.114
-        self.a, self.b = self.create_ellip()
+        self.VRef = 3.08 # 3.15 - 0.07
+        self.rootpath = "C:\\Users\\mgroe\\Coding\\Github\\BEP_code\\python\\"
+        if filter_type == "butter":
+            self.a, self.b = self.create_butter()
+        elif filter_type == "ellip":
+            self.a, self.b = self.create_ellip()
+        else:
+            raise ValueError("Invalid filter type")
 
+    # This function creates a Butterworth filter
     def create_butter(self):
         wp = self.f_pass/(self.f_sample/2)
         ws = self.f_stop/(self.f_sample/2)
@@ -31,6 +40,7 @@ class plot_data():
         b, a = signal.butter(N, Wn, 'low')
         return a, b
     
+    # This function creates an Elliptic filter
     def create_ellip(self):
         wp = self.f_pass / (self.f_sample / 2)
         ws = self.f_stop / (self.f_sample / 2)
@@ -44,15 +54,17 @@ class plot_data():
         b, a = signal.ellip(N, g_pass, g_stop, Wn, 'low')
         return a, b
 
+    # This function filters the data
     def filter_data(self, data):
         response = signal.filtfilt(self.b, self.a, data)
         return response
 
-    def results_to_voltage(self, data, response):
+    # This function converts the data to voltage
+    def results_to_voltage(self, data):
         voltages_data = [reading / self.ADC_RESOLUTION * self.VRef for reading in data]
-        voltages_response = [reading / self.ADC_RESOLUTION * self.VRef for reading in response]
-        return voltages_data, voltages_response
+        return voltages_data
 
+    # This function compares the data
     def compare_data(self, data, response):
         average_filter = sum(response)/len(response)
         average_orig = sum(data)/len(data)
@@ -62,17 +74,16 @@ class plot_data():
 
         print(f"average_filter: {average_filter}\n average_orig: {average_orig}\n difference_filter: {difference_filter}\n difference_orig: {difference_orig}")
 
-    @staticmethod
-    def get_data():
-        with open(r"C:\Users\mgroe\Coding\Github\BEP_code\python\graphs\test_data_sine.csv", newline='') as f:
+    # This function gets the data from a file
+    def get_data(self, file):
+        with open(os.path.join(self.rootpath, file), newline='') as f:
             reader = csv.reader(f)
             data_s = list(reader)
 
         data = [int(e) for e in data_s[0]]
-        for i in range(int(len(data) / 128)):
-            data[i*128-1] = data[i*128-2]
         return data
 
+    # This function plots the magnitude response
     def plot_magnitude_response(self):
         w, h = signal.freqz(self.b, self.a, worN=8000)
         frequencies = w * self.f_sample / (2*np.pi)
@@ -84,18 +95,48 @@ class plot_data():
         plt.grid(True)
         plt.show()
 
+    def measure_error(self, data):
+        mean = sum(data) / len(data)
+        mean_error = sum([abs(x - mean) for x in data]) / len(data)
+        mean_square_error = sum([(x - mean_error) ** 2 for x in data]) / len(data)
+        print(f"Mean: {mean}")
+        print(f"Mean Error: {mean_error}")
+        print(f"Mean Square Error: {mean_square_error}")
+
+    # This function plots the data
     @staticmethod
     def plot_data(data, response):
-        plt.plot(data)
-        plt.plot(response)
+        time_array = [i/8000 for i in range(len(data))]
+        plt.plot(time_array, data)
+        plt.plot(time_array, response)
+        plt.legend(["Data", "Sine wave"])
+        plt.title("Data and Sine wave")
+        plt.ylabel("Voltage [V]")
+        plt.xlabel("Time [s]")
         plt.show()
 
 
 if __name__ == '__main__':
-    f = plot_data(800,1000)
-    start_time = t()
-    data = f.get_data()
-    # data = [int(x) for x in ["2657","2657","2656","2653","2648","2655","2659","2652","2646","2639","2646","2652","2634","2629","2643","2648","2646","2649","2656","2657","2652","2641","2632","2641","2643","2644","2655","2649","2657","2653","2639","2645","2652","2663","2660","2646","2633","2642","2657","2728","2733","2658","2649","2648","2645","2649","2657","2696","2696","2660","2661","2667","2670","2701","2695","2654","2648","2651","2679","2671","2649","2685","2680","2644","2644","2650","2649","2644","2646","2655","2663","2659","2654","2643","2638","2642","2636","2640","2639","2641","2652","2648","2642","2648","2653","2655","2651","2652","2652","2637","2651","2656","2656","2663","2652","2656","2650","2642","2652","2658","2659","2651","2649","2706","2701","2649","2649","2651","2646","2639","2653","2654","2654","2662","2655","2653","2656","2649","2640","2647","2652","2643","2651","2647","2644","2655","2654","1487","2641","2638","2639","2645","2643","2652","2665","2654","2644","2648","2651","2653","2658","2658","2650","2643","2647","2646","2640","2649","2657","2642","2644","2652","2649","2656","2664","2663","2659","2659","2651","2653","2672","2665","2643","2643","2669","2671","2646","2632","2625","2640","2655","2656","2653","2649","2651","2654","2652","2651","2647","2647","2647","2654","2664","2654","2649","2647","2595","2602","2730","2726","2648","2658","2652","2656","2671","2653","2645","2657","2664","2662","2652","2645","2643","2647","2651","2656","2652","2643","2651","2663","2656","2648","2670","2671","2650","2648","2651","2646","2648","2654","2654","2661","2672","2667","2660","2652","2653","2662","2657","2647","2646","2561","2565","2650","2651","2661","2659","2649","2630","2622","2637","2645","2652","2661","2650","2645","2654","2656","2658","2666","2657","2651","2660","2660","2646","1477","2660","2662","2648","2652","2642","2647","2652","2651","2650","2651","2658","2657","2661","2660","2655","2656","2660","2666","2655","2649","2656","2657","2657","2648","2636","2644","2665","2657","2647","2651","2654","2626","2624","2656","2648","2649","2544","2532","2661","2674","2656","2646","2645","2646","2650","2662","2651","2627","2631","2647","2648","2654","2660","2655","2631","2639","2655","2655","2648","2641","2662","2674","2669","2650","2640","2650","2656","2651","2653","2654","2640","2637","2655","2656","2654","2649","2655","2664","2656","2651","2654","2664","2657","2638","2639","2643","2641","2639","2648","2660","2652","2643","2646","2659","2661","2647","2640","2641","2644","2655","2652","2648","2650","2649","2657","2648","2638","2644","2651","2648","2646","2663","2657","2643","2656","2656","2658","2625","2619","2661","2669","2663","2658","2657","2646","2643","2646","1481","2656","2658","2666","2660","2649","2650","2665","2669","2668","2662","2663","2653","2647","2650","2654","2652","2650","2659","2659","2662","2670","2660","2643","2639","2644","2656","2656","2661","2663","2656","2657","2658","2650","2642","2648","2652","2645","2653","2664","2648","2628","2645","2654","2646","2653","2654","2635","2635","2579","2546","2626","2653","2643","2643","2643","2635","2731","2747","2648","2640","2642","2646","2658","2673","2664","2655","2660","2651","2647","2659","2661","2659","2653","2641","2648","2654","2651","2648","2645","2659","2663","2653","2653","2647","2647","2655","2646","2645","2648","2651","2643","2642","2649","2646","2656","2660","2649","2641","2642","2645","2660","2659","2642","2653","2650","2639","2705","2708","2652","2656","2659","2661","2656","2627","2619","2645","2652","2624","2652","2674","2571","2569","2647","2649","2644","2646","2655","1489","2653","2658","2653","2641","2643","2647","2652","2662","2670","2663","2655","2650","2647","2643","2638","2640","2645","2655","2653","2658","2667","2654","2640","2642","2648","2651","2662","2658","2654","2650","2646","2657","2661","2657","2664","2671","2657","2650","2754","2751","2644","2643","2654","2663","2664","2653","2664","2655","2639","2655","2676","2670","2648","2661","2686","2678","2646","2651","2653","2640","2640","2655","2663","2661","2652","2650","2660","2660","2650","2646","2653","2648","2641","2645","2646","2641","2640","2656","2665","2660","2654","2651","2664","2653","2637","2645","2653","2661","2656","2645","2647","2654","2649","2646","2655","2662","2678","2681","2656","2642","2645","2654","2555","2557","2661","2651","2594","2607","2662","2600","2614","2667","2662","2660","2641","2652","2661","2662","2663","2663","2653","2655","2671","2661","2654","2660","2660","1486"]]
-    f.plot_data(data, f.filter_data(data))
-    v_data, v_response = f.results_to_voltage(data, f.filter_data(data))
-    f.plot_data(v_data, v_response)
+    f = plot_data(500,1500, "butter") # f_pass, f_stop, filter_type
+    start_time = t() # If you want to measure the time it takes to run the code, comment out plt.show() and uncomment the print statement
+    data = f.get_data("DC_mono_test.csv") # file
+    response = f.filter_data(data)
+    # f.plot_data(data, f.filter_data(data)) # data, response
+
+    # frequency = 200       # Frequency of the sine wave in Hz
+    # sample_rate = 8000  # Sample rate in samples per second (Hz)
+    # duration = 640/8000       # Duration of the sine wave in seconds
+    # t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    # sine_wave = 4096/2 * np.sin(2 * np.pi * frequency * t + np.pi - 0.05) + 4096/2
+    # sine_wave_list = sine_wave.tolist()
+    # v_data, v_response = f.results_to_voltage(data), f.results_to_voltage(sine_wave) # data, sine_wave
+
+    v_data, v_response = f.results_to_voltage(data), f.results_to_voltage(response) # data, response
+    f.measure_error(v_data)
+    f.measure_error(v_response)
+    
+    f.plot_data(v_data, v_response) # data, response (In voltage)
+    stop_time = t() - start_time
+    # print(f"Time: {stop_time}")
+    # magnitude_response = f.plot_magnitude_response() # plot magnitude response
+    
