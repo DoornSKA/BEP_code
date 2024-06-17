@@ -1,0 +1,107 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008181a: panic_abort at /home/skado/programming/esp/esp-idf/components/esp_system/panic.c:472
+0x400871d9: esp_system_abort at /home/skado/programming/esp/esp-idf/components/esp_system/port/esp_system_chip.c:93
+0x4008cfdd: __assert_func at /home/skado/programming/esp/esp-idf/components/newlib/assert.c:81
+0x400e3343: tcpip_send_msg_wait_sem at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/tcpip.c:449 (discriminator 1)
+0x400ef149: netconn_apimsg at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:131
+0x400ef1d1: netconn_new_with_proto_and_callback at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/api_lib.c:161
+0x400e31a9: lwip_socket at /home/skado/programming/esp/esp-idf/components/lwip/lwip/src/api/sockets.c:1720 (discriminator 4)
+0x400ddd73: socket at /home/skado/programming/esp/esp-idf/components/lwip/include/lwip/sockets.h:48
+ (inlined by) httpd_server_init at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:345
+0x400de3b5: httpd_start at /home/skado/programming/esp/esp-idf/components/esp_http_server/src/httpd_main.c:512
+0x400d7d92: start_webserver at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:763
+0x400d7f2f: app_main at /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:932
+0x4010514b: main_task at /home/skado/programming/esp/esp-idf/components/freertos/app_startup.c:208
+0x40087c6d: vPortTaskWrapper at /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0m

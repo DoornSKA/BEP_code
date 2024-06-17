@@ -1,0 +1,35 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'handler_submit':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:457:23: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  457 |     char* box_input = &uri[strlen(target)+1];
+      |                       ^
+In file included from /home/skado/programming/esp/esp-idf/components/esp_hw_support/include/esp_intr_alloc.h:12,
+                 from /home/skado/programming/esp/esp-idf/components/esp_hw_support/include/esp_cpu.h:20,
+                 from /home/skado/programming/esp/esp-idf/components/esp_hw_support/include/spinlock.h:11,
+                 from /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:49,
+                 from /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/portable.h:57,
+                 from /home/skado/programming/esp/esp-idf/components/freertos/FreeRTOS-Kernel/include/freertos/FreeRTOS.h:69,
+                 from /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:10:
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'continuous_adc_init':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:837:49: warning: passing argument 1 of 'adc_oneshot_config_channel' from incompatible pointer type [-Wincompatible-pointer-types]
+  837 |      ESP_ERROR_CHECK(adc_oneshot_config_channel(&handle_oneshot, ADC_CHANNEL_9, &adc_config_oneshot));
+      |                                                 ^~~~~~~~~~~~~~~
+      |                                                 |
+      |                                                 struct adc_oneshot_unit_ctx_t **
+/home/skado/programming/esp/esp-idf/components/esp_common/include/esp_err.h:117:30: note: in definition of macro 'ESP_ERROR_CHECK'
+  117 |         esp_err_t err_rc_ = (x);                                        \
+      |                              ^
+In file included from /home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:39:
+/home/skado/programming/esp/esp-idf/components/esp_adc/include/esp_adc/adc_oneshot.h:72:64: note: expected 'adc_oneshot_unit_handle_t' {aka 'struct adc_oneshot_unit_ctx_t *'} but argument is of type 'struct adc_oneshot_unit_ctx_t **'
+   72 | esp_err_t adc_oneshot_config_channel(adc_oneshot_unit_handle_t handle, adc_channel_t channel, const adc_oneshot_chan_cfg_t *config);
+      |                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: At top level:
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:858:14: warning: 'control_led_init' defined but not used [-Wunused-function]
+  858 |  static void control_led_init(void)
+      |              ^~~~~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a

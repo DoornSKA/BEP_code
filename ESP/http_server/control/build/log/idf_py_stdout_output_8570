@@ -1,0 +1,69 @@
+[0/1] Re-running CMake...
+-- Building ESP-IDF components for target esp32
+NOTICE: Skipping optional dependency: esp_stubs
+Processing 2 dependencies:
+[1/2] idf (5.2.1)
+[2/2] protocol_examples_common (*)
+NOTICE: Skipping optional dependency: esp_stubs
+-- Project sdkconfig file /home/skado/bep/BEP_code/ESP/http_server/control/sdkconfig
+Loading defaults file /home/skado/bep/BEP_code/ESP/http_server/control/sdkconfig.defaults...
+-- Compiler supported targets: xtensa-esp-elf
+-- App "simple" version: 5910937-dirty
+-- Adding linker script /home/skado/bep/BEP_code/ESP/http_server/control/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_system/ld/esp32/sections.ld.in
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/esp_rom/esp32/ld/esp32.rom.newlib-funcs.ld
+-- Adding linker script /home/skado/programming/esp/esp-idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocol_examples_common protocomm pthread sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /home/skado/programming/esp/esp-idf/components/app_trace /home/skado/programming/esp/esp-idf/components/app_update /home/skado/programming/esp/esp-idf/components/bootloader /home/skado/programming/esp/esp-idf/components/bootloader_support /home/skado/programming/esp/esp-idf/components/bt /home/skado/programming/esp/esp-idf/components/cmock /home/skado/programming/esp/esp-idf/components/console /home/skado/programming/esp/esp-idf/components/cxx /home/skado/programming/esp/esp-idf/components/driver /home/skado/programming/esp/esp-idf/components/efuse /home/skado/programming/esp/esp-idf/components/esp-tls /home/skado/programming/esp/esp-idf/components/esp_adc /home/skado/programming/esp/esp-idf/components/esp_app_format /home/skado/programming/esp/esp-idf/components/esp_bootloader_format /home/skado/programming/esp/esp-idf/components/esp_coex /home/skado/programming/esp/esp-idf/components/esp_common /home/skado/programming/esp/esp-idf/components/esp_eth /home/skado/programming/esp/esp-idf/components/esp_event /home/skado/programming/esp/esp-idf/components/esp_gdbstub /home/skado/programming/esp/esp-idf/components/esp_hid /home/skado/programming/esp/esp-idf/components/esp_http_client /home/skado/programming/esp/esp-idf/components/esp_http_server /home/skado/programming/esp/esp-idf/components/esp_https_ota /home/skado/programming/esp/esp-idf/components/esp_https_server /home/skado/programming/esp/esp-idf/components/esp_hw_support /home/skado/programming/esp/esp-idf/components/esp_lcd /home/skado/programming/esp/esp-idf/components/esp_local_ctrl /home/skado/programming/esp/esp-idf/components/esp_mm /home/skado/programming/esp/esp-idf/components/esp_netif /home/skado/programming/esp/esp-idf/components/esp_netif_stack /home/skado/programming/esp/esp-idf/components/esp_partition /home/skado/programming/esp/esp-idf/components/esp_phy /home/skado/programming/esp/esp-idf/components/esp_pm /home/skado/programming/esp/esp-idf/components/esp_psram /home/skado/programming/esp/esp-idf/components/esp_ringbuf /home/skado/programming/esp/esp-idf/components/esp_rom /home/skado/programming/esp/esp-idf/components/esp_system /home/skado/programming/esp/esp-idf/components/esp_timer /home/skado/programming/esp/esp-idf/components/esp_wifi /home/skado/programming/esp/esp-idf/components/espcoredump /home/skado/programming/esp/esp-idf/components/esptool_py /home/skado/programming/esp/esp-idf/components/fatfs /home/skado/programming/esp/esp-idf/components/freertos /home/skado/programming/esp/esp-idf/components/hal /home/skado/programming/esp/esp-idf/components/heap /home/skado/programming/esp/esp-idf/components/http_parser /home/skado/programming/esp/esp-idf/components/idf_test /home/skado/programming/esp/esp-idf/components/ieee802154 /home/skado/programming/esp/esp-idf/components/json /home/skado/programming/esp/esp-idf/components/log /home/skado/programming/esp/esp-idf/components/lwip /home/skado/bep/BEP_code/ESP/http_server/control/main /home/skado/programming/esp/esp-idf/components/mbedtls /home/skado/programming/esp/esp-idf/components/mqtt /home/skado/programming/esp/esp-idf/components/newlib /home/skado/programming/esp/esp-idf/components/nvs_flash /home/skado/programming/esp/esp-idf/components/nvs_sec_provider /home/skado/programming/esp/esp-idf/components/openthread /home/skado/programming/esp/esp-idf/components/partition_table /home/skado/programming/esp/esp-idf/components/perfmon /home/skado/programming/esp/esp-idf/components/protobuf-c /home/skado/programming/esp/esp-idf/examples/common_components/protocol_examples_common /home/skado/programming/esp/esp-idf/components/protocomm /home/skado/programming/esp/esp-idf/components/pthread /home/skado/programming/esp/esp-idf/components/sdmmc /home/skado/programming/esp/esp-idf/components/soc /home/skado/programming/esp/esp-idf/components/spi_flash /home/skado/programming/esp/esp-idf/components/spiffs /home/skado/programming/esp/esp-idf/components/tcp_transport /home/skado/programming/esp/esp-idf/components/ulp /home/skado/programming/esp/esp-idf/components/unity /home/skado/programming/esp/esp-idf/components/usb /home/skado/programming/esp/esp-idf/components/vfs /home/skado/programming/esp/esp-idf/components/wear_levelling /home/skado/programming/esp/esp-idf/components/wifi_provisioning /home/skado/programming/esp/esp-idf/components/wpa_supplicant /home/skado/programming/esp/esp-idf/components/xtensa
+-- Configuring done (3.2s)
+-- Generating done (0.3s)
+-- Build files have been written to: /home/skado/bep/BEP_code/ESP/http_server/control/build
+[1/11] Building C object esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj
+[2/11] Linking C static library esp-idf/esp_app_format/libesp_app_format.a
+[3/11] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[4/11] No install step for 'bootloader'
+[5/11] Completed 'bootloader'
+[6/11] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/main.c.obj
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'handler_submit':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:337:23: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  337 |     char* box_input = &uri[strlen(target)+1];
+      |                       ^
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'continuous_adc_init':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:707:29: warning: unused variable 'adc_config_oneshot' [-Wunused-variable]
+  707 |      adc_oneshot_chan_cfg_t adc_config_oneshot = {
+      |                             ^~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:702:34: warning: unused variable 'adc_config_oneshot_init' [-Wunused-variable]
+  702 |      adc_oneshot_unit_init_cfg_t adc_config_oneshot_init = {
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:687:32: warning: unused variable 'handle_oneshot' [-Wunused-variable]
+  687 |      adc_oneshot_unit_handle_t handle_oneshot = NULL;
+      |                                ^~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: In function 'app_main':
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:749:26: warning: unused variable 'channel_oneshot' [-Wunused-variable]
+  749 |     static adc_channel_t channel_oneshot = ADC_CHANNEL_9;
+      |                          ^~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c: At top level:
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:736:14: warning: 'control_led_init' defined but not used [-Wunused-function]
+  736 |  static void control_led_init(void)
+      |              ^~~~~~~~~~~~~~~~
+/home/skado/bep/BEP_code/ESP/http_server/control/main/main.c:82:34: warning: 'adc2_handle' defined but not used [-Wunused-variable]
+   82 | static adc_oneshot_unit_handle_t adc2_handle;
+      |                                  ^~~~~~~~~~~
+[7/11] Linking C static library esp-idf/main/libmain.a
+[8/11] Generating ld/sections.ld
+[9/11] Linking CXX executable simple.elf
+[10/11] Generating binary image from built executable
+esptool.py v4.7.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
+[11/11] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/skado/bep/BEP_code/ESP/http_server/control/build/partition_table/partition-table.bin /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
+simple.bin binary size 0xceea0 bytes. Smallest app partition is 0x100000 bytes. 0x31160 bytes (19%) free.
