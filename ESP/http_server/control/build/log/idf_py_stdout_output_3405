@@ -1,0 +1,72 @@
+[1/5] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/skado/bep/BEP_code/ESP/http_server/control/build/partition_table/partition-table.bin /home/skado/bep/BEP_code/ESP/http_server/control/build/simple.bin
+simple.bin binary size 0xd0350 bytes. Smallest app partition is 0x100000 bytes. 0x2fcb0 bytes (19%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/esp-idf/esptool_py && /home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python /home/skado/programming/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/skado/bep/BEP_code/ESP/http_server/control/build/bootloader/bootloader.bin
+Bootloader binary size 0x6860 bytes. 0x7a0 bytes (7%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /home/skado/programming/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/skado/programming/esp/esp-idf -D "SERIAL_TOOL=/home/skado/.espressif/python_env/idf5.2_py3.12_env/bin/python;;/home/skado/programming/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/skado/bep/BEP_code/ESP/http_server/control/build -P /home/skado/programming/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 simple.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.7.0
+Serial port /dev/ttyUSB0
+Connecting..............
+Chip is ESP32-D0WD-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: e0:5a:1b:df:b9:ec
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000e0fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26720 bytes to 16362...
+Writing at 0x00001000... (100 %)
+Wrote 26720 bytes (16362 compressed) at 0x00001000 in 0.9 seconds (effective 225.9 kbit/s)...
+Hash of data verified.
+Compressed 852816 bytes to 529772...
+Writing at 0x00010000... (3 %)
+Writing at 0x0001d98c... (6 %)
+Writing at 0x00027383... (9 %)
+Writing at 0x0002c919... (12 %)
+Writing at 0x00033ef2... (15 %)
+Writing at 0x0003e36b... (18 %)
+Writing at 0x00043daa... (21 %)
+Writing at 0x00049d0c... (24 %)
+Writing at 0x0004fb9f... (27 %)
+Writing at 0x000558cb... (30 %)
+Writing at 0x0005b51e... (33 %)
+Writing at 0x00060a95... (36 %)
+Writing at 0x00065e04... (39 %)
+Writing at 0x0006b28c... (42 %)
+Writing at 0x0007061c... (45 %)
+Writing at 0x00075cb8... (48 %)
+Writing at 0x0007b41a... (51 %)
+Writing at 0x0008137f... (54 %)
+Writing at 0x000870ae... (57 %)
+Writing at 0x0008cb15... (60 %)
+Writing at 0x000926d0... (63 %)
+Writing at 0x00098399... (66 %)
+Writing at 0x0009db7e... (69 %)
+Writing at 0x000a39c7... (72 %)
+Writing at 0x000aa073... (75 %)
+Writing at 0x000b0418... (78 %)
+Writing at 0x000b5bd8... (81 %)
+Writing at 0x000bd165... (84 %)
+Writing at 0x000c72e0... (87 %)
+Writing at 0x000cd015... (90 %)
+Writing at 0x000d2c38... (93 %)
+Writing at 0x000d90ab... (96 %)
+Writing at 0x000de2d2... (100 %)
+Wrote 852816 bytes (529772 compressed) at 0x00010000 in 12.3 seconds (effective 553.7 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 271.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

@@ -64,7 +64,7 @@ def chunked_response():
     # Example usage:
     host = '192.168.4.1'
     # path = '/read_test_2'
-    path = '/program_1'
+    path = '/test_read'
 
     # Create a socket connection
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

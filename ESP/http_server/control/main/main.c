@@ -79,7 +79,7 @@
 #define _EXAMPLE_ADC_UNIT_STR(unit)         #unit
 #define EXAMPLE_ADC_UNIT_STR(unit)          _EXAMPLE_ADC_UNIT_STR(unit)
 #define EXAMPLE_ADC_CONV_MODE               ADC_CONV_SINGLE_UNIT_1
-#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_0
+#define EXAMPLE_ADC_ATTEN                   ADC_ATTEN_DB_12
 #define EXAMPLE_ADC_BIT_WIDTH               SOC_ADC_DIGI_MAX_BITWIDTH
 #define EXAMPLE_ADC_OUTPUT_TYPE             ADC_DIGI_OUTPUT_FORMAT_TYPE1
 
@@ -200,7 +200,7 @@ input[type="submit"], .button {
 
 <div>
   <div class="button-cont">
-  <a href="/stimulate" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
+  <a href="/test_timers" class="button" onclick="WARNING - STIMULATION">RUN STIMULATION</a>
   </div>
   <div>
     <div class="box">
@@ -312,6 +312,17 @@ static void timer_gpio_callback_read(void* arg)
     e->level ^= 1;
     gpio_set_level(e->gpio, e->level);
     ESP_ERROR_CHECK(adc_oneshot_read(handle_oneshot, ADC_ONESHOT_CHAN, &e->meas));
+}
+
+static void timer_gpio_callback_turn_off(void* arg)
+{
+    uint64_t t_cb = esp_timer_get_time();
+    timerData_t* e = (timerData_t*)arg;
+    gpio_set_level(OUT_CHARGE_1, 1);
+    e->level ^= 1;
+    gpio_set_level(e->gpio, e->level);
+    e->time = t_cb;
+    // ESP_ERROR_CHECK(adc_oneshot_read(handle_oneshot, ADC_ONESHOT_CHAN, &e->meas));
 }
 
 // timer callback for sending the continuous read data over chunked http
@@ -487,13 +498,13 @@ esp_err_t handler_get_data(httpd_req_t *req){
 }
 
 // Test handler for the adc, one channel usage.
-esp_err_t handler_read_test(httpd_req_t *req){
+esp_err_t handler_test_read_mono(httpd_req_t *req){
     ESP_LOGI(TAG, "starting /read_test");
-    char dummy[0];
     esp_err_t ret;
     uint32_t ret_num = 0;
     uint8_t result[EXAMPLE_READ_LEN];
     memset(result, 0xcc, EXAMPLE_READ_LEN);
+    int count = 0;
 
     int array_size = EXAMPLE_READ_LEN*2+1;
     char char_array[array_size];
@@ -506,26 +517,29 @@ esp_err_t handler_read_test(httpd_req_t *req){
     ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(adc_handle, &cbs, NULL));
     ESP_ERROR_CHECK(adc_continuous_start(adc_handle));
 
-    uint32_t time1, time2;
-
     for(int i = 0; i < 5; i++){
         ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-        while(1){
 
             char* ptr = char_array;
             ret = adc_continuous_read(adc_handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
             if (ret == ESP_OK){
-                time1 = esp_timer_get_time();
+                // time1 = esp_timer_get_time();
+                uint16_t data = 0;
+                uint16_t data2 = 0;
                 // ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
                 for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
-
                     adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
-                    uint16_t data = (p)->type1.data;
-
+                    int channel = (p)->type1.channel;
+                    // ESP_LOGI(TAG, "data1: %d, data2: %d, channel: %d", data, data2, channel);
+                    if (channel == 7){
+                        data = (p)->type1.data;
+                    }
+                    else if (channel == 6){
+                        data2 = (p)->type1.data;
+                        if (abs(data-data2) > 50)count+=1;
                     /* Check the channel number validation, the data is invalid if the channel num exceed the maximum channel */
-                    if ((p)->type1.channel < SOC_ADC_CHANNEL_NUM(EXAMPLE_ADC_UNIT)) {
-                        char buffer[5];
-                        sprintf(buffer, "%04d", data);
+                        char buffer[6];
+                        sprintf(buffer, "%04d", data2);
 
                         if ((ptr - char_array) + strlen(buffer) < array_size) {
                             strcpy(ptr, buffer);
@@ -537,33 +551,27 @@ esp_err_t handler_read_test(httpd_req_t *req){
                     }
                 }
                 httpd_resp_send_chunk(req, char_array, HTTPD_RESP_USE_STRLEN);
-                time2 = esp_timer_get_time();
-
-                ESP_LOGI(TAG, "time1: %ld, time2: %ld, differentce: %ld", time1, time2, time2-time1);
             }
             else if (ret == ESP_ERR_TIMEOUT) {
-                //We try to read `EXAMPLE_READ_LEN` until API returns timeout, which means there's no available data
                 break;
             }
-        }
     }
     ESP_ERROR_CHECK(adc_continuous_stop(adc_handle));
     ESP_ERROR_CHECK(adc_continuous_flush_pool(adc_handle));
+    ESP_LOGI(TAG, "count: %d", count);
 
-    ret = httpd_resp_send_chunk(req, dummy, 0);
+    ret = httpd_resp_send_chunk(req, "", 0);
     ESP_LOGI(TAG, "final chunck sent");
     return ret;
 }
 
 // Test handler for adc testing, two channels
-esp_err_t handler_read_test_2(httpd_req_t *req){
-    ESP_LOGI(TAG, "starting /read_test_2");
-    char dummy[0];
-
+esp_err_t handler_read_5(httpd_req_t *req){
+    ESP_LOGI(TAG, "starting /read_5");
     MeasureADC(req, 5);
 
     ESP_LOGI(TAG, "final chunck sent");
-    return httpd_resp_send_chunk(req, dummy, 0);
+    return httpd_resp_send_chunk(req, "", 0);
 }
 
 // Full program
@@ -716,6 +724,56 @@ esp_err_t handler_program_1(httpd_req_t *req)
     return ret;
 }
 
+esp_err_t handler_timer_switching_event(httpd_req_t *req){
+    if (userData.Interpulse == 0)userData.Interpulse = 10;
+    int64_t t_base;
+    int est_timer_creation = 12;
+
+    gpio_set_level(OUT_PULSE_1, 0);
+    gpio_set_level(OUT_PULSE_2, 0);
+    gpio_set_level(OUT_CHARGE_1, 0);
+    gpio_set_level(OUT_CHARGE_2, 0);
+
+    timerData_t tester_1_i = {OUT_PULSE_1, 0, 0, 0};
+    timerData_t tester_2_i = {OUT_PULSE_2, 0, 0, userData.Interpulse};
+
+    const esp_timer_create_args_t timer_args_1 = {
+            .callback = &timer_gpio_callback_turn_off,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_1",
+            .arg = (void*)&tester_1_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    // Turn charge 2 off
+    const esp_timer_create_args_t timer_args_2 = {
+            .callback = &timer_gpio_callback_turn_off,
+            /* argument specified here will be passed to timer callback function */
+            .name = "one-shot_2",
+            .arg = (void*)&tester_2_i,
+            .dispatch_method = ESP_TIMER_ISR
+    };
+
+    esp_timer_handle_t timer_1;
+    esp_timer_handle_t timer_2;
+
+
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_1, &timer_1));
+    ESP_ERROR_CHECK(esp_timer_create(&timer_args_2, &timer_2));
+
+    t_base = esp_timer_get_time();
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_1, 10000-(esp_timer_get_time()-t_base) - est_timer_creation + tester_1_i.time));
+    usleep(1500);
+    ESP_ERROR_CHECK(esp_timer_start_once(timer_2, 10000-(esp_timer_get_time()-t_base) - est_timer_creation + tester_2_i.time));
+    usleep(20000);
+
+    ESP_ERROR_CHECK(esp_timer_delete(timer_1));
+    ESP_ERROR_CHECK(esp_timer_delete(timer_2));
+    ESP_LOGI(TAG, "pulse 1: %lld\npulse 2: %lld", tester_1_i.time-t_base, tester_2_i.time-t_base);
+    return ESP_OK;
+}
+
 // test furction
 esp_err_t handler_test_adc_2(httpd_req_t *req)
 {
@@ -740,12 +798,12 @@ static const httpd_uri_t handler_main_t = {
   .user_ctx  = NULL
 };
 
-static const httpd_uri_t handler_stimulate_t = {
-  .uri       = "/stimulate" ,
-  .method    = HTTP_GET,
-  .handler   = handler_stimulate,
-  .user_ctx  = NULL
-};
+// static const httpd_uri_t handler_stimulate_t = {
+//   .uri       = "/stimulate" ,
+//   .method    = HTTP_GET,
+//   .handler   = handler_stimulate,
+//   .user_ctx  = NULL
+// };
 
 static const httpd_uri_t handler_submit_t = {
   .uri       = "/submit" ,
@@ -754,38 +812,45 @@ static const httpd_uri_t handler_submit_t = {
   .user_ctx  = NULL
 };
 
-static const httpd_uri_t handler_get_data_t = {
-  .uri       = "/get_data" ,
+// static const httpd_uri_t handler_get_data_t = {
+//   .uri       = "/get_data" ,
+//   .method    = HTTP_GET,
+//   .handler   = handler_get_data,
+//   .user_ctx  = NULL
+// };
+
+static const httpd_uri_t handler_read_5_t = {
+  .uri       = "/read_5" ,
   .method    = HTTP_GET,
-  .handler   = handler_get_data,
+  .handler   = handler_read_5,
   .user_ctx  = NULL
 };
 
-static const httpd_uri_t handler_read_test_t = {
-  .uri       = "/read_test" ,
+// static const httpd_uri_t handler_program_1_t = {
+//   .uri       = "/program_1" ,
+//   .method    = HTTP_GET,
+//   .handler   = handler_program_1,
+//   .user_ctx  = NULL
+// };
+//
+// static const httpd_uri_t handler_test_adc_2_t = {
+//   .uri       = "/test_adc_2" ,
+//   .method    = HTTP_GET,
+//   .handler   = handler_test_adc_2,
+//   .user_ctx  = NULL
+// };
+
+static const httpd_uri_t handler_test_read_mono_t = {
+  .uri       = "/test_read" ,
   .method    = HTTP_GET,
-  .handler   = handler_read_test,
+  .handler   = handler_test_read_mono,
   .user_ctx  = NULL
 };
 
-static const httpd_uri_t handler_read_test_2_t = {
-  .uri       = "/read_test_2" ,
+static const httpd_uri_t handler_test_timer_t = {
+  .uri       = "/test_timers" ,
   .method    = HTTP_GET,
-  .handler   = handler_read_test_2,
-  .user_ctx  = NULL
-};
-
-static const httpd_uri_t handler_program_1_t = {
-  .uri       = "/program_1" ,
-  .method    = HTTP_GET,
-  .handler   = handler_program_1,
-  .user_ctx  = NULL
-};
-
-static const httpd_uri_t handler_test_adc_2_t = {
-  .uri       = "/test_adc_2" ,
-  .method    = HTTP_GET,
-  .handler   = handler_test_adc_2,
+  .handler   = handler_timer_switching_event,
   .user_ctx  = NULL
 };
 
@@ -804,14 +869,15 @@ static httpd_handle_t start_webserver(void)
     if (httpd_start(&server, &config) == ESP_OK) {
         // Set URI handlers
         ESP_LOGI(TAG, "Registering URI handlers");
-        httpd_register_uri_handler(server, &handler_stimulate_t);
+        // httpd_register_uri_handler(server, &handler_stimulate_t);
         httpd_register_uri_handler(server, &handler_submit_t);
         httpd_register_uri_handler(server, &handler_main_t);
-        httpd_register_uri_handler(server, &handler_get_data_t);
-        httpd_register_uri_handler(server, &handler_read_test_t);
-        httpd_register_uri_handler(server, &handler_read_test_2_t);
-        httpd_register_uri_handler(server, &handler_program_1_t);
-        httpd_register_uri_handler(server, &handler_test_adc_2_t);
+        // httpd_register_uri_handler(server, &handler_get_data_t);
+        httpd_register_uri_handler(server, &handler_read_5_t);
+        // httpd_register_uri_handler(server, &handler_program_1_t);
+        // httpd_register_uri_handler(server, &handler_test_adc_2_t);
+        httpd_register_uri_handler(server, &handler_test_read_mono_t);
+        httpd_register_uri_handler(server, &handler_test_timer_t);
         return server;
     }
 
